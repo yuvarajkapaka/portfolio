@@ -249,6 +249,166 @@ footer span{color:var(--indigo)}
   height:1px;background:linear-gradient(90deg,transparent,var(--indigo),transparent);
   margin:0;opacity:0.3;
 }
+
+/* ===== Enhanced motion system ===== */
+body::before{
+  content:"";
+  position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(99,102,241,.10),transparent 25%),
+    radial-gradient(circle at 85% 65%,rgba(139,92,246,.08),transparent 28%);
+  animation:ambientDrift 14s ease-in-out infinite alternate;
+}
+@keyframes ambientDrift{
+  0%{transform:translate3d(-2%, -1%, 0) scale(1)}
+  50%{transform:translate3d(2%, 2%, 0) scale(1.04)}
+  100%{transform:translate3d(-1%, 3%, 0) scale(1.02)}
+}
+
+nav{transition:transform .35s ease,background .35s ease,box-shadow .35s ease}
+nav.nav-scrolled{
+  background:rgba(5,8,22,.94);
+  box-shadow:0 10px 40px rgba(0,0,0,.25);
+}
+
+.nav-links a{position:relative}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-7px;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--indigo),var(--purple));
+  transform:scaleX(0);transform-origin:right;transition:transform .3s ease;
+}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.hero-inner{animation:heroFloat 7s ease-in-out infinite;transform:translate3d(var(--mx,0),var(--my,0),0)}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+.hero-name{position:relative}
+.hero-name::after{
+  content:"";position:absolute;left:50%;top:50%;width:260px;height:260px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  border:1px solid rgba(99,102,241,.10);
+  box-shadow:0 0 70px rgba(99,102,241,.08);
+  animation:heroRing 5s linear infinite;pointer-events:none;z-index:-1;
+}
+@keyframes heroRing{
+  from{transform:translate(-50%,-50%) rotate(0deg) scale(.9)}
+  to{transform:translate(-50%,-50%) rotate(360deg) scale(1.08)}
+}
+
+.btn{position:relative;overflow:hidden}
+.btn::before{
+  content:"";position:absolute;top:0;left:-120%;width:70%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+  transform:skewX(-20deg);transition:left .65s ease;
+}
+.btn:hover::before{left:140%}
+
+.glass-card,.project-card,.achieve-card,.cert-card,.contact-form{
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.glass-card,.project-card,.achieve-card,.cert-card{
+  animation:cardIn .8s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(25px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.glass-card:nth-child(2),.project-card:nth-child(2),.achieve-card:nth-child(2),.cert-card:nth-child(2){animation-delay:.1s}
+.glass-card:nth-child(3),.achieve-card:nth-child(3),.cert-card:nth-child(3){animation-delay:.2s}
+.glass-card:nth-child(4),.achieve-card:nth-child(4),.cert-card:nth-child(4){animation-delay:.3s}
+
+.skill-pill{position:relative;overflow:hidden}
+.skill-pill::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.12) 50%,transparent 75%);
+  transform:translateX(-130%);transition:transform .55s ease;
+}
+.skill-pill:hover::before{transform:translateX(130%)}
+
+.project-card{min-height:300px}
+.project-card::before{
+  content:"";position:absolute;inset:-2px;border-radius:inherit;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(99,102,241,.55) 80deg,transparent 150deg);
+  opacity:0;transition:opacity .4s;z-index:-2;
+  animation:borderSpin 5s linear infinite;
+}
+.project-card:hover::before{opacity:1}
+@keyframes borderSpin{to{transform:rotate(360deg)}}
+
+.project-glow{
+  position:absolute;width:180px;height:180px;right:-80px;top:-80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,.28),transparent 70%);
+  animation:projectGlow 4s ease-in-out infinite alternate;pointer-events:none;
+}
+@keyframes projectGlow{
+  from{transform:scale(.85);opacity:.5}
+  to{transform:scale(1.2);opacity:1}
+}
+.project-flow{
+  display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin-top:1.25rem;
+  color:#c4b5fd;font-size:.72rem;font-weight:600;
+}
+.project-flow span{
+  padding:.32rem .55rem;border:1px solid rgba(139,92,246,.25);
+  border-radius:999px;background:rgba(139,92,246,.08);
+  animation:flowPulse 2.8s ease-in-out infinite;
+}
+.project-flow span:nth-of-type(2){animation-delay:.45s}
+.project-flow span:nth-of-type(3){animation-delay:.9s}
+.project-flow span:nth-of-type(4){animation-delay:1.35s}
+.project-flow i{font-style:normal;color:var(--indigo);animation:arrowPulse 1.4s ease-in-out infinite}
+@keyframes flowPulse{
+  0%,100%{transform:translateY(0);box-shadow:0 0 0 rgba(139,92,246,0)}
+  50%{transform:translateY(-3px);box-shadow:0 0 18px rgba(139,92,246,.18)}
+}
+@keyframes arrowPulse{50%{transform:translateX(4px);opacity:.55}}
+
+.timeline-dot{animation:timelinePulse 2.2s ease-in-out infinite}
+@keyframes timelinePulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(99,102,241,.2),0 0 12px rgba(99,102,241,.6)}
+  50%{box-shadow:0 0 0 8px rgba(99,102,241,.05),0 0 25px rgba(99,102,241,.9)}
+}
+
+.social-icon{position:relative}
+.social-icon:hover svg{animation:iconBounce .45s ease}
+@keyframes iconBounce{
+  0%,100%{transform:scale(1) rotate(0)}
+  50%{transform:scale(1.2) rotate(-6deg)}
+}
+
+.reveal{transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{animation:revealGlow .9s ease both}
+@keyframes revealGlow{
+  0%{filter:blur(3px)}
+  100%{filter:blur(0)}
+}
+
+.section-divider{position:relative;overflow:hidden}
+.section-divider::after{
+  content:"";position:absolute;top:0;left:-30%;width:30%;height:100%;
+  background:linear-gradient(90deg,transparent,#a78bfa,transparent);
+  animation:dividerSweep 4s ease-in-out infinite;
+}
+@keyframes dividerSweep{
+  0%,35%{left:-30%}
+  70%,100%{left:110%}
+}
+
+#progress{box-shadow:0 0 12px rgba(139,92,246,.8)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -386,14 +546,23 @@ footer span{color:var(--indigo)}
       <h2 class="section-title">Things I've <span class="gradient-text">built.</span></h2>
     </div>
     <div class="projects-grid reveal">
-      <div class="project-card">
+      <div class="project-card featured-project">
+        <div class="project-glow"></div>
         <div class="project-num">01</div>
-        <div class="project-name">AI Email Generator</div>
-        <div class="project-desc">An AI-powered email generation tool leveraging Google's Gemini AI to craft professional, context-aware emails instantly.</div>
+        <div class="project-name">Telugu Auto-Dubbing Studio</div>
+        <div class="project-desc">An AI-powered video localization pipeline that converts spoken video content into natural Telugu using speech recognition, context-aware translation, speaker-aware voice generation, and audio-video synchronization.</div>
         <div class="tech-tags">
           <span class="tag">Python</span>
-          <span class="tag">Gemini AI</span>
-          <span class="tag">GenAI</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Faster-Whisper</span>
+          <span class="tag">ASR</span>
+          <span class="tag">TTS</span>
+          <span class="tag">Demucs</span>
+          <span class="tag">AI Translation</span>
+        </div>
+        <div class="project-flow">
+          <span>🎙️ ASR</span><i>→</i><span>🌐 Translate</span><i>→</i><span>🗣️ TTS</span><i>→</i><span>🎬 Sync</span>
         </div>
       </div>
       <div class="project-card">
@@ -531,7 +700,7 @@ footer span{color:var(--indigo)}
 </section>
 
 <footer>
-  <p>Designed & Developed by <span>Yuvaraj Kapaka</span> · 2024</p>
+  <p>Designed & Developed by <span>Yuvaraj Kapaka</span> · Portfolio</p>
   <p style="margin-top:0.5rem;font-size:0.75rem">Built with passion & caffeine ☕</p>
 </footer>
 
@@ -618,6 +787,39 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 revels.forEach(r => obs.observe(r));
+
+/* Enhanced interaction layer */
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('nav-scrolled', window.scrollY > 30);
+}, {passive:true});
+
+document.querySelectorAll('.glass-card,.project-card,.achieve-card,.cert-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `perspective(900px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+document.querySelectorAll('.skill-pill').forEach((pill, i) => {
+  pill.style.transitionDelay = `${(i % 5) * 35}ms`;
+});
+
+const hero = document.querySelector('#hero');
+window.addEventListener('mousemove', e => {
+  if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const x = (e.clientX / window.innerWidth - .5) * 2;
+  const y = (e.clientY / window.innerHeight - .5) * 2;
+  hero.style.setProperty('--mx', `${x * 6}px`);
+  hero.style.setProperty('--my', `${y * 4}px`);
+});
+
 </script>
 </body>
 </html>
