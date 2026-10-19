@@ -22,7 +22,7 @@
   <!-- Google Fonts: Plus Jakarta Sans (Body) & Space Grotesk / Syne (Display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -35,7 +35,48 @@
     }
 
     :root {
-      /* Light Theme (Default, Warm/Crisp Modern Palette) */
+      /* Deep Midnight Navy (Default Futuristic Theme matching Visual Reference) */
+      --bg: #060714;
+      --bg-subtle: #0a0d20;
+      --bg-elevated: #10132b;
+      --surface: #0d1026;
+      --surface-card: #0f132e;
+      --surface-hover: #161b3d;
+      --surface-glass: rgba(6, 7, 20, 0.85);
+      --border: rgba(168, 85, 247, 0.18);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-focus: #a855f7;
+
+      --text: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+
+      --primary: #8b5cf6;
+      --primary-hover: #a855f7;
+      --primary-subtle: rgba(168, 85, 247, 0.14);
+      --primary-border: rgba(168, 85, 247, 0.35);
+      --primary-glow: rgba(168, 85, 247, 0.35);
+
+      --accent: #38bdf8;
+      --accent-subtle: rgba(56, 189, 248, 0.12);
+
+      --spotlight-color: rgba(168, 85, 247, 0.14);
+      --nav-bg: rgba(6, 7, 20, 0.88);
+      --card-shadow: 0 4px 25px -4px rgba(0, 0, 0, 0.6);
+      --card-shadow-hover: 0 20px 40px -8px rgba(168, 85, 247, 0.28), 0 0 1px 1px rgba(168, 85, 247, 0.4);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Outfit', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-standard: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      /* Optional Crisp Light Theme */
       --bg: #f8fafc;
       --bg-subtle: #f1f5f9;
       --bg-elevated: #ffffff;
@@ -45,67 +86,26 @@
       --surface-glass: rgba(255, 255, 255, 0.85);
       --border: #e2e8f0;
       --border-subtle: #edf2f7;
-      --border-focus: #6366f1;
+      --border-focus: #8b5cf6;
 
       --text: #0f172a;
       --text-secondary: #334155;
       --text-muted: #64748b;
       --text-subtle: #94a3b8;
 
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --primary-subtle: #eef2ff;
-      --primary-border: #c7d2fe;
-      --primary-glow: rgba(79, 70, 229, 0.15);
+      --primary: #7c3aed;
+      --primary-hover: #6d28d9;
+      --primary-subtle: #f3e8ff;
+      --primary-border: #d8b4fe;
+      --primary-glow: rgba(124, 58, 237, 0.18);
 
       --accent: #0284c7;
       --accent-subtle: #e0f2fe;
 
-      --spotlight-color: rgba(99, 102, 241, 0.08);
-      --nav-bg: rgba(248, 250, 252, 0.82);
+      --spotlight-color: rgba(124, 58, 237, 0.08);
+      --nav-bg: rgba(248, 250, 252, 0.88);
       --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-      --card-shadow-hover: 0 20px 35px -8px rgba(79, 70, 229, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-display: 'Space Grotesk', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --transition-standard: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-theme="dark"] {
-      /* Dark Theme (Obsidian / Deep Slate with Violet Undertones) */
-      --bg: #07090e;
-      --bg-subtle: #0d121c;
-      --bg-elevated: #131a29;
-      --surface: #0f1624;
-      --surface-card: #121927;
-      --surface-hover: #182235;
-      --surface-glass: rgba(15, 22, 36, 0.85);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-subtle: rgba(255, 255, 255, 0.05);
-      --border-focus: #818cf8;
-
-      --text: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --text-subtle: #64748b;
-
-      --primary: #6366f1;
-      --primary-hover: #818cf8;
-      --primary-subtle: rgba(99, 102, 241, 0.12);
-      --primary-border: rgba(99, 102, 241, 0.3);
-      --primary-glow: rgba(99, 102, 241, 0.25);
-
-      --accent: #38bdf8;
-      --accent-subtle: rgba(56, 189, 248, 0.12);
-
-      --spotlight-color: rgba(99, 102, 241, 0.14);
-      --nav-bg: rgba(7, 9, 14, 0.82);
-      --card-shadow: 0 4px 25px -4px rgba(0, 0, 0, 0.4);
-      --card-shadow-hover: 0 20px 40px -8px rgba(99, 102, 241, 0.25), 0 0 1px 1px rgba(99, 102, 241, 0.4);
+      --card-shadow-hover: 0 20px 35px -8px rgba(124, 58, 237, 0.15), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
     }
 
     html {
@@ -366,13 +366,13 @@
     }
 
     /* ==========================================================================
-       HERO SECTION (CINEMATIC CHOREOGRAPHED ENTRANCE)
+       HERO SECTION (FUTURISTIC VISUAL DESIGN & CINEMATIC CHOREOGRAPHY)
        ========================================================================== */
     #hero {
       min-height: 94vh;
       display: flex;
       align-items: center;
-      padding-top: 8rem;
+      padding-top: 7.5rem;
       padding-bottom: 5rem;
       position: relative;
       overflow: hidden;
@@ -381,163 +381,212 @@
     .hero-wrapper {
       display: grid;
       grid-template-columns: 1fr;
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ambient circular aura glow behind title */
+    .hero-aura-glow {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(280px, 45vw, 480px);
+      height: clamp(280px, 45vw, 480px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.16) 0%, rgba(99, 102, 241, 0.06) 50%, transparent 72%);
+      border: 1px solid rgba(168, 85, 247, 0.12);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(20px);
     }
 
     .hero-badge-wrap {
       display: inline-flex;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.6rem;
       opacity: 0;
       transform: translateY(16px);
       animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+      z-index: 2;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 1.15rem;
+      gap: 0.65rem;
+      padding: 0.45rem 1.25rem;
       border-radius: 9999px;
-      background: var(--primary-subtle);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
+      background: rgba(168, 85, 247, 0.08);
+      border: 1px solid rgba(168, 85, 247, 0.38);
+      color: #c084fc;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.02em;
+      box-shadow: 0 0 16px rgba(168, 85, 247, 0.14);
+      backdrop-filter: blur(8px);
     }
 
     .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: #10b981;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      background-color: #a855f7;
+      box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(168, 85, 247, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
     }
 
-    .hero-title-container {
-      margin-bottom: 1.25rem;
+    /* Dramatic Two-Line Centered Name */
+    .hero-name-container {
+      margin-bottom: 1.15rem;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4.25rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: var(--text);
-      margin-bottom: 0.75rem;
+      font-family: 'Space Grotesk', 'Outfit', system-ui, -apple-system, sans-serif;
+      font-size: clamp(3.4rem, 10vw, 6.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      text-transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
     }
 
-    .hero-name .title-line {
+    .hero-name-line {
       display: block;
       overflow: hidden;
     }
 
-    .hero-name .title-line span {
+    .hero-name-line span {
       display: inline-block;
+      transform: translateY(110%);
       opacity: 0;
-      transform: translateY(100%);
-      animation: heroMaskReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+      animation: heroMaskReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .hero-name .gradient-text {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    .line-first span {
+      color: #ffffff;
+      animation-delay: 0.18s;
+      text-shadow: 0 4px 30px rgba(255, 255, 255, 0.14);
+    }
+
+    .line-second span {
+      animation-delay: 0.35s;
+    }
+
+    .gradient-purple {
+      background: linear-gradient(135deg, #a855f7 0%, #818cf8 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-block;
+      background-size: 200% auto;
+      animation: heroMaskReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards, purpleShimmer 6s ease-in-out infinite alternate !important;
+      filter: drop-shadow(0 6px 30px rgba(168, 85, 247, 0.38));
     }
 
-    .hero-role {
-      font-family: var(--font-display);
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 1.25rem;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    @keyframes purpleShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
-    /* Rotating Text Box without layout shift */
-    .hero-rotator-wrapper {
+    /* Typing Animation with Blinking Cursor for Roles */
+    .hero-typing-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1.75rem;
-      font-size: 1.1rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.3vw, 1.5rem);
       font-weight: 500;
-      color: var(--text-muted);
+      color: var(--text-secondary);
+      margin-bottom: 1.4rem;
+      min-height: 2.2rem;
       opacity: 0;
       transform: translateY(16px);
       animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+      z-index: 2;
     }
 
-    .rotator-track {
-      position: relative;
+    .hero-typed-text {
+      color: #e2e8f0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .typing-cursor {
       display: inline-block;
-      height: 1.75rem;
-      overflow: hidden;
-      vertical-align: middle;
-      min-width: 280px;
-      text-align: left;
+      margin-left: 3px;
+      color: #a855f7;
+      font-weight: 300;
+      animation: blinkCursor 0.9s infinite;
+      user-select: none;
     }
 
-    .rotator-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--primary);
-      opacity: 0;
-      transform: translateY(100%);
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
+    @keyframes blinkCursor {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
 
-    .rotator-item.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .rotator-item.exit {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-
+    /* Introduction description matching prompt */
     .hero-intro {
-      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-      color: var(--text-secondary);
-      max-width: 760px;
-      margin: 0 auto 2.5rem auto;
+      font-size: clamp(1.02rem, 1.6vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.2rem auto;
       line-height: 1.7;
       opacity: 0;
       transform: translateY(16px);
-      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.62s forwards;
+      z-index: 2;
     }
 
     .hero-actions {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.4rem;
       opacity: 0;
       transform: translateY(16px);
       animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+      z-index: 2;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+      color: #ffffff;
+      padding: 0.95rem 2.25rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 4px 22px rgba(139, 92, 246, 0.42), 0 0 35px rgba(99, 102, 241, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.58), 0 0 45px rgba(99, 102, 241, 0.35);
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #ffffff;
     }
 
     /* Action Buttons & Magnetic Elements */
@@ -1743,45 +1792,41 @@
     <div class="container">
       <div class="hero-wrapper">
         
-        <!-- Status Badge -->
+        <!-- Ambient circular aura glow behind title matching visual reference -->
+        <div class="hero-aura-glow" aria-hidden="true"></div>
+
+        <!-- Availability Badge -->
         <div class="hero-badge-wrap">
           <div class="hero-badge">
             <span class="pulse-dot"></span>
-            <span>Available for SWE Internships &amp; Entry-Level Roles</span>
+            <span>Available for opportunities</span>
           </div>
         </div>
 
-        <!-- Name & Main Heading Mask Reveal -->
-        <div class="hero-title-container">
+        <!-- Dramatic Two-Line Centered Name: Yuvaraj (Silver) Kapaka (Purple Gradient) -->
+        <div class="hero-name-container">
           <h1 class="hero-name">
-            <span class="title-line"><span>Yuvaraj Kapaka</span></span>
+            <span class="hero-name-line line-first"><span>Yuvaraj</span></span>
+            <span class="hero-name-line line-second"><span class="gradient-purple">Kapaka</span></span>
           </h1>
-          <div class="hero-role">
-            Software Developer <span style="opacity: 0.5; margin: 0 0.4rem;">|</span> Computer Science Engineering Student
-          </div>
         </div>
 
-        <!-- Rotating Phrases (Zero layout shift) -->
-        <div class="hero-rotator-wrapper">
-          <span>Focused on</span>
-          <div class="rotator-track" id="rotator-track">
-            <span class="rotator-item active">Full-Stack Development</span>
-            <span class="rotator-item">AI-Powered Applications</span>
-            <span class="rotator-item">Intelligent Software Systems</span>
-            <span class="rotator-item">Interactive Web Experiences</span>
-          </div>
+        <!-- Animated Typing Role with Blinking Cursor -->
+        <div class="hero-typing-wrap">
+          <span class="hero-typed-text" id="typed-role">Problem Solver</span><span class="typing-cursor" aria-hidden="true">|</span>
         </div>
 
-        <!-- Authentic Introduction -->
+        <!-- Exact Requested Introduction -->
         <p class="hero-intro">
-          I'm a Computer Science and Engineering student passionate about building practical software solutions, exploring AI-powered applications, and creating intuitive user experiences.
+          CSE student building the future — one commit at a time.<br>
+          Passionate about AI, full-stack development, and creating impactful digital experiences.
         </p>
 
-        <!-- Hero Actions: Explore Projects + Social Links (Strictly No Contact Button) -->
+        <!-- Hero Actions: View Projects + Social Icon Links (Strictly No Contact Button) -->
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary" id="explore-projects-cta">
-            <span>Explore Projects</span>
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <a href="#projects" class="btn btn-hero-primary" id="explore-projects-cta">
+            <span>View Projects</span>
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
           </a>
@@ -1789,21 +1834,21 @@
           <div class="hero-socials">
             <!-- GitHub Link -->
             <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Profile">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
               </svg>
             </a>
 
             <!-- LinkedIn Link -->
             <a href="https://linkedin.com/in/yuvaraj-kapaka" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Profile">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
               </svg>
             </a>
 
             <!-- Email Mailto Link -->
             <a href="mailto:yuvarajkapaka@gmail.com" class="social-btn" aria-label="Send Email">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </a>
@@ -2603,25 +2648,41 @@
     }, { passive: true });
 
     /* --------------------------------------------------------------------------
-       4. ROTATING HERO PHRASES (NO LAYOUT SHIFT)
+       4. TYPING HERO ROLES WITH BLINKING CURSOR
        -------------------------------------------------------------------------- */
-    const rotatorItems = document.querySelectorAll('.rotator-item');
-    let currentPhraseIdx = 0;
+    const typedRoleEl = document.getElementById('typed-role');
+    const rolesList = ['Problem Solver', 'Software Developer', 'AI Enthusiast'];
+    let roleIdx = 0;
+    let charIdx = rolesList[0].length;
+    let isDeleting = true; // start deleting initial text after brief pause
+    let typeDelay = 1800;
 
-    function cyclePhrases() {
-      const currentItem = rotatorItems[currentPhraseIdx];
-      currentItem.classList.remove('active');
-      currentItem.classList.add('exit');
+    function typeHeroRole() {
+      if (!typedRoleEl) return;
+      const currentWord = rolesList[roleIdx];
 
-      setTimeout(() => {
-        currentItem.classList.remove('exit');
-      }, 450);
+      if (isDeleting) {
+        typedRoleEl.textContent = currentWord.substring(0, charIdx - 1);
+        charIdx--;
+        typeDelay = 45;
+      } else {
+        typedRoleEl.textContent = currentWord.substring(0, charIdx + 1);
+        charIdx++;
+        typeDelay = 95;
+      }
 
-      currentPhraseIdx = (currentPhraseIdx + 1) % rotatorItems.length;
-      const nextItem = rotatorItems[currentPhraseIdx];
-      nextItem.classList.add('active');
+      if (!isDeleting && charIdx === currentWord.length) {
+        typeDelay = 2000; // Pause at complete word
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % rolesList.length;
+        typeDelay = 450; // Pause before typing next role
+      }
+
+      setTimeout(typeHeroRole, typeDelay);
     }
-    setInterval(cyclePhrases, 2800);
+    setTimeout(typeHeroRole, 1800);
 
     /* --------------------------------------------------------------------------
        5. INTERSECTION OBSERVER SCROLL REVEALS
@@ -2716,7 +2777,7 @@
       }
     }
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
 
     themeToggleBtn.addEventListener('click', () => {
