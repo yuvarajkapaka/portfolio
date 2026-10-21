@@ -3,693 +3,1983 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yuvaraj Kapaka — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Yuvaraj Kapaka — Creative Developer &amp; Software Engineer</title>
+<meta name="description" content="Personal portfolio of Yuvaraj Kapaka. Computer Science &amp; Engineering student, creative developer, and software engineer building scalable applications and intuitive digital experiences.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<!-- Google Fonts: Syne (Display), Space Grotesk (Navigation, Subheadings, HUD Accents), Outfit (Body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#030407;
-  --bg-secondary:#080D20;
-  --surface:rgba(12, 17, 34, 0.65);
-  --border:rgba(139, 92, 246, 0.16);
-  --border-hover:rgba(56, 189, 248, 0.45);
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --indigo:#6366f1;
-  --purple:#a855f7;
-  --violet:#8b5cf6;
-  --cosmic-blue:#38bdf8;
-  --magenta:#e879f9;
-  --glow:rgba(139, 92, 246, 0.28);
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:'Outfit','Space Grotesk',sans-serif;
-  overflow-x:hidden;line-height:1.6;
-}
-canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.glow-cursor{
-  position:fixed;width:240px;height:240px;border-radius:50%;
-  background:radial-gradient(circle,rgba(139,92,246,0.12) 0%,rgba(56,189,248,0.05) 40%,transparent 70%);
-  pointer-events:none;z-index:1;transform:translate(-50%,-50%);
-  transition:opacity 0.25s ease;will-change:left,top;
+/* ==========================================================================
+   1. DESIGN TOKENS — SPIDER-TECH & STARK ENGINEERING PALETTE
+   ========================================================================== */
+:root {
+  /* Obsidian & Graphite Dominant Surfaces */
+  --bg: #08090C;
+  --bg-secondary: #0F1218;
+  --surface: #151922;
+  --surface-hover: #1C2330;
+  --navy-atmosphere: #0E1622;
+  --border: #232B3A;
+  --border-hover: #3D4A60;
+  --border-tech: rgba(138, 220, 245, 0.28);
+
+  --text: #F5F3EF;
+  --muted: #6F91A8;
+  --silver: #D7DCE2;
+
+  /* Stark Arc Reactor Visual Signature Tokens */
+  --accent: #8ADCF5;
+  --accent-hover: #BCEBFA;
+  --stark-cyan: #38BDF8;
+  --stark-cyan-glow: rgba(138, 220, 245, 0.22);
+  --stark-core: #FFFFFF;
+  --stark-silver: #CBD5E1;
+  --stark-metal-dark: #121820;
+
+  /* Spider-Man Crimson Accents */
+  --crimson: #B8323C;
+  --crimson-hover: #D93845;
+  --crimson-glow: rgba(184, 50, 60, 0.24);
+  --crimson-subtle: rgba(184, 50, 60, 0.12);
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Easing curves */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(3,4,7,0.85);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-weight:900;font-size:1.35rem;
-  background:linear-gradient(135deg,#a855f7 0%,#6366f1 50%,#38bdf8 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  letter-spacing:-0.5px;
-  filter:drop-shadow(0 0 10px rgba(168,85,247,0.35));
-  text-decoration:none;display:inline-flex;align-items:center;
-  transition:transform 0.25s ease,filter 0.25s ease;
-  user-select:none;
-}
-.nav-logo:hover{
-  transform:scale(1.05);
-  filter:drop-shadow(0 0 14px rgba(56,189,248,0.55));
-}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;
-  transition:color 0.2s;letter-spacing:0.02em}
-.nav-links a:hover{color:#fff}
-
-section{position:relative;z-index:2}
-
-#hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:6rem 2rem 4rem;
-}
-.hero-inner{max-width:800px}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  padding:0.4rem 1rem;border-radius:999px;
-  border:1px solid rgba(99,102,241,0.4);
-  background:rgba(99,102,241,0.1);
-  font-size:0.8rem;color:var(--indigo);margin-bottom:1.5rem;
-  animation:fadeDown 0.8s ease both;
-}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-h1.hero-name{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);
-  font-weight:900;line-height:1.02;letter-spacing:-2px;margin-bottom:0.5rem;
-  animation:fadeUp 1s ease 0.2s both;
-}
-.gradient-text{
-  background:linear-gradient(135deg,#a855f7 0%,#818cf8 50%,#c084fc 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.hero-typing{
-  font-size:1.3rem;color:var(--muted);margin-bottom:1.5rem;height:2rem;
-  animation:fadeUp 1s ease 0.4s both;
-}
-.typing-cursor{color:var(--indigo);animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-desc{
-  font-size:1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;
-  animation:fadeUp 1s ease 0.6s both;
-}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
-  animation:fadeUp 1s ease 0.8s both}
-.btn{
-  padding:0.75rem 1.75rem;border-radius:12px;font-size:0.9rem;font-weight:600;
-  cursor:pointer;text-decoration:none;transition:all 0.3s;display:inline-flex;
-  align-items:center;gap:0.5rem;font-family:'Space Grotesk',sans-serif;
-}
-.btn-primary{
-  background:linear-gradient(135deg,#7c3aed 0%,#6366f1 50%,#38bdf8 100%);color:#fff;border:none;
-  box-shadow:0 0 25px rgba(124,58,237,0.35);
-}
-.btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 35px rgba(139,92,246,0.6),0 0 15px rgba(56,189,248,0.4);
-}
-.btn-outline{
-  background:rgba(8,13,32,0.6);color:#f1f5f9;
-  border:1px solid rgba(139,92,246,0.3);
-}
-.btn-outline:hover{
-  background:rgba(139,92,246,0.12);
-  border-color:var(--cosmic-blue);
-  color:#fff;
-  transform:translateY(-2px);
-  box-shadow:0 0 25px rgba(56,189,248,0.3);
-}
-.social-row{display:flex;gap:1rem;justify-content:center;margin-top:2rem;
-  animation:fadeUp 1s ease 1s both}
-.social-icon{
-  width:42px;height:42px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;border:1px solid var(--border);color:var(--muted);
-  text-decoration:none;font-size:1.1rem;transition:all 0.3s;
-  background:var(--surface);
-}
-.social-icon:hover{color:#fff;border-color:var(--indigo);background:rgba(99,102,241,0.1);transform:translateY(-3px)}
-
-.section{padding:6rem 2rem}
-.container{max-width:900px;margin:0 auto}
-.section-label{
-  font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--indigo);font-weight:600;margin-bottom:0.75rem;
-}
-.section-title{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);
-  font-weight:800;margin-bottom:1.5rem;line-height:1.1;letter-spacing:-1px;
+/* ==========================================================================
+   2. RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ===== About Me Section ===== */
-#about .container{max-width:1080px;margin:0 auto}
-.about-header{text-align:center;margin-bottom:2.75rem}
-.about-header .section-label{
-  font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--purple);font-weight:700;margin-bottom:0.5rem;display:inline-block;
-}
-.about-header .section-title{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,2.8rem);
-  font-weight:800;color:#ffffff;margin-bottom:0.6rem;letter-spacing:-0.5px;line-height:1.15;
-}
-.about-subtitle{color:var(--muted);font-size:0.96rem;max-width:580px;margin:0 auto;line-height:1.6}
-
-.about-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:1.5rem;align-items:stretch}
-
-.about-card{
-  background:#111827;border:1px solid rgba(139,92,246,0.22);
-  border-radius:20px;padding:1.75rem;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
-  transition:transform 0.4s cubic-bezier(0.2,0.8,0.2,1),border-color 0.4s ease,box-shadow 0.4s ease;
-}
-.about-card:hover{
-  transform:translateY(-4px);border-color:rgba(139,92,246,0.55);
-  box-shadow:0 18px 50px rgba(0,0,0,0.5),0 0 25px rgba(139,92,246,0.2);
-}
-.about-card::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(380px circle at var(--amx,50%) var(--amy,50%),rgba(139,92,246,0.1),transparent 65%);
-  opacity:0;transition:opacity 0.35s ease;pointer-events:none;
-}
-.about-card:hover::before{opacity:1}
-
-.about-main{padding:2.25rem}
-.about-heading{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;
-  color:#ffffff;margin-bottom:1.15rem;line-height:1.3;
-}
-.about-text{color:var(--muted);font-size:0.92rem;line-height:1.75;margin-bottom:1.15rem}
-.about-text strong{color:#f8fafc;font-weight:600}
-.about-quote{
-  margin-top:auto;padding:1rem 1.25rem;
-  border-left:3px solid var(--purple);background:rgba(5,7,17,0.65);
-  border-radius:0 12px 12px 0;font-style:italic;color:#e2e8f0;font-size:0.88rem;line-height:1.65;
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.about-side{display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between}
-.about-card-head{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem}
-.about-icon-box{
-  width:42px;height:42px;border-radius:12px;background:rgba(139,92,246,0.15);
-  border:1px solid rgba(139,92,246,0.3);display:flex;align-items:center;
-  justify-content:center;color:#c4b5fd;flex-shrink:0;
-}
-.about-card-title{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:1.08rem;font-weight:700;
-  color:#ffffff;margin:0;
-}
-.about-edu{display:flex;flex-direction:column;gap:0.35rem;font-size:0.88rem;color:var(--muted);line-height:1.55}
-.about-degree{color:#f8fafc;font-weight:600;font-size:0.95rem}
-.about-college{color:var(--muted)}
-.about-location{color:var(--muted);font-size:0.82rem}
-.about-focus-desc{font-size:0.88rem;color:var(--muted);margin-bottom:0.85rem}
-.focus-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
-.focus-tag{
-  padding:0.38rem 0.75rem;border-radius:999px;background:rgba(5,7,17,0.65);
-  border:1px solid rgba(139,92,246,0.25);color:#e2e8f0;font-size:0.78rem;font-weight:500;
-  transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease;cursor:default;
-}
-.focus-tag:hover{
-  transform:translateY(-2px);border-color:rgba(56,189,248,0.5);
-  background:rgba(139,92,246,0.15);color:#ffffff;
+/* Native cursor suppression only when Arc Reactor custom cursor is active on fine pointers */
+html.has-stark-cursor,
+html.has-stark-cursor a,
+html.has-stark-cursor button,
+html.has-stark-cursor input,
+html.has-stark-cursor [role="button"] {
+  cursor: none !important;
 }
 
-/* Staggered reveal for About cards */
-.reveal .about-card.s-item{
-  opacity:0;translate:0 24px;
-  transition:opacity 0.7s cubic-bezier(0.2,0.8,0.2,1) var(--d,0s),
-             translate 0.7s cubic-bezier(0.2,0.8,0.2,1) var(--d,0s),
-             transform 0.4s cubic-bezier(0.2,0.8,0.2,1),
-             border-color 0.4s ease,box-shadow 0.4s ease;
-}
-.reveal.visible .about-card.s-item{opacity:1;translate:0 0}
-
-@media(max-width:860px){
-  .about-layout{grid-template-columns:1fr;gap:1.25rem}
-  .about-main{padding:1.6rem}
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.65;
+  min-height: 100vh;
+  position: relative;
 }
 
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1rem;margin-top:1rem}
-.skill-pill{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:0.75rem 1rem;text-align:center;font-size:0.85rem;font-weight:500;
-  transition:all 0.3s;cursor:default;
-}
-.skill-pill:hover{
-  background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.5);
-  color:#fff;transform:scale(1.05);
-  box-shadow:0 0 20px rgba(99,102,241,0.2);
-}
-.skills-cat{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--purple);font-weight:600;margin:1.5rem 0 0.75rem}
-
-.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
-.featured-project{grid-column:1 / -1}
-@media(max-width:768px){.featured-project{grid-column:1}}
-@media(max-width:600px){.projects-grid{grid-template-columns:1fr}}
-
-.project-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:20px;
-  padding:1.75rem;position:relative;overflow:hidden;min-height:300px;
-  display:flex;flex-direction:column;
-  transition:transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-             box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-             border-color 0.35s ease;
-  will-change:transform;
-}
-
-/* Staggered scroll entrance using translate to keep transform free for hover/tilt */
-.reveal .project-card{
-  opacity:0;
-  translate:0 26px;
-  transition:opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s),
-             translate 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s),
-             transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-             box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-             border-color 0.35s ease;
-}
-.reveal.visible .project-card{
-  opacity:1;
-  translate:0 0;
-}
-
-/* Premium hover lift with smooth easing and cosmic glow */
-.project-card:hover{
-  border-color:rgba(139, 92, 246, 0.5);
-  box-shadow:0 24px 60px rgba(0, 0, 0, 0.55), 0 0 35px rgba(139, 92, 246, 0.22);
-  transform:translateY(-8px);
-}
-
-/* Animated gradient border on hover */
-.project-card-border{
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  padding:1.5px;
-  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity 0.45s ease;
-  z-index:3;
-  overflow:hidden;
-}
-.project-card:hover .project-card-border{
-  opacity:1;
-}
-.project-card-border::before{
-  content:"";
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:conic-gradient(from 0deg, transparent 0deg, rgba(168, 85, 247, 0.85) 60deg, rgba(56, 189, 248, 0.95) 120deg, rgba(232, 121, 249, 0.85) 180deg, transparent 240deg);
-  animation:borderSpin 4s linear infinite;
-}
-@keyframes borderSpin{
-  to{transform:rotate(360deg)}
-}
-
-/* Bottom gradient line that sweeps on hover */
-.project-card::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;
-  background:linear-gradient(90deg,#6366f1 0%,#a855f7 50%,#38bdf8 100%);
-  transform:scaleX(0);transform-origin:center;
-  transition:transform 0.45s cubic-bezier(0.2,0.8,0.2,1);
-  z-index:4;
-}
-.project-card:hover::after{transform:scaleX(1)}
-
-/* Soft, moving purple-blue glow inside each card */
-.project-glow{
-  position:absolute;width:240px;height:240px;right:-60px;top:-60px;border-radius:50%;
-  background:radial-gradient(circle,rgba(168,85,247,0.22) 0%,rgba(56,189,248,0.12) 40%,transparent 70%);
-  animation:projectGlow 6s ease-in-out infinite alternate;
-  pointer-events:none;z-index:0;
-  transition:opacity 0.4s ease, filter 0.4s ease;
-}
-.project-card:nth-child(2) .project-glow{
-  left:-60px;right:auto;animation-delay:-2s;
-  background:radial-gradient(circle,rgba(56,189,248,0.20) 0%,rgba(139,92,246,0.14) 40%,transparent 70%);
-}
-.project-card:nth-child(3) .project-glow{
-  right:-50px;bottom:-50px;top:auto;animation-delay:-4s;
-  background:radial-gradient(circle,rgba(232,121,249,0.20) 0%,rgba(99,102,241,0.15) 40%,transparent 70%);
-}
-.project-card:hover .project-glow{
-  opacity:0.95;filter:brightness(1.25);
-}
-@keyframes projectGlow{
-  0%{transform:scale(0.85) translate(0, 0);opacity:0.5}
-  50%{transform:scale(1.15) translate(-15px, 15px);opacity:0.8}
-  100%{transform:scale(1.3) translate(-25px, 20px);opacity:0.65}
-}
-
-/* Subtle animated light sweeps across project cards */
-.project-sweep{
-  position:absolute;top:0;left:-130%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.03) 25%,rgba(168,85,247,0.12) 50%,rgba(56,189,248,0.10) 75%,transparent 100%);
-  transform:skewX(-22deg);pointer-events:none;z-index:1;
-  animation:lightSweep 10s ease-in-out infinite;
-}
-.project-card:nth-child(2) .project-sweep{animation-delay:3.3s}
-.project-card:nth-child(3) .project-sweep{animation-delay:6.6s}
-.project-card:hover .project-sweep{
-  animation:cardHoverSweep 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-@keyframes lightSweep{
-  0%{left:-130%}
-  20%{left:180%}
-  100%{left:180%}
-}
-@keyframes cardHoverSweep{
-  from{left:-130%}
-  to{left:180%}
-}
-
-/* Subtle depth spotlight tracking mouse inside project card */
-.project-spotlight{
-  position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(350px circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,0.14),transparent 60%);
-  opacity:0;transition:opacity 0.35s ease;
-  pointer-events:none;z-index:1;
-}
-.project-card:hover .project-spotlight{opacity:1}
-
-.project-num{
-  font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;
-  background:linear-gradient(135deg,rgba(168,85,247,0.6) 0%,rgba(56,189,248,0.4) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  line-height:1;margin-bottom:0.5rem;position:relative;z-index:2;
-  transition:filter 0.3s ease;
-}
-.project-card:hover .project-num{filter:drop-shadow(0 0 10px rgba(168,85,247,0.35))}
-.project-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;margin-bottom:0.5rem;color:#ffffff;position:relative;z-index:2}
-.project-desc{font-size:0.875rem;color:var(--muted);margin-bottom:1rem;line-height:1.6;position:relative;z-index:2}
-.tech-tags{display:flex;flex-wrap:wrap;gap:0.4rem;position:relative;z-index:2}
-.tag{
-  font-size:0.7rem;padding:0.25rem 0.6rem;border-radius:999px;font-weight:500;
-  background:rgba(99,102,241,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.25);
-  transition:transform 0.25s ease,background 0.25s ease,border-color 0.25s ease;
-}
-.project-card:hover .tag{background:rgba(139,92,246,0.2);border-color:rgba(139,92,246,0.4)}
-.tag:hover{transform:translateY(-2px);background:rgba(56,189,248,0.2)!important;border-color:rgba(56,189,248,0.5)!important;color:#fff!important}
-
-/* Animated project workflow steps with staggered timing */
-.project-flow{
-  display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin-top:1.25rem;
-  color:#c4b5fd;font-size:.72rem;font-weight:600;position:relative;z-index:2;
-}
-.project-flow span{
-  padding:.35rem .65rem;border:1px solid rgba(139,92,246,.25);
-  border-radius:999px;background:rgba(139,92,246,.08);
-  animation:flowLight 6s ease-in-out infinite;
-  transition:transform 0.25s ease,border-color 0.25s,box-shadow 0.25s;
-}
-.project-flow span:nth-of-type(1){animation-delay:0s}
-.project-flow span:nth-of-type(2){animation-delay:1.2s}
-.project-flow span:nth-of-type(3){animation-delay:2.4s}
-.project-flow span:nth-of-type(4){animation-delay:3.6s}
-.project-flow span:nth-of-type(5){animation-delay:4.8s}
-.project-flow i{font-style:normal;color:var(--cosmic-blue);animation:arrowPulse 1.4s ease-in-out infinite}
-@keyframes flowLight{
-  0%,30%,100%{
-    border-color:rgba(139,92,246,.25);background:rgba(139,92,246,.08);
-    color:#c4b5fd;box-shadow:0 0 0 rgba(139,92,246,0);transform:translateY(0);
-  }
-  12%{
-    border-color:rgba(56,189,248,.8);background:rgba(139,92,246,.24);
-    color:#ffffff;box-shadow:0 0 16px rgba(56,189,248,.35);transform:translateY(-2.5px);
-  }
-}
-@keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:0.6}50%{transform:translateX(3px);opacity:1}}
-
-/* Smooth hover transitions for project buttons */
-.project-actions{position:relative;z-index:2;margin-top:auto}
-.project-actions .btn{
-  transition:transform 0.25s cubic-bezier(0.2,0.8,0.2,1),box-shadow 0.25s ease,background 0.25s ease,border-color 0.25s ease;
-}
-.project-actions .btn:hover{transform:translateY(-2px)}
-.project-actions .btn:active{transform:translateY(0) scale(0.97)}
-.project-actions .btn svg{transition:transform 0.3s ease}
-.project-actions .btn:hover svg{transform:translate(2px,-2px)}
-
-.timeline{position:relative;margin-top:2rem;padding-left:2rem}
-.timeline::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
-  background:linear-gradient(to bottom,transparent,var(--indigo),transparent);
-}
-.timeline-item{position:relative;margin-bottom:2.5rem}
-.timeline-dot{
-  position:absolute;left:-2.35rem;top:0.25rem;width:12px;height:12px;
-  border-radius:50%;background:var(--indigo);
-  box-shadow:0 0 0 3px rgba(99,102,241,0.15);
-}
-.timeline-year{font-size:0.75rem;color:var(--muted);font-weight:500;
-  letter-spacing:0.1em;margin-bottom:0.3rem}
-.timeline-school{font-family:'Outfit','Space Grotesk',sans-serif;font-weight:500;font-size:1rem;margin-bottom:0.25rem}
-.timeline-detail{font-size:0.875rem;color:var(--muted)}
-.gpa-badge{
-  display:inline;margin-left:0.5rem;padding:0;
-  border-radius:0;font-size:0.85rem;font-weight:500;
-  background:none;color:var(--muted);
-}
-
-.achieve-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-@media(max-width:600px){.achieve-grid{grid-template-columns:1fr}}
-.achieve-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:all 0.3s;
-}
-.achieve-card:hover{border-color:rgba(139,92,246,0.5);transform:translateY(-3px)}
-.achieve-icon{
-  width:44px;height:44px;border-radius:12px;flex-shrink:0;
-  background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);
-  display:flex;align-items:center;justify-content:center;font-size:1.25rem;
-}
-.achieve-text{font-size:0.9rem;font-weight:500;color:var(--text)}
-
-.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-@media(max-width:600px){.cert-grid{grid-template-columns:1fr}}
-.cert-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  padding:1.5rem;display:flex;align-items:center;gap:1rem;transition:all 0.3s;
-}
-.cert-card:hover{border-color:rgba(99,102,241,0.5);transform:translateY(-3px)}
-.cert-logo{
-  width:44px;height:44px;border-radius:10px;flex-shrink:0;
-  background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);
-  display:flex;align-items:center;justify-content:center;font-weight:800;
-  font-size:0.65rem;color:var(--indigo);letter-spacing:0.05em;text-align:center;
-}
-.cert-name{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
-.cert-platform{font-size:0.78rem;color:var(--muted)}
-
-
-
-
-
-
-
-@media(max-width:500px){}
-
-/* ===== Redesigned Site Footer ===== */
-.site-footer{
-  padding:4.5rem 2rem 2.5rem;background:#030407;
-  border-top:1px solid rgba(139,92,246,0.16);position:relative;z-index:2;
-}
-.footer-container{max-width:1150px;margin:0 auto}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;flex-wrap:wrap}
-.footer-left{max-width:580px;flex:1 1 360px}
-.footer-brand{
-  font-family:'Outfit','Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.3rem);
-  font-weight:800;line-height:1.15;letter-spacing:-0.5px;margin-bottom:0.9rem;
-}
-.footer-first{color:#ffffff}
-.footer-last{
-  color:var(--purple);background:linear-gradient(135deg,#a855f7 0%,#c084fc 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.footer-desc{color:var(--muted);font-size:0.95rem;line-height:1.75}
-.footer-right{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
-.footer-heading{
-  font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;
-  font-weight:700;color:var(--muted);margin-bottom:1rem;
-}
-.footer-social-links{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:flex-end}
-.footer-btn{
-  display:inline-flex;align-items:center;gap:0.55rem;padding:0.65rem 1.15rem;border-radius:12px;
-  background:rgba(8,13,32,0.7);border:1px solid rgba(139,92,246,0.22);color:#f1f5f9;
-  text-decoration:none;font-size:0.88rem;font-weight:500;font-family:'Space Grotesk',sans-serif;
-  transition:transform 0.25s cubic-bezier(0.2,0.8,0.2,1),border-color 0.25s ease,background 0.25s ease,box-shadow 0.25s ease;
-}
-.footer-btn:hover{
-  transform:translateY(-2px);border-color:rgba(168,85,247,0.6);
-  background:rgba(139,92,246,0.15);box-shadow:0 8px 24px rgba(139,92,246,0.2);color:#ffffff;
-}
-.footer-btn:active{transform:translateY(0) scale(0.97)}
-.footer-divider{height:1px;background:rgba(139,92,246,0.14);margin:3rem 0 1.75rem}
-.footer-bottom{
-  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
-  font-size:0.88rem;color:var(--muted);
-}
-.footer-copy{color:var(--muted);font-size:0.88rem}
-.back-to-top{
-  color:#f1f5f9;text-decoration:none;font-weight:500;display:inline-flex;
-  align-items:center;gap:0.35rem;transition:color 0.25s ease,transform 0.25s ease;cursor:pointer;
-}
-.back-to-top:hover{color:var(--cosmic-blue);transform:translateY(-2px)}
-
-@media(max-width:768px){
-  .site-footer{padding:3.5rem 1.25rem 2rem}
-  .footer-top{flex-direction:column;gap:2rem}
-  .footer-right{align-items:flex-start}
-  .footer-social-links{justify-content:flex-start}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:0.75rem}
-}
-
-#progress{position:fixed;top:0;left:0;height:2px;z-index:200;
-  background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.1s}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-.section-divider{
-  height:1px;background:linear-gradient(90deg,transparent,var(--indigo),transparent);
-  margin:0;opacity:0.3;
-}
-
-/* ===== Enhanced motion system: Edge & corner cosmic nebulae, pure black center ===== */
-body::before{
-  content:"";
-  position:fixed;inset:-10%;z-index:0;pointer-events:none;
+/* Spider-Man Web & Stark Blueprint Hybrid Ambient Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 5% 10%, rgba(139, 92, 246, 0.06) 0%, transparent 38%),
-    radial-gradient(circle at 95% 15%, rgba(56, 189, 248, 0.05) 0%, transparent 35%),
-    radial-gradient(circle at 92% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 38%),
-    radial-gradient(circle at 8% 90%, rgba(99, 102, 241, 0.05) 0%, transparent 35%);
-  animation:cosmicDrift 22s ease-in-out infinite alternate;
-}
-@keyframes cosmicDrift{
-  0%{transform:translate3d(-1%, -1%, 0) scale(1)}
-  50%{transform:translate3d(1.5%, 1.5%, 0) scale(1.02)}
-  100%{transform:translate3d(-1.5%, 2%, 0) scale(1.01)}
+    /* Stark blueprint technical grid */
+    linear-gradient(to right, rgba(111, 145, 168, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(111, 145, 168, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px, 64px 64px;
 }
 
-nav{transition:transform .35s ease,background .35s ease,box-shadow .35s ease}
-nav.nav-scrolled{
-  background:rgba(3,4,7,0.96);
-  box-shadow:0 10px 40px rgba(0,0,0,0.75);
+/* Layer B: Living Cinematic Atmospheric Haze (Spider-Man Crimson & Stark Ice-Blue Depth) */
+.atmospheric-haze {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 10% 14%, rgba(184, 50, 60, 0.13) 0%, rgba(184, 50, 60, 0.03) 48%, transparent 72%),
+    radial-gradient(ellipse 50% 40% at 90% 12%, rgba(56, 189, 248, 0.12) 0%, rgba(138, 220, 245, 0.02) 52%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 32%, rgba(16, 25, 35, 0.65) 0%, transparent 75%),
+    radial-gradient(ellipse 80% 45% at 50% 95%, rgba(18, 26, 38, 0.55) 0%, transparent 80%);
+  animation: atmosphericHazeBreathing 24s ease-in-out infinite alternate;
+  will-change: opacity, transform;
 }
 
-.nav-links a{position:relative}
-.nav-links a::after{
-  content:"";position:absolute;left:0;bottom:-7px;width:100%;height:2px;
-  background:linear-gradient(90deg,var(--indigo),var(--purple));
-  transform:scaleX(0);transform-origin:right;transition:transform .3s ease;
-}
-.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-
-.hero-inner{animation:heroFloat 7s ease-in-out infinite;transform:translate3d(var(--mx,0),var(--my,0),0)}
-@keyframes heroFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-7px)}
-}
-.hero-name{position:relative}
-.hero-name::after{
-  content:"";position:absolute;left:50%;top:50%;width:260px;height:260px;
-  transform:translate(-50%,-50%);border-radius:50%;
-  border:1px solid rgba(99,102,241,.10);
-  box-shadow:0 0 70px rgba(99,102,241,.08);
-  animation:heroRing 5s linear infinite;pointer-events:none;z-index:-1;
-}
-@keyframes heroRing{
-  from{transform:translate(-50%,-50%) rotate(0deg) scale(.9)}
-  to{transform:translate(-50%,-50%) rotate(360deg) scale(1.08)}
-}
-
-.btn{position:relative;overflow:hidden}
-.btn::before{
-  content:"";position:absolute;top:0;left:-120%;width:70%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
-  transform:skewX(-20deg);transition:left .65s ease;
-}
-.btn:hover::before{left:140%}
-
-.glass-card,.achieve-card,.cert-card{
-  animation:cardIn .8s cubic-bezier(.2,.8,.2,1) both;
-}
-@keyframes cardIn{
-  from{opacity:0;transform:translateY(25px) scale(.97)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-
-.glass-card:nth-child(2),.achieve-card:nth-child(2),.cert-card:nth-child(2){animation-delay:.1s}
-.glass-card:nth-child(3),.achieve-card:nth-child(3),.cert-card:nth-child(3){animation-delay:.2s}
-.glass-card:nth-child(4),.achieve-card:nth-child(4),.cert-card:nth-child(4){animation-delay:.3s}
-
-.skill-pill{position:relative;overflow:hidden}
-.skill-pill::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.12) 50%,transparent 75%);
-  transform:translateX(-130%);transition:transform .55s ease;
-}
-.skill-pill:hover::before{transform:translateX(130%)}
-
-.timeline-dot{animation:none}
-
-.social-icon{position:relative}
-.social-icon:hover svg{animation:iconBounce .45s ease}
-@keyframes iconBounce{
-  0%,100%{transform:scale(1) rotate(0)}
-  50%{transform:scale(1.2) rotate(-6deg)}
-}
-
-.reveal{transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
-.reveal.visible{animation:revealGlow .9s ease both}
-@keyframes revealGlow{
-  0%{filter:blur(3px)}
-  100%{filter:blur(0)}
-}
-
-.section-divider{position:relative;overflow:hidden}
-.section-divider::after{
-  content:"";position:absolute;top:0;left:-30%;width:30%;height:100%;
-  background:linear-gradient(90deg,transparent,#a78bfa,transparent);
-  animation:dividerSweep 4s ease-in-out infinite;
-}
-@keyframes dividerSweep{
-  0%,35%{left:-30%}
-  70%,100%{left:110%}
-}
-
-#progress{box-shadow:0 0 12px rgba(139,92,246,.8)}
-
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
+@keyframes atmosphericHazeBreathing {
+  0% {
+    opacity: 0.85;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.02) translate3d(-6px, 4px, 0);
   }
 }
 
+/* Spider-Man Suit Web Geometry & Stark Schematic Rings Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 50% -10%, transparent 180px, rgba(138, 220, 245, 0.05) 181px, transparent 183px),
+    radial-gradient(circle at 50% -10%, transparent 340px, rgba(138, 220, 245, 0.04) 341px, transparent 343px),
+    radial-gradient(circle at 50% -10%, transparent 520px, rgba(184, 50, 60, 0.045) 521px, transparent 523px),
+    radial-gradient(circle at 50% -10%, transparent 720px, rgba(138, 220, 245, 0.035) 721px, transparent 723px);
+  opacity: 1;
+}
+
+canvas#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   3. STARK ARC REACTOR CURSOR SYSTEM (SPIDER-TECH ENHANCED)
+   ========================================================================== */
+.stark-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  will-change: transform;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Layer 4: Ambient Energy Field */
+.arc-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(138, 220, 245, 0.18) 0%, rgba(56, 189, 248, 0.05) 42%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transition: width 0.35s var(--ease-editorial), height 0.35s var(--ease-editorial), background 0.35s ease;
+}
+
+/* Arc Reactor Mechanism Container */
+.arc-reactor {
+  position: relative;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  transform: translate3d(-50%, -50%, 0);
+  transition: width 0.35s var(--ease-editorial),
+              height 0.35s var(--ease-editorial),
+              transform 0.25s var(--ease-editorial);
+  filter: drop-shadow(0 0 10px rgba(138, 220, 245, 0.3));
+}
+
+.arc-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.arc-core-plasma {
+  transform-origin: 50px 50px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.arc-core-hotspot {
+  transform-origin: 50px 50px;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.arc-outer-ring,
+.arc-inner-ring {
+  transform-origin: 50px 50px;
+}
+
+.arc-reticle {
+  transform-origin: 50px 50px;
+  transition: opacity 0.3s var(--ease-editorial);
+}
+
+/* Layer 5: Decoupled Stark HUD Technical Context Indicator */
+.stark-hud {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translate3d(-50%, 6px, 0);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.55rem;
+  background: rgba(15, 18, 24, 0.94);
+  border: 1px solid rgba(138, 220, 245, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 12px rgba(138, 220, 245, 0.15);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-editorial), transform 0.25s var(--ease-editorial), border-color 0.25s ease;
+  user-select: none;
+}
+
+.hud-bracket {
+  color: rgba(138, 220, 245, 0.6);
+  font-weight: 400;
+}
+
+.hud-arrow {
+  color: var(--accent);
+  margin-left: 0.15rem;
+  transition: transform 0.25s ease;
+  display: none;
+}
+
+/* Context-Aware Reactor States */
+.stark-cursor[data-state="DEFAULT"] .arc-reactor {
+  width: 44px;
+  height: 44px;
+}
+.stark-cursor[data-state="DEFAULT"] .stark-hud {
+  opacity: 0;
+  transform: translate3d(-50%, 8px, 0);
+}
+
+.stark-cursor[data-state="INTERACTIVE"] .arc-reactor {
+  width: 38px;
+  height: 38px;
+  filter: drop-shadow(0 0 14px rgba(138, 220, 245, 0.55));
+}
+.stark-cursor[data-state="INTERACTIVE"] .arc-core-plasma {
+  transform: scale(1.15);
+}
+.stark-cursor[data-state="INTERACTIVE"] .arc-reticle {
+  opacity: 0.95;
+}
+.stark-cursor[data-state="INTERACTIVE"] .arc-glow {
+  width: 110px;
+  height: 110px;
+  background: radial-gradient(circle, rgba(138, 220, 245, 0.24) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 70%);
+}
+
+.stark-cursor[data-state="PROJECT"] .arc-reactor {
+  width: 66px;
+  height: 66px;
+  filter: drop-shadow(0 0 18px rgba(138, 220, 245, 0.5));
+}
+.stark-cursor[data-state="PROJECT"] .arc-reticle {
+  opacity: 1;
+}
+.stark-cursor[data-state="PROJECT"] .arc-glow {
+  width: 175px;
+  height: 175px;
+  background: radial-gradient(circle, rgba(138, 220, 245, 0.22) 0%, rgba(184, 50, 60, 0.08) 48%, transparent 75%);
+}
+.stark-cursor[data-state="PROJECT"] .stark-hud {
+  opacity: 1;
+  transform: translate3d(-50%, 14px, 0);
+  border-color: rgba(138, 220, 245, 0.55);
+}
+
+.stark-cursor[data-state="EXTERNAL_LINK"] .arc-reactor {
+  width: 46px;
+  height: 46px;
+  filter: drop-shadow(0 0 14px rgba(138, 220, 245, 0.5));
+}
+.stark-cursor[data-state="EXTERNAL_LINK"] .stark-hud {
+  opacity: 1;
+  transform: translate3d(-50%, 8px, 0);
+}
+.stark-cursor[data-state="EXTERNAL_LINK"] .hud-arrow {
+  display: inline-block;
+  transform: translate(1px, -1px);
+}
+
+.stark-cursor[data-state="CONTACT"] .arc-reactor {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 0 16px rgba(184, 50, 60, 0.5)) drop-shadow(0 0 12px rgba(138, 220, 245, 0.4));
+}
+.stark-cursor[data-state="CONTACT"] .arc-reticle {
+  opacity: 1;
+}
+.stark-cursor[data-state="CONTACT"] .stark-hud {
+  opacity: 1;
+  transform: translate3d(-50%, 10px, 0);
+  border-color: rgba(184, 50, 60, 0.65);
+  color: var(--silver);
+}
+.stark-cursor[data-state="CONTACT"] .hud-bracket {
+  color: var(--crimson);
+}
+
+.stark-cursor.is-pressed .arc-reactor {
+  transform: translate3d(-50%, -50%, 0) scale(0.88);
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 16px rgba(138, 220, 245, 0.8));
+}
+.stark-cursor.is-pressed .arc-core-plasma {
+  transform: scale(1.35);
+}
+.stark-cursor.is-pressed .arc-core-hotspot {
+  transform: scale(1.4);
+}
+.stark-cursor.is-pressed .arc-glow {
+  width: 210px;
+  height: 210px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(138, 220, 245, 0.28) 35%, rgba(184, 50, 60, 0.15) 55%, transparent 75%);
+}
+
+/* ==========================================================================
+   4. NAVIGATION — STARK HOLOGRAPHIC DOCK
+   ========================================================================== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8, 9, 12, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(138, 220, 245, 0.12);
+  transition: background 0.35s ease, border-color 0.35s ease, padding 0.3s ease, box-shadow 0.35s ease;
+}
+
+nav.nav-scrolled {
+  background: rgba(15, 18, 24, 0.96);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 1px 0 rgba(138, 220, 245, 0.15);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.nav-logo-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  border: 1px solid rgba(138, 220, 245, 0.3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  background: rgba(138, 220, 245, 0.08);
+  letter-spacing: 0.08em;
+}
+
+.nav-logo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--crimson);
+  display: inline-block;
+  margin-top: -2px;
+  transition: transform 0.3s var(--ease-editorial), background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 6px var(--crimson-glow);
+}
+
+.nav-logo:hover .nav-logo-dot {
+  transform: scale(1.4);
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--stark-cyan-glow);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.25rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  position: relative;
+  padding: 0.35rem 0;
+  transition: color 0.25s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-editorial);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0.9rem 1.25rem;
+  }
+  nav.nav-scrolled {
+    padding: 0.75rem 1.25rem;
+  }
+  .nav-links {
+    gap: 1.15rem;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 0.75rem;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   5. BUTTON SYSTEM (CHAMFERED STARK ENGINEERING CONTROLS)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.65rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s var(--ease-editorial),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease;
+  user-select: none;
+  will-change: transform;
+}
+
+.btn svg {
+  transition: transform 0.25s var(--ease-editorial);
+  flex-shrink: 0;
+}
+
+/* Primary Button: Stark Ice-Blue Armor with Titanium Sheen */
+.btn-primary {
+  background-color: var(--accent);
+  color: #08090C;
+  border: 1px solid var(--accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #08090C;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5), 0 0 20px var(--stark-cyan-glow);
+}
+
+.btn-primary:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Secondary Button: Dark Armor Surface with Subtle Red-Blue Rim Accent */
+.btn-outline {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 14px rgba(184, 50, 60, 0.15);
+}
+
+.btn-outline:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.btn-outline:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ==========================================================================
+   6. HERO SECTION — SPIDER-TECH & ARC REACTOR EMBLEM COMPOSITION
+   ========================================================================== */
+section {
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 5.5rem;
+}
+
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7.5rem 2rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Giant Stark Arc-Reactor & Spider-Web Watermark Behind Title with Breathing Ambience */
+@keyframes arcReactorBreathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: drop-shadow(0 0 25px rgba(138, 220, 245, 0.22));
+    opacity: 0.14;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.025);
+    filter: drop-shadow(0 0 45px rgba(138, 220, 245, 0.38)) drop-shadow(0 0 16px rgba(184, 50, 60, 0.14));
+    opacity: 0.19;
+  }
+}
+
+.hero-emblem-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 720px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+  animation: arcReactorBreathe 9s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+/* Recognizable NYC Skyline Silhouette Blended into Hero Bottom */
+.hero-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.42;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 100%);
+}
+
+.skyline-beacon {
+  opacity: 0.82;
+  filter: drop-shadow(0 0 2.5px rgba(184, 50, 60, 0.45));
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Entrance Sequence Animations */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stark Holographic Telemetry Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.25rem;
+  border-radius: 4px;
+  border: 1px solid rgba(138, 220, 245, 0.35);
+  background: rgba(15, 18, 24, 0.85);
+  backdrop-filter: blur(8px);
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--silver);
+  margin-bottom: 2rem;
+  animation: heroEntrance 0.7s var(--ease-editorial) 0.1s both;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(138, 220, 245, 0.08);
+}
+
+.hero-spec-tag {
+  color: var(--crimson);
+  font-weight: 700;
+  font-size: 0.68rem;
+  margin-right: 0.2rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--crimson);
+  box-shadow: 0 0 8px var(--crimson);
+  animation: pulseDot 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+h1.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 8vw, 6.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 1.25rem;
+  animation: heroEntrance 0.8s var(--ease-editorial) 0.25s both;
+  position: relative;
+}
+
+.hero-name-first {
+  color: var(--text);
+  display: inline-block;
+}
+
+.hero-name-last {
+  color: var(--accent);
+  display: inline-block;
+  font-weight: 700;
+  text-shadow: 0 0 35px rgba(138, 220, 245, 0.35);
+}
+
+.hero-typing {
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  min-height: 2.2rem;
+  letter-spacing: -0.01em;
+  animation: heroEntrance 0.8s var(--ease-editorial) 0.45s both;
+}
+
+#typed-text {
+  color: var(--silver);
+  font-weight: 500;
+}
+
+.typing-cursor {
+  color: var(--crimson);
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink 1.1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--silver);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  font-weight: 300;
+  animation: heroEntrance 0.8s var(--ease-editorial) 0.6s both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: heroEntrance 0.8s var(--ease-editorial) 0.75s both;
+}
+
+.social-row {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+  animation: heroEntrance 0.8s var(--ease-editorial) 0.9s both;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 1.1rem;
+  background-color: var(--surface);
+  transition: transform 0.25s var(--ease-editorial),
+              border-color 0.25s ease,
+              color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.social-icon:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background-color: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 10px rgba(138, 220, 245, 0.15);
+}
+
+.social-icon:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. SECTION LAYOUT & TYPOGRAPHY
+   ========================================================================== */
+.section {
+  padding: 6.5rem 2rem;
+  position: relative;
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-label::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background-color: var(--crimson);
+  box-shadow: 0 0 6px var(--crimson-glow);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  line-height: 1.12;
+  letter-spacing: -1.2px;
+  color: var(--text);
+}
+
+.section-title span.accent-word {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Kinetic Angular Section Divider */
+.section-divider {
+  height: 1px;
+  max-width: 1040px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border-tech) 50%, var(--border) 80%, transparent);
+  border: none;
+}
+
+/* ==========================================================================
+   8. ABOUT SECTION — STARK ARCHIVES & SUIT CAPABILITIES
+   ========================================================================== */
+.about-header {
+  text-align: left;
+  margin-bottom: 2.75rem;
+}
+
+.about-subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.about-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s var(--ease-editorial);
+}
+
+/* Chamfered corner tech brackets */
+.about-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid var(--border-tech);
+  border-right: 2px solid var(--border-tech);
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.about-card:hover::after {
+  border-color: var(--accent);
+}
+
+.about-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(138, 220, 245, 0.06);
+  transform: translateY(-3px);
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(360px circle at var(--amx, 50%) var(--amy, 50%), rgba(138, 220, 245, 0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.about-card:hover::before {
+  opacity: 1;
+}
+
+.about-main {
+  padding: 2.5rem;
+}
+
+.about-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.about-text {
+  color: var(--silver);
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+.about-text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.about-quote {
+  margin-top: auto;
+  padding: 1.1rem 1.35rem;
+  border-left: 2px solid var(--crimson);
+  background-color: var(--bg-secondary);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.about-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.about-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.about-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.about-edu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--silver);
+  line-height: 1.6;
+}
+
+.about-degree {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.about-college {
+  color: var(--muted);
+}
+
+.about-location {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.about-focus-desc {
+  font-size: 0.88rem;
+  color: var(--silver);
+  margin-bottom: 0.95rem;
+}
+
+.focus-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.focus-tag {
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--silver);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  transition: transform 0.25s var(--ease-editorial), border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+  cursor: default;
+}
+
+.focus-tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background-color: var(--surface-hover);
+  color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .about-main {
+    padding: 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   9. SKILLS SECTION — PRECISION SYSTEMS MATRIX
+   ========================================================================== */
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.skill-category-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.65rem;
+  transition: transform 0.25s var(--ease-editorial),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.skill-cat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.skill-cat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.skill-cat-title {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.skill-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.skill-pill {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--silver);
+  transition: transform 0.2s var(--ease-editorial),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              color 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.skill-pill:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+  transform: translateY(-1.5px);
+}
+
+/* ==========================================================================
+   10. PROJECTS: STARK TECHNOLOGY LAB (CHAMFERED PROTOTYPES)
+   ========================================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.featured-project-item {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .featured-project-item {
+    grid-column: 1;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card-wrapper {
+  perspective: 1000px;
+}
+
+.project-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  transition: border-color 0.35s ease,
+              box-shadow 0.4s var(--ease-editorial),
+              transform 0.45s var(--ease-editorial);
+  will-change: transform;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 25px rgba(138, 220, 245, 0.12);
+}
+
+.project-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(138, 220, 245, 0.12), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-card:hover .project-spotlight {
+  opacity: 1;
+}
+
+/* Precision Stark Armor Plate Corner Bracket */
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--border-tech);
+  border-right: 2px solid var(--border-tech);
+  pointer-events: none;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover::after {
+  border-color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.project-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 0.85;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.project-spec-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  background: rgba(15, 18, 24, 0.8);
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.28rem;
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.3px;
+}
+
+.project-desc {
+  font-size: 0.92rem;
+  color: var(--silver);
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.25rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 4px;
+  font-weight: 500;
+  background-color: var(--bg-secondary);
+  color: var(--silver);
+  border: 1px solid var(--border);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-card:hover .tag {
+  border-color: rgba(111, 145, 168, 0.45);
+  color: var(--text);
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* Architecture workflow steps */
+.project-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.project-flow span {
+  padding: 0.32rem 0.68rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  color: var(--silver);
+  transition: border-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.project-flow span:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.project-flow i {
+  font-style: normal;
+  color: var(--crimson);
+  font-size: 0.7rem;
+}
+
+.project-actions {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-actions .btn {
+  font-size: 0.82rem;
+  padding: 0.55rem 1.15rem;
+}
+
+/* ==========================================================================
+   11. EDUCATION TIMELINE — STARK TELEMETRY CONDUIT
+   ========================================================================== */
+.timeline {
+  position: relative;
+  margin-top: 2.5rem;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border-hover) 15%, var(--border-tech) 50%, var(--border-hover) 85%, transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.75rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.05rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(138, 220, 245, 0.15), 0 0 8px rgba(138, 220, 245, 0.3);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.3);
+  background-color: var(--crimson);
+  box-shadow: 0 0 0 4px var(--crimson-glow), 0 0 10px var(--crimson);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-school {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+.timeline-detail {
+  font-size: 0.9rem;
+  color: var(--silver);
+}
+
+.gpa-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   12. ACHIEVEMENTS & CERTIFICATIONS
+   ========================================================================== */
+.achieve-grid,
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .achieve-grid,
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.achieve-card,
+.cert-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+  transition: transform 0.25s var(--ease-editorial),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.achieve-card:hover,
+.cert-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.achieve-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.achieve-text {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--silver);
+  line-height: 1.6;
+}
+
+.cert-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.cert-name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.cert-platform {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   13. SITE FOOTER / DIRECT CONTACT SECTION: STARK COMM-LINK
+   ========================================================================== */
+.site-footer {
+  padding: 5rem 2rem 3rem;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 5.5rem;
+}
+
+.footer-container {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  max-width: 540px;
+  flex: 1 1 360px;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  margin-bottom: 0.9rem;
+}
+
+.footer-first {
+  color: var(--text);
+}
+
+.footer-last {
+  color: var(--accent);
+}
+
+.footer-desc {
+  color: var(--silver);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.15rem;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 6px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  transition: transform 0.25s var(--ease-editorial),
+              border-color 0.25s ease,
+              background-color 0.25s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.footer-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background-color: var(--surface-hover);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 10px rgba(138, 220, 245, 0.15);
+}
+
+.footer-btn:active {
+  transform: translateY(0);
+}
+
+.footer-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 3.5rem 0 1.75rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.footer-copy {
+  color: var(--muted);
+}
+
+.back-to-top {
+  color: var(--silver);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.25s ease, transform 0.25s var(--ease-editorial);
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 3.5rem 1.5rem 2rem;
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-right {
+    align-items: flex-start;
+  }
+  .footer-social-links {
+    justify-content: flex-start;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+}
+
+/* ==========================================================================
+   14. SCROLL PROGRESS
+   ========================================================================== */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  z-index: 200;
+  background: linear-gradient(90deg, var(--crimson), var(--accent));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   15. SCROLL REVEALS
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s var(--ease-editorial), transform 0.65s var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal .stagger-1 { transition-delay: 0.08s; }
+.reveal .stagger-2 { transition-delay: 0.16s; }
+.reveal .stagger-3 { transition-delay: 0.24s; }
+
+/* ==========================================================================
+   16. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .atmospheric-haze,
+  .hero-emblem-watermark {
+    animation: none !important;
+  }
+
+  .stark-cursor {
+    display: none !important;
+  }
+
+  html.has-stark-cursor,
+  html.has-stark-cursor * {
+    cursor: auto !important;
+  }
+}
+
+/* Touch-primary devices fallback */
+@media (hover: none) and (pointer: coarse) {
+  .stark-cursor {
+    display: none !important;
+  }
+  html.has-stark-cursor,
+  html.has-stark-cursor * {
+    cursor: auto !important;
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
-<canvas id="particles"></canvas>
-<div class="glow-cursor" id="glow"></div>
+<div id="progress" aria-hidden="true"></div>
+<div class="atmospheric-haze" aria-hidden="true"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
 
+<!-- ==========================================================================
+     STARK ARC REACTOR CURSOR SYSTEM (SPIDER-TECH DUAL MECHANISM + HUD)
+     ========================================================================== -->
+<div class="stark-cursor" id="starkCursor" data-state="DEFAULT" aria-hidden="true">
+  <!-- Layer 4: Ambient Energy Field (Soft Concentrated Halo) -->
+  <div class="arc-glow" id="arcGlow"></div>
+
+  <!-- Layers 1, 2, 3: Mechanical Arc Reactor SVG -->
+  <div class="arc-reactor" id="arcReactor">
+    <svg class="arc-svg" viewBox="0 0 100 100" width="100" height="100">
+      <defs>
+        <!-- Luminous Plasma Core Radial Gradient -->
+        <radialGradient id="arcCoreGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+          <stop offset="28%" stop-color="#E0F7FA" stop-opacity="0.95" />
+          <stop offset="60%" stop-color="#8ADCF5" stop-opacity="0.85" />
+          <stop offset="85%" stop-color="#38BDF8" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#0284C7" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Mechanical Subtle Bloom Filter -->
+        <filter id="arcBloomFilter" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Layer 3: Outer Reactor Assembly (10 Electromagnetic Coils + Nanotech Ticks) -->
+      <g class="arc-outer-ring" id="arcOuterRing">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.45" />
+        <circle cx="50" cy="50" r="44" fill="none" stroke="#8ADCF5" stroke-width="1.2" stroke-dasharray="1.2 12.62" opacity="0.85" />
+        <circle cx="50" cy="50" r="35.5" fill="none" stroke="#64748B" stroke-width="0.75" opacity="0.6" />
+
+        <!-- 10 Reactor Energy Coils with Spider-Tech Nanotech Emitters -->
+        <!-- Coil 0 (0 deg) -->
+        <g transform="rotate(0 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#B8323C" opacity="0.9" />
+        </g>
+        <!-- Coil 1 (36 deg) -->
+        <g transform="rotate(36 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#8ADCF5" opacity="0.9" />
+        </g>
+        <!-- Coil 2 (72 deg) -->
+        <g transform="rotate(72 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#B8323C" opacity="0.9" />
+        </g>
+        <!-- Coil 3 (108 deg) -->
+        <g transform="rotate(108 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#8ADCF5" opacity="0.9" />
+        </g>
+        <!-- Coil 4 (144 deg) -->
+        <g transform="rotate(144 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#B8323C" opacity="0.9" />
+        </g>
+        <!-- Coil 5 (180 deg) -->
+        <g transform="rotate(180 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#8ADCF5" opacity="0.9" />
+        </g>
+        <!-- Coil 6 (216 deg) -->
+        <g transform="rotate(216 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#B8323C" opacity="0.9" />
+        </g>
+        <!-- Coil 7 (252 deg) -->
+        <g transform="rotate(252 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#8ADCF5" opacity="0.9" />
+        </g>
+        <!-- Coil 8 (288 deg) -->
+        <g transform="rotate(288 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#B8323C" opacity="0.9" />
+        </g>
+        <!-- Coil 9 (324 deg) -->
+        <g transform="rotate(324 50 50)">
+          <rect x="47.2" y="5" width="5.6" height="7" rx="1" fill="#141923" stroke="#8ADCF5" stroke-width="0.75" />
+          <line x1="47.2" y1="7.5" x2="52.8" y2="7.5" stroke="#E2E8F0" stroke-width="0.6" />
+          <line x1="47.2" y1="9.8" x2="52.8" y2="9.8" stroke="#E2E8F0" stroke-width="0.6" />
+          <circle cx="50" cy="15" r="1.1" fill="#8ADCF5" opacity="0.9" />
+        </g>
+      </g>
+
+      <!-- Layer 2: Inner Mechanical Ring (Rotating Independently) -->
+      <g class="arc-inner-ring" id="arcInnerRing">
+        <circle cx="50" cy="50" r="29" fill="none" stroke="#94A3B8" stroke-width="0.9" stroke-dasharray="5 3" opacity="0.75" />
+        <circle cx="50" cy="50" r="25.5" fill="none" stroke="#8ADCF5" stroke-width="1.1" opacity="0.85" />
+        <circle cx="50" cy="50" r="20.5" fill="none" stroke="#475569" stroke-width="0.75" opacity="0.6" />
+
+        <!-- 5 Triangular Locking Brackets (Stark Pentagonal Stabilization) -->
+        <polygon points="50,21 53,27 47,27" fill="#CBD5E1" stroke="#8ADCF5" stroke-width="0.5" opacity="0.95" />
+        <polygon points="50,21 53,27 47,27" fill="#CBD5E1" stroke="#8ADCF5" stroke-width="0.5" opacity="0.95" transform="rotate(72 50 50)" />
+        <polygon points="50,21 53,27 47,27" fill="#CBD5E1" stroke="#8ADCF5" stroke-width="0.5" opacity="0.95" transform="rotate(144 50 50)" />
+        <polygon points="50,21 53,27 47,27" fill="#CBD5E1" stroke="#8ADCF5" stroke-width="0.5" opacity="0.95" transform="rotate(216 50 50)" />
+        <polygon points="50,21 53,27 47,27" fill="#CBD5E1" stroke="#8ADCF5" stroke-width="0.5" opacity="0.95" transform="rotate(288 50 50)" />
+      </g>
+
+      <!-- Layer 1: Central Energy Core (High-Luminosity Palladium/Vibranium Reactor) -->
+      <g class="arc-core">
+        <circle cx="50" cy="50" r="14.5" fill="#080E17" stroke="#8ADCF5" stroke-width="1.4" opacity="0.95" />
+        <circle class="arc-core-plasma" id="arcCorePlasma" cx="50" cy="50" r="11.5" fill="url(#arcCoreGlow)" filter="url(#arcBloomFilter)" />
+        <circle class="arc-core-hotspot" id="arcCoreHotspot" cx="50" cy="50" r="4.2" fill="#FFFFFF" />
+      </g>
+
+      <!-- Targeting Reticle Brackets -->
+      <g class="arc-reticle" id="arcReticle" opacity="0">
+        <path d="M 50 8 L 50 3 M 50 92 L 50 97 M 8 50 L 3 50 M 92 50 L 97 50" stroke="#8ADCF5" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="50" cy="50" r="48.5" fill="none" stroke="#8ADCF5" stroke-width="0.8" stroke-dasharray="6 14" opacity="0.85" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Layer 5: Stark HUD Technical Context Indicator -->
+  <div class="stark-hud" id="starkHud" aria-hidden="true">
+    <span class="hud-bracket">[</span>
+    <span class="hud-label" id="hudLabel">SYSTEM</span>
+    <svg class="hud-arrow" id="hudArrow" width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M2 8L8 2M8 2H3M8 2V7" />
+    </svg>
+    <span class="hud-bracket">]</span>
+  </div>
+</div>
+
+<!-- Primary Navigation -->
 <nav>
-  <a href="#hero" class="nav-logo">YK</a>
+  <a href="#hero" class="nav-logo" aria-label="Yuvaraj Kapaka Home">
+    <span class="nav-logo-text">YK</span>
+    <span class="nav-logo-badge">STARK-OS</span>
+    <span class="nav-logo-dot" aria-hidden="true"></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -699,59 +1989,137 @@ nav.nav-scrolled{
   </ul>
 </nav>
 
+<!-- Hero Section -->
 <section id="hero">
+  <!-- Focal Iron Man × Spider-Man Engineering Watermark -->
+  <svg class="hero-emblem-watermark" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Concentric Mechanical Rings -->
+    <circle cx="300" cy="300" r="280" stroke="#6F91A8" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+    <circle cx="300" cy="300" r="240" stroke="#8ADCF5" stroke-width="1.5" opacity="0.4" />
+    <circle cx="300" cy="300" r="190" stroke="#B8323C" stroke-width="1" stroke-dasharray="8 6" opacity="0.45" />
+    <circle cx="300" cy="300" r="140" stroke="#8ADCF5" stroke-width="1.2" opacity="0.5" />
+    <circle cx="300" cy="300" r="80" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6" />
+    
+    <!-- Spider-Web Radial Spoke Vectors (8-way symmetric geometry) -->
+    <line x1="300" y1="20" x2="300" y2="580" stroke="#8ADCF5" stroke-width="0.8" opacity="0.25" />
+    <line x1="20" y1="300" x2="580" y2="300" stroke="#8ADCF5" stroke-width="0.8" opacity="0.25" />
+    <line x1="102" y1="102" x2="498" y2="498" stroke="#B8323C" stroke-width="0.8" opacity="0.3" />
+    <line x1="498" y1="102" x2="102" y2="498" stroke="#B8323C" stroke-width="0.8" opacity="0.3" />
+
+    <!-- Spider-Web Polygonal Cross-Lattice Filaments -->
+    <polygon points="300,110 434,166 490,300 434,434 300,490 166,434 110,300 166,166" stroke="#8ADCF5" stroke-width="0.75" opacity="0.3" />
+    <polygon points="300,160 399,201 440,300 399,399 300,440 201,399 160,300 201,201" stroke="#6F91A8" stroke-width="0.75" opacity="0.25" />
+    <polygon points="300,220 357,243 380,300 357,357 300,380 243,357 220,300 243,243" stroke="#B8323C" stroke-width="0.75" opacity="0.35" />
+
+    <!-- Stark Tech Outer Calibrated Tick Reticle -->
+    <g transform="rotate(0 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#8ADCF5" stroke-width="2" /></g>
+    <g transform="rotate(45 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#B8323C" stroke-width="2" /></g>
+    <g transform="rotate(90 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#8ADCF5" stroke-width="2" /></g>
+    <g transform="rotate(135 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#B8323C" stroke-width="2" /></g>
+    <g transform="rotate(180 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#8ADCF5" stroke-width="2" /></g>
+    <g transform="rotate(225 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#B8323C" stroke-width="2" /></g>
+    <g transform="rotate(270 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#8ADCF5" stroke-width="2" /></g>
+    <g transform="rotate(315 300 300)"><line x1="300" y1="14" x2="300" y2="24" stroke="#B8323C" stroke-width="2" /></g>
+  </svg>
+
+  <!-- Cinematic NYC Nighttime Skyline Silhouette Background -->
+  <svg class="hero-skyline" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="skylineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#182332" />
+        <stop offset="65%" stop-color="#0F151F" />
+        <stop offset="100%" stop-color="#080A0E" />
+      </linearGradient>
+      <linearGradient id="skylineEdge" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(111, 145, 168, 0.2)" />
+        <stop offset="30%" stop-color="rgba(138, 220, 245, 0.6)" />
+        <stop offset="68%" stop-color="rgba(184, 50, 60, 0.5)" />
+        <stop offset="100%" stop-color="rgba(111, 145, 168, 0.2)" />
+      </linearGradient>
+    </defs>
+    <!-- Base Building Silhouettes -->
+    <path d="M0,180 L0,140 L25,140 L25,110 L50,110 L50,150 L80,150 L80,85 L105,85 L105,70 L115,70 L115,40 L120,40 L120,70 L130,70 L130,85 L150,85 L150,145 L180,145 L180,100 L210,100 L210,60 L235,60 L235,160 L260,160 L260,120 L290,120 L290,90 L320,90 L320,135 L345,135 L345,75 L360,75 L360,30 L365,30 L365,15 L368,15 L368,30 L375,30 L375,75 L400,75 L400,140 L430,140 L430,105 L460,105 L460,65 L485,65 L485,150 L520,150 L520,95 L550,95 L550,125 L580,125 L580,50 L610,50 L610,140 L640,140 L640,80 L670,80 L670,110 L700,110 L700,60 L730,60 L730,145 L765,145 L765,90 L795,90 L795,45 L805,45 L805,25 L810,25 L810,45 L820,45 L820,90 L850,90 L850,135 L885,135 L885,70 L915,70 L915,115 L945,115 L945,55 L975,55 L975,140 L1010,140 L1010,85 L1040,85 L1040,120 L1075,120 L1075,65 L1105,65 L1105,150 L1140,150 L1140,95 L1170,95 L1170,140 L1200,140 L1200,180 Z" fill="url(#skylineGrad)" />
+    <!-- Architectural Roofline Highlight Stroke -->
+    <path d="M0,140 L25,140 L25,110 L50,110 L50,150 L80,150 L80,85 L105,85 L105,70 L115,70 L115,40 L120,40 L120,70 L130,70 L130,85 L150,85 L150,145 L180,145 L180,100 L210,100 L210,60 L235,60 L235,160 L260,160 L260,120 L290,120 L290,90 L320,90 L320,135 L345,135 L345,75 L360,75 L360,30 L365,30 L365,15 L368,15 L368,30 L375,30 L375,75 L400,75 L400,140 L430,140 L430,105 L460,105 L460,65 L485,65 L485,150 L520,150 L520,95 L550,95 L550,125 L580,125 L580,50 L610,50 L610,140 L640,140 L640,80 L670,80 L670,110 L700,110 L700,60 L730,60 L730,145 L765,145 L765,90 L795,90 L795,45 L805,45 L805,25 L810,25 L810,45 L820,45 L820,90 L850,90 L850,135 L885,135 L885,70 L915,70 L915,115 L945,115 L945,55 L975,55 L975,140 L1010,140 L1010,85 L1040,85 L1040,120 L1075,120 L1075,65 L1105,65 L1105,150 L1140,150 L1140,95 L1170,95 L1170,140 L1200,140" fill="none" stroke="url(#skylineEdge)" stroke-width="1.2" />
+    
+    <!-- Nighttime Window Light Matrices -->
+    <g fill="rgba(138, 220, 245, 0.45)">
+      <rect x="88" y="95" width="2" height="3" /><rect x="94" y="95" width="2" height="3" /><rect x="88" y="105" width="2" height="3" /><rect x="94" y="105" width="2" height="3" />
+      <rect x="218" y="75" width="2" height="3" /><rect x="224" y="75" width="2" height="3" /><rect x="218" y="85" width="2" height="3" />
+      <rect x="352" y="88" width="2.5" height="3" /><rect x="358" y="88" width="2.5" height="3" /><rect x="352" y="98" width="2.5" height="3" /><rect x="358" y="98" width="2.5" height="3" />
+      <rect x="530" y="108" width="2" height="3" /><rect x="536" y="108" width="2" height="3" />
+      <rect x="710" y="75" width="2" height="3" /><rect x="716" y="75" width="2" height="3" /><rect x="710" y="85" width="2" height="3" />
+      <rect x="925" y="80" width="2" height="3" /><rect x="931" y="80" width="2" height="3" /><rect x="925" y="90" width="2" height="3" />
+    </g>
+    <g fill="rgba(255, 220, 140, 0.35)">
+      <rect x="94" y="115" width="2" height="3" /><rect x="224" y="95" width="2" height="3" /><rect x="368" y="88" width="2.5" height="3" /><rect x="368" y="98" width="2.5" height="3" /><rect x="716" y="95" width="2" height="3" /><rect x="931" y="100" width="2" height="3" />
+    </g>
+
+    <!-- Spire Aviation Warning Beacons (Spider Crimson) -->
+    <circle cx="366.5" cy="14" r="2.5" fill="#B8323C" class="skyline-beacon" />
+    <circle cx="807.5" cy="24" r="2.2" fill="#B8323C" class="skyline-beacon" />
+    <circle cx="117.5" cy="38" r="2" fill="#8ADCF5" class="skyline-beacon" />
+  </svg>
+
   <div class="hero-inner">
     <div class="hero-badge">
+      <span class="hero-spec-tag">SYS // OPTIMAL</span>
       <span class="dot"></span>
-      Available for opportunities
+      <span>Available for opportunities</span>
     </div>
     <h1 class="hero-name">
-      <span style="color:#ffffff">Yuvaraj</span><br>
-      <span class="gradient-text">Kapaka</span>
+      <span class="hero-name-first">Yuvaraj</span> <span class="hero-name-last">Kapaka</span>
     </h1>
-    <div class="hero-typing">
+    <div class="hero-typing" aria-label="Roles">
       <span id="typed-text"></span><span class="typing-cursor">|</span>
     </div>
-    <p class="hero-desc">CSE Student building the future — one commit at a time. Passionate about AI, full-stack development, and creating impactful digital experiences.</p>
+    <p class="hero-desc">CSE student building the future — one commit at a time. Passionate about AI, full-stack development, and creating impactful digital experiences.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <a href="#projects" class="btn btn-primary" data-magnetic="true">
+        <span>View Projects</span>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-outline" data-magnetic="true">
+        <span>Get In Touch</span>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
     </div>
     <div class="social-row">
-      <a href="https://github.com/yuvarajkapaka" target="_blank" class="social-icon" title="GitHub">
+      <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub" aria-label="GitHub profile">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
       </a>
-      <a href="https://linkedin.com/in/yuvaraj-kapaka" target="_blank" class="social-icon" title="LinkedIn">
+      <a href="https://linkedin.com/in/yuvaraj-kapaka" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn" aria-label="LinkedIn profile">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
-      <a href="mailto:yuvarajkapaka@gmail.com" class="social-icon" title="Email">
+      <a href="mailto:yuvarajkapaka@gmail.com" class="social-icon" title="Email" aria-label="Send email">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- About Section -->
 <section id="about" class="section">
   <div class="container">
     <div class="reveal about-header">
       <div class="section-label">BACKGROUND &amp; PHILOSOPHY</div>
-      <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+      <h2 class="section-title">About <span class="accent-word">Me</span></h2>
       <p class="about-subtitle">Engineering foundations, architectural interests, and core development philosophy.</p>
     </div>
     <div class="about-layout reveal">
-      <div class="about-card about-main s-item" style="--d:0.1s">
+      <div class="about-card about-main stagger-1">
         <h3 class="about-heading">Building Practical Systems with Purpose</h3>
         <p class="about-text">I am a Computer Science &amp; Engineering student at <strong>Kommuri Pratap Reddy Institute of Technology (KPRIT)</strong>, Hyderabad, with an expected graduation in <strong>2027</strong>. My approach centers on constructing dependable, performant software systems that solve real problems.</p>
         <p class="about-text">From architecting interactive financial simulation engines to implementing end-to-end neural speech processing pipelines, I enjoy bridging frontend craft with robust backend engineering. I focus on clean architecture, accessible interfaces, and pragmatic technical execution.</p>
         <blockquote class="about-quote">"Great software is neither accidental nor needlessly complex—it is the result of intentional architecture, user empathy, and disciplined engineering."</blockquote>
       </div>
       <div class="about-side">
-        <div class="about-card s-item" style="--d:0.2s">
+        <div class="about-card stagger-2">
           <div class="about-card-head">
             <div class="about-icon-box">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
             </div>
             <h4 class="about-card-title">Academic Foundation</h4>
           </div>
@@ -761,10 +2129,10 @@ nav.nav-scrolled{
             <div class="about-location">Ghatkesar, Hyderabad · Class of 2027</div>
           </div>
         </div>
-        <div class="about-card s-item" style="--d:0.3s">
+        <div class="about-card stagger-3">
           <div class="about-card-head">
             <div class="about-icon-box">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
             </div>
             <h4 class="about-card-title">Core Areas of Focus</h4>
           </div>
@@ -783,158 +2151,233 @@ nav.nav-scrolled{
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- Skills Section -->
 <section id="skills" class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Skills</div>
-      <h2 class="section-title">Tools of the <span class="gradient-text">trade.</span></h2>
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Tools of the <span class="accent-word">trade.</span></h2>
     </div>
-    <div class="reveal">
-      <div class="skills-cat">Languages</div>
-      <div class="skills-grid">
-        <div class="skill-pill">C</div>
-        <div class="skill-pill">Java</div>
-        <div class="skill-pill">Python</div>
-        <div class="skill-pill">JavaScript</div>
+    
+    <div class="skills-categories-grid reveal">
+      <!-- Category 1: Programming Languages -->
+      <div class="skill-category-card stagger-1">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+          </div>
+          <h3 class="skill-cat-title">Programming Languages</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">JavaScript</span>
+        </div>
       </div>
-      <div class="skills-cat">Frameworks & Libraries</div>
-      <div class="skills-grid">
-        <div class="skill-pill">React.js</div>
-        <div class="skill-pill">Next.js</div>
-        <div class="skill-pill">Node.js</div>
-        <div class="skill-pill">Express.js</div>
-        <div class="skill-pill">Tailwind CSS</div>
+
+      <!-- Category 2: Frontend Development -->
+      <div class="skill-category-card stagger-2">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+          </div>
+          <h3 class="skill-cat-title">Frontend Development</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Next.js</span>
+          <span class="skill-pill">Tailwind CSS</span>
+        </div>
       </div>
-      <div class="skills-cat">Tools & Technologies</div>
-      <div class="skills-grid">
-        <div class="skill-pill">HTML5</div>
-        <div class="skill-pill">CSS3</div>
-        <div class="skill-pill">MongoDB</div>
-        <div class="skill-pill">Socket.io</div>
-        <div class="skill-pill">JWT</div>
-        <div class="skill-pill">Gemini AI</div>
+
+      <!-- Category 3: Backend Development -->
+      <div class="skill-category-card stagger-3">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+          </div>
+          <h3 class="skill-cat-title">Backend Development</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Express.js</span>
+          <span class="skill-pill">FastAPI</span>
+        </div>
       </div>
-      <div class="skills-cat">Soft Skills</div>
-      <div class="skills-grid">
-        <div class="skill-pill">Leadership</div>
-        <div class="skill-pill">Public Speaking</div>
-        <div class="skill-pill">Analytical Thinking</div>
-        <div class="skill-pill">Time Management</div>
+
+      <!-- Category 4: Databases -->
+      <div class="skill-category-card stagger-1">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+          </div>
+          <h3 class="skill-cat-title">Databases</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">MongoDB</span>
+        </div>
+      </div>
+
+      <!-- Category 5: Development Tools -->
+      <div class="skill-category-card stagger-2">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <h3 class="skill-cat-title">Development Tools</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">GitHub</span>
+          <span class="skill-pill">Vite</span>
+        </div>
+      </div>
+
+      <!-- Category 6: AI & Speech Technologies -->
+      <div class="skill-category-card stagger-3">
+        <div class="skill-cat-head">
+          <div class="skill-cat-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+          </div>
+          <h3 class="skill-cat-title">AI &amp; Speech Technologies</h3>
+        </div>
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">Faster-Whisper</span>
+          <span class="skill-pill">Speech Recognition</span>
+          <span class="skill-pill">Neural TTS</span>
+          <span class="skill-pill">Large Language Models</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- Projects Section: Stark Technology Lab -->
 <section id="projects" class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Projects</div>
-      <h2 class="section-title">Things I've <span class="gradient-text">built.</span></h2>
+      <div class="section-label">Selected Works</div>
+      <h2 class="section-title">Things I've <span class="accent-word">built.</span></h2>
     </div>
-        <div class="projects-grid reveal">
-      <div class="project-card featured-project">
-        <div class="project-card-border" aria-hidden="true"></div>
-        <div class="project-glow" aria-hidden="true"></div>
-        <div class="project-sweep" aria-hidden="true"></div>
-        <div class="project-spotlight" aria-hidden="true"></div>
-        <div class="project-num">01</div>
-        <div class="project-name">FINOVA — Investment Literacy Simulator</div>
-        <div class="project-desc">An interactive financial education game that helps users learn budgeting, saving, investing, and smarter financial decision-making through virtual simulations and challenges.</div>
-        <div class="tech-tags">
-          <span class="tag">React</span>
-          <span class="tag">Vite</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Tailwind CSS</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Express.js</span>
-          <span class="tag">Simulation</span>
-        </div>
-        <div class="project-flow">
-          <span>💰 Money Center</span><i>•</i><span>🏦 Savings Center</span><i>•</i><span>📚 Learning Center</span><i>•</i><span>📈 Investment Center</span><i>•</i><span>🎯 Challenge Center</span>
-        </div>
-        <div class="project-actions" style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap">
-          <a href="https://finovaa-five.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="finova-demo-link" title="Launch FINOVA live application in a new tab" style="font-size:0.82rem;padding:0.5rem 1.15rem">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            <span>Explore Simulation ↗</span>
-          </a>
-          <a href="https://github.com/yuvarajkapaka/FINOVAA" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="finova-source-link" title="View FINOVA source code on GitHub" style="font-size:0.82rem;padding:0.5rem 1.15rem">
-            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>View Source ↗</span>
-          </a>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-card-border" aria-hidden="true"></div>
-        <div class="project-glow" aria-hidden="true"></div>
-        <div class="project-sweep" aria-hidden="true"></div>
-        <div class="project-spotlight" aria-hidden="true"></div>
-        <div class="project-num">02</div>
-        <div class="project-name">Telugu Auto-Dubbing Studio</div>
-        <div class="project-desc">An AI-powered video localization pipeline that converts spoken video content into natural Telugu using speech recognition, context-aware translation, speaker-aware voice generation, and audio-video synchronization.</div>
-        <div class="tech-tags">
-          <span class="tag">Python</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Streamlit</span>
-          <span class="tag">Faster-Whisper</span>
-          <span class="tag">ASR</span>
-          <span class="tag">TTS</span>
-          <span class="tag">Demucs</span>
-          <span class="tag">AI Translation</span>
-        </div>
-        <div class="project-flow">
-          <span>🎙️ ASR</span><i>→</i><span>🌐 Translate</span><i>→</i><span>🗣️ TTS</span><i>→</i><span>🎬 Sync</span>
-        </div>
-        <div class="project-actions" style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap">
-          <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.82rem;padding:0.5rem 1.15rem">
-            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>View Pipeline ↗</span>
-          </a>
+    <div class="projects-grid">
+      <!-- Project 1: FINOVA -->
+      <div class="project-card-wrapper featured-project-item reveal">
+        <div class="project-card">
+          <div class="project-spotlight" aria-hidden="true"></div>
+          <div class="project-top-meta">
+            <div class="project-num">01</div>
+            <div class="project-spec-tag">PROTOTYPE SPEC // SIM-01</div>
+          </div>
+          <h3 class="project-name">FINOVA — Investment Literacy Simulator</h3>
+          <p class="project-desc">An interactive financial education game that helps users learn budgeting, saving, investing, and smarter financial decision-making through virtual simulations and challenges.</p>
+          <div class="tech-tags">
+            <span class="tag">React</span>
+            <span class="tag">Vite</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">Simulation</span>
+          </div>
+          <div class="project-flow">
+            <span>💰 Money Center</span><i>•</i><span>🏦 Savings Center</span><i>•</i><span>📚 Learning Center</span><i>•</i><span>📈 Investment Center</span><i>•</i><span>🎯 Challenge Center</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://finovaa-five.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="finova-demo-link" title="Launch FINOVA live application in a new tab" data-magnetic="true">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span>Explore Simulation ↗</span>
+            </a>
+            <a href="https://github.com/yuvarajkapaka/FINOVAA" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="finova-source-link" title="View FINOVA source code on GitHub" data-magnetic="true">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>View Source ↗</span>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-card-border" aria-hidden="true"></div>
-        <div class="project-glow" aria-hidden="true"></div>
-        <div class="project-sweep" aria-hidden="true"></div>
-        <div class="project-spotlight" aria-hidden="true"></div>
-        <div class="project-num">03</div>
-        <div class="project-name">Campus Connect</div>
-        <div class="project-desc">A modern educational ERP platform with real-time communication, attendance management, and academic support for enhanced learning.</div>
-        <div class="tech-tags">
-          <span class="tag">React</span>
-          <span class="tag">Next.js</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">MongoDB</span>
-          <span class="tag">Socket.io</span>
-          <span class="tag">JWT</span>
+
+      <!-- Project 2: Telugu Auto-Dubbing Studio -->
+      <div class="project-card-wrapper reveal">
+        <div class="project-card">
+          <div class="project-spotlight" aria-hidden="true"></div>
+          <div class="project-top-meta">
+            <div class="project-num">02</div>
+            <div class="project-spec-tag">PROTOTYPE SPEC // DUB-AI-02</div>
+          </div>
+          <h3 class="project-name">Telugu Auto-Dubbing Studio</h3>
+          <p class="project-desc">An AI-powered video localization pipeline designed to convert video dialogue into natural Telugu through Faster-Whisper speech recognition, context-aware translation, speaker identification, and Neural TTS audio-video synchronization.</p>
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Faster-Whisper</span>
+            <span class="tag">Neural TTS</span>
+            <span class="tag">Demucs</span>
+            <span class="tag">AI Translation</span>
+          </div>
+          <div class="project-flow">
+            <span>🎙️ ASR</span><i>→</i><span>🌐 Translate</span><i>→</i><span>🗣️ Neural TTS</span><i>→</i><span>🎬 Sync</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-magnetic="true">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>View Pipeline ↗</span>
+            </a>
+          </div>
         </div>
-        <div class="project-actions" style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap">
-          <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.82rem;padding:0.5rem 1.15rem">
-            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>View Architecture ↗</span>
-          </a>
+      </div>
+
+      <!-- Project 3: Campus Connect -->
+      <div class="project-card-wrapper reveal">
+        <div class="project-card">
+          <div class="project-spotlight" aria-hidden="true"></div>
+          <div class="project-top-meta">
+            <div class="project-num">03</div>
+            <div class="project-spec-tag">PROTOTYPE SPEC // ERP-SYS-03</div>
+          </div>
+          <h3 class="project-name">Campus Connect — Educational ERP System</h3>
+          <p class="project-desc">A modern educational ERP platform with real-time communication, attendance management, and academic support for enhanced learning.</p>
+          <div class="tech-tags">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Socket.io</span>
+            <span class="tag">JWT</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-magnetic="true">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>View Architecture ↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- Education Section -->
 <section id="education" class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Education</div>
-      <h2 class="section-title">My <span class="gradient-text">journey.</span></h2>
+      <div class="section-label">Trajectory</div>
+      <h2 class="section-title">My <span class="accent-word">journey.</span></h2>
     </div>
     <div class="timeline reveal">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2023 — 2027 (Expected)</div>
-        <div class="timeline-school">B.Tech — Computer Science & Engineering<span class="gpa-badge">CGPA 7.81</span></div>
+        <div class="timeline-school">B.Tech — Computer Science &amp; Engineering<span class="gpa-badge">CGPA 7.81</span></div>
         <div class="timeline-detail">Kommuri Pratap Reddy Institute of Technology (KPRIT) · Ghatkesar, Hyderabad</div>
       </div>
       <div class="timeline-item">
@@ -953,23 +2396,24 @@ nav.nav-scrolled{
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- Achievements Section -->
 <section id="achievements" class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Achievements</div>
-      <h2 class="section-title">Proud <span class="gradient-text">moments.</span></h2>
+      <div class="section-label">Milestones</div>
+      <h2 class="section-title">Proud <span class="accent-word">moments.</span></h2>
     </div>
     <div class="achieve-grid reveal">
       <div class="achieve-card">
-        <div class="achieve-icon">🎤</div>
+        <div class="achieve-icon" aria-hidden="true">🎤</div>
         <div>
           <div class="achieve-text">Delivered a seminar on Large Language Models at Aarohan 2K24, KPRIT</div>
         </div>
       </div>
       <div class="achieve-card">
-        <div class="achieve-icon">⚡</div>
+        <div class="achieve-icon" aria-hidden="true">⚡</div>
         <div>
           <div class="achieve-text">Participated in the Gen AI Hackathon at KPRIT — built AI solutions under pressure</div>
         </div>
@@ -978,13 +2422,14 @@ nav.nav-scrolled{
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
+<!-- Certifications Section -->
 <section id="certifications" class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Certifications</div>
-      <h2 class="section-title">Certified & <span class="gradient-text">verified.</span></h2>
+      <div class="section-label">Credentials</div>
+      <h2 class="section-title">Certified &amp; <span class="accent-word">verified.</span></h2>
     </div>
     <div class="cert-grid reveal">
       <div class="cert-card">
@@ -1005,6 +2450,7 @@ nav.nav-scrolled{
   </div>
 </section>
 
+<!-- Footer / Direct Contact Section: Stark Comm-Link -->
 <footer id="contact" class="site-footer">
   <div class="footer-container">
     <div class="footer-top">
@@ -1015,16 +2461,16 @@ nav.nav-scrolled{
       <div class="footer-right">
         <div class="footer-heading">CONNECT &amp; SOCIAL</div>
         <div class="footer-social-links">
-          <a href="https://linkedin.com/in/yuvaraj-kapaka" target="_blank" rel="noopener noreferrer" class="footer-btn">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <a href="https://linkedin.com/in/yuvaraj-kapaka" target="_blank" rel="noopener noreferrer" class="footer-btn" data-magnetic="true">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             <span>LinkedIn</span>
           </a>
-          <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="footer-btn">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer" class="footer-btn" data-magnetic="true">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span>GitHub</span>
           </a>
-          <a href="mailto:yuvarajkapaka@gmail.com" class="footer-btn">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <a href="mailto:yuvarajkapaka@gmail.com" class="footer-btn" data-magnetic="true">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span>Email</span>
           </a>
         </div>
@@ -1033,448 +2479,842 @@ nav.nav-scrolled{
     <div class="footer-divider"></div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 Yuvaraj Kapaka. Built with precision and care.</div>
-      <a href="#hero" class="back-to-top" id="backToTop">
+      <a href="#hero" class="back-to-top" id="backToTop" data-magnetic="true">
         <span>↑ Back to Top</span>
       </a>
     </div>
   </div>
 </footer>
 
+<!-- ==========================================================================
+     STARK ARC REACTOR ENGINE & SPIDER-TECH MOTION SYSTEM
+     ========================================================================== -->
 <script>
-/* ==========================================================================
-   COSMIC GALAXY 🌌 — STARFIELD, INTERACTIVE PARTICLES & AMBIENT ENGINE
-   ========================================================================== */
 (function() {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const glow = document.getElementById('glow');
+  'use strict';
 
   const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  let width = 0;
-  let height = 0;
-  let dpr = 1;
+  /* ==========================================================================
+     1. HIGH-PRECISION STARK ARC REACTOR MOTION & STATE ENGINE
+     ========================================================================== */
+  const starkCursor = document.getElementById('starkCursor');
+  const arcOuterRing = document.getElementById('arcOuterRing');
+  const arcInnerRing = document.getElementById('arcInnerRing');
+  const arcCorePlasma = document.getElementById('arcCorePlasma');
+  const arcCoreHotspot = document.getElementById('arcCoreHotspot');
+  const arcGlow = document.getElementById('arcGlow');
+  const hudLabel = document.getElementById('hudLabel');
 
-  // Starfield configuration
-  const STAR_COUNT = isReducedMotion ? 120 : (isTouchDevice ? 180 : 300);
-  const stars = [];
-
-  // Mouse tracking
-  const mouse = {
-    x: -1000,
-    y: -1000,
-    targetX: -1000,
-    targetY: -1000,
+  const pointer = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
     active: false
   };
 
-  // Stardust trail
-  const trailParticles = [];
-  const MAX_TRAIL = 22;
+  if (isFinePointer && !isReducedMotion && starkCursor) {
+    document.documentElement.classList.add('has-stark-cursor');
 
-  // Shooting star
-  let shootingStar = null;
-  let nextShootingStarTime = Date.now() + 4000;
-
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    for (let i = 0; i < stars.length; i++) {
-      if (stars[i].x > width) stars[i].x = Math.random() * width;
-      if (stars[i].y > height) stars[i].y = Math.random() * height;
-    }
-  }
-
-  function createStar() {
-    const layerRand = Math.random();
-    let layer = 0; // 0 = distant, 1 = medium, 2 = bright
-    let radius, speed, baseAlpha, color, twinkleAmp, twinkleSpeed;
-
-    if (layerRand < 0.6) {
-      layer = 0;
-      radius = Math.random() * 0.45 + 0.45;
-      speed = (Math.random() * 0.08 + 0.03) * (isReducedMotion ? 0.2 : 1);
-      baseAlpha = Math.random() * 0.3 + 0.25;
-      color = '#ffffff';
-      twinkleAmp = Math.random() * 0.15 + 0.08;
-      twinkleSpeed = Math.random() * 0.02 + 0.01;
-    } else if (layerRand < 0.9) {
-      layer = 1;
-      radius = Math.random() * 0.55 + 0.95;
-      speed = (Math.random() * 0.14 + 0.08) * (isReducedMotion ? 0.2 : 1);
-      baseAlpha = Math.random() * 0.3 + 0.45;
-      color = Math.random() > 0.5 ? '#e0e7ff' : '#c4b5fd';
-      twinkleAmp = Math.random() * 0.25 + 0.15;
-      twinkleSpeed = Math.random() * 0.035 + 0.02;
-    } else {
-      layer = 2;
-      radius = Math.random() * 0.7 + 1.6;
-      speed = (Math.random() * 0.22 + 0.14) * (isReducedMotion ? 0.2 : 1);
-      baseAlpha = Math.random() * 0.25 + 0.75;
-      const palette = ['#ffffff', '#bae6fd', '#ddd6fe', '#fbcfe8'];
-      color = palette[Math.floor(Math.random() * palette.length)];
-      twinkleAmp = Math.random() * 0.3 + 0.2;
-      twinkleSpeed = Math.random() * 0.05 + 0.025;
-    }
-
-    const angle = Math.random() * Math.PI * 2;
-    return {
-      x: Math.random() * (width || window.innerWidth),
-      y: Math.random() * (height || window.innerHeight),
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      radius,
-      baseAlpha,
-      color,
-      twinkleAmp,
-      twinkleSpeed,
-      twinklePhase: Math.random() * Math.PI * 2,
-      layer,
-      ox: 0,
-      oy: 0
+    const reactor = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+      speed: 0
     };
-  }
 
-  for (let i = 0; i < STAR_COUNT; i++) {
-    stars.push(createStar());
-  }
+    let currentState = 'DEFAULT';
+    let currentLabelText = 'SYSTEM';
+    let isPressed = false;
+    let outerAngle = 0;
+    let innerAngle = 0;
+    let lastTime = performance.now();
+    let isTabVisible = true;
 
-  function spawnShootingStar() {
-    if (isReducedMotion) return;
-    const angle = (Math.random() * 25 + 25) * (Math.PI / 180);
-    const startX = Math.random() * width * 0.7 + width * 0.15;
-    const startY = Math.random() * (height * 0.25);
-    const speed = Math.random() * 7 + 10;
-    const len = Math.random() * 60 + 90;
+    window.addEventListener('mousemove', (e) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
 
-    shootingStar = {
-      x: startX,
-      y: startY,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      len,
-      progress: 0,
-      duration: Math.random() * 35 + 40
-    };
-  }
-
-  let lastParticleTime = 0;
-  function addTrailParticle(x, y) {
-    if (isReducedMotion || isTouchDevice) return;
-    const now = performance.now();
-    if (now - lastParticleTime < 24) return;
-    lastParticleTime = now;
-
-    if (trailParticles.length >= MAX_TRAIL) {
-      trailParticles.shift();
-    }
-
-    const colors = [
-      'rgba(168, 85, 247, ',
-      'rgba(56, 189, 248, ',
-      'rgba(232, 121, 249, '
-    ];
-    trailParticles.push({
-      x: x + (Math.random() - 0.5) * 6,
-      y: y + (Math.random() - 0.5) * 6,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6 + 0.2,
-      size: Math.random() * 1.6 + 1.2,
-      life: 1.0,
-      decay: Math.random() * 0.035 + 0.03,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
-  }
-
-  if (!isTouchDevice) {
-    window.addEventListener('mousemove', e => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-      if (!mouse.active) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        mouse.active = true;
+      if (!pointer.active) {
+        pointer.active = true;
+        reactor.x = pointer.x;
+        reactor.y = pointer.y;
+        starkCursor.style.opacity = '1';
       }
-      addTrailParticle(e.clientX, e.clientY);
     }, { passive: true });
 
     window.addEventListener('mouseleave', () => {
-      mouse.active = false;
+      pointer.active = false;
+      starkCursor.style.opacity = '0';
     }, { passive: true });
-  }
 
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
+    window.addEventListener('mousedown', () => {
+      if (!pointer.active) return;
+      isPressed = true;
+      starkCursor.classList.add('is-pressed');
+    });
 
-  let lastTime = performance.now();
-  let isPageVisible = true;
+    window.addEventListener('mouseup', () => {
+      if (!isPressed) return;
+      isPressed = false;
+      setTimeout(() => {
+        starkCursor.classList.remove('is-pressed');
+      }, 140);
+    });
 
-  document.addEventListener('visibilitychange', () => {
-    isPageVisible = !document.hidden;
-    if (isPageVisible) {
-      lastTime = performance.now();
-      requestAnimationFrame(render);
-    }
-  });
-
-  function render(now) {
-    if (!isPageVisible) return;
-
-    const dt = Math.min((now - lastTime) / 1000, 0.1);
-    lastTime = now;
-
-    ctx.clearRect(0, 0, width, height);
-
-    if (mouse.active) {
-      mouse.x += (mouse.targetX - mouse.x) * 0.18;
-      mouse.y += (mouse.targetY - mouse.y) * 0.18;
-
-      if (glow) {
-        glow.style.left = mouse.x + 'px';
-        glow.style.top = mouse.y + 'px';
-        glow.style.opacity = '1';
+    function setReactorState(state, label) {
+      if (currentState !== state) {
+        currentState = state;
+        starkCursor.setAttribute('data-state', state);
       }
-    } else if (glow) {
-      glow.style.opacity = '0';
+      if (label && hudLabel && currentLabelText !== label) {
+        currentLabelText = label;
+        hudLabel.textContent = label;
+      }
     }
 
-    const interactionRadius = 135;
-    for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
+    function evaluateContext(target) {
+      if (!target || !(target instanceof Element)) return;
 
-      s.x += s.vx;
-      s.y += s.vy;
+      if (target.closest('a[href^="mailto:"]')) {
+        setReactorState('CONTACT', 'INITIATE CONTACT');
+        return;
+      }
 
-      if (s.x < -10) s.x = width + 10;
-      else if (s.x > width + 10) s.x = -10;
-      if (s.y < -10) s.y = height + 10;
-      else if (s.y > height + 10) s.y = -10;
+      const projectCard = target.closest('.project-card');
+      if (projectCard) {
+        const actionLink = target.closest('.project-actions a, .btn');
+        if (actionLink) {
+          if (actionLink.getAttribute('target') === '_blank') {
+            setReactorState('EXTERNAL_LINK', 'LAUNCH ARCHITECTURE');
+          } else {
+            setReactorState('INTERACTIVE', 'EXECUTE');
+          }
+          return;
+        }
+        setReactorState('PROJECT', 'SCAN PROJECT');
+        return;
+      }
 
-      if (mouse.active) {
-        const dx = (s.x + s.ox) - mouse.x;
-        const dy = (s.y + s.oy) - mouse.y;
-        const dist = Math.hypot(dx, dy);
+      const externalLink = target.closest('a[target="_blank"], a[rel*="noopener"]');
+      if (externalLink) {
+        const isGithub = externalLink.href.includes('github.com');
+        const isLinkedIn = externalLink.href.includes('linkedin.com');
+        const label = isGithub ? 'ACCESS REPO' : (isLinkedIn ? 'VIEW PROFILE' : 'EXTERNAL LINK');
+        setReactorState('EXTERNAL_LINK', label);
+        return;
+      }
 
-        if (dist < interactionRadius && dist > 1) {
-          const force = (1 - dist / interactionRadius) * 2.2;
-          s.ox += (dx / dist) * force;
-          s.oy += (dy / dist) * force;
+      if (target.closest('a, button, .btn, .social-icon, .skill-pill, .footer-btn, .nav-logo, [role="button"]')) {
+        setReactorState('INTERACTIVE', 'LOCKED');
+        return;
+      }
+
+      setReactorState('DEFAULT', 'SYSTEM');
+    }
+
+    document.addEventListener('mouseover', (e) => evaluateContext(e.target));
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget) {
+        setReactorState('DEFAULT', 'SYSTEM');
+      } else {
+        evaluateContext(e.relatedTarget);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      isTabVisible = !document.hidden;
+      if (isTabVisible) {
+        lastTime = performance.now();
+        requestAnimationFrame(renderReactor);
+      }
+    });
+
+    function renderReactor(now) {
+      if (!isTabVisible) return;
+
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
+      if (pointer.active) {
+        const dx = pointer.x - reactor.x;
+        const dy = pointer.y - reactor.y;
+
+        const lerpFactor = Math.min(1, 16 * dt);
+        reactor.x += dx * lerpFactor;
+        reactor.y += dy * lerpFactor;
+
+        const instantSpeed = Math.hypot(dx, dy) / Math.max(dt, 0.001);
+        reactor.speed += (Math.min(instantSpeed, 3200) - reactor.speed) * 0.18;
+
+        const velocityNorm = Math.min(1, reactor.speed / 1400);
+
+        const outerVelocity = (14 + velocityNorm * 120) * dt;
+        const innerVelocity = (24 + velocityNorm * 220) * dt;
+
+        outerAngle = (outerAngle - outerVelocity) % 360;
+        innerAngle = (innerAngle + innerVelocity) % 360;
+
+        starkCursor.style.transform = `translate3d(${reactor.x.toFixed(2)}px, ${reactor.y.toFixed(2)}px, 0)`;
+
+        if (arcOuterRing) {
+          arcOuterRing.setAttribute('transform', `rotate(${outerAngle.toFixed(2)} 50 50)`);
+        }
+        if (arcInnerRing) {
+          arcInnerRing.setAttribute('transform', `rotate(${innerAngle.toFixed(2)} 50 50)`);
+        }
+
+        if (arcCorePlasma) {
+          const coreScale = 1.0 + velocityNorm * 0.28;
+          const coreOpacity = 0.85 + velocityNorm * 0.15;
+          arcCorePlasma.style.transform = `scale(${coreScale.toFixed(3)})`;
+          arcCorePlasma.style.opacity = coreOpacity.toFixed(2);
         }
       }
-      s.ox *= 0.91;
-      s.oy *= 0.91;
 
-      s.twinklePhase += s.twinkleSpeed;
-      const alpha = Math.max(0.12, Math.min(1.0, s.baseAlpha + Math.sin(s.twinklePhase) * s.twinkleAmp));
+      requestAnimationFrame(renderReactor);
+    }
 
-      const px = s.x + s.ox;
-      const py = s.y + s.oy;
+    requestAnimationFrame(renderReactor);
+  }
 
-      ctx.beginPath();
-      ctx.arc(px, py, s.radius, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = alpha;
-      ctx.fill();
+  /* ==========================================================================
+     2. RESTRAINED MAGNETIC BUTTON SYSTEM
+     ========================================================================== */
+  if (isFinePointer && !isReducedMotion) {
+    const magneticElements = document.querySelectorAll('[data-magnetic="true"]');
+    const MAX_DISPLACEMENT = 4.5;
 
-      if (s.layer === 2) {
-        ctx.beginPath();
-        ctx.arc(px, py, s.radius * 2.6, 0, Math.PI * 2);
-        ctx.fillStyle = s.color;
-        ctx.globalAlpha = alpha * 0.22;
-        ctx.fill();
+    magneticElements.forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) * 0.22;
+        const deltaY = (e.clientY - centerY) * 0.22;
+
+        const clampedX = Math.max(-MAX_DISPLACEMENT, Math.min(MAX_DISPLACEMENT, deltaX));
+        const clampedY = Math.max(-MAX_DISPLACEMENT, Math.min(MAX_DISPLACEMENT, deltaY));
+
+        el.style.transform = `translate3d(${clampedX.toFixed(2)}px, ${clampedY.toFixed(2)}px, 0)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        el.style.transform = '';
+        setTimeout(() => {
+          el.style.transition = '';
+        }, 400);
+      });
+    });
+  }
+
+  /* ==========================================================================
+     3. PROJECT CARDS: 3D TILT & MOUSE-TRACKING SPOTLIGHT
+     ========================================================================== */
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach((card) => {
+    if (isFinePointer && !isReducedMotion) {
+      const MAX_TILT = 2.5;
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const xRel = (e.clientX - rect.left) / rect.width;
+        const yRel = (e.clientY - rect.top) / rect.height;
+
+        card.style.setProperty('--mx', `${(xRel * 100).toFixed(1)}%`);
+        card.style.setProperty('--my', `${(yRel * 100).toFixed(1)}%`);
+
+        const rotX = -((yRel - 0.5) * (MAX_TILT * 2)).toFixed(2);
+        const rotY = ((xRel - 0.5) * (MAX_TILT * 2)).toFixed(2);
+
+        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.4s ease';
+        card.style.transform = '';
+        setTimeout(() => {
+          card.style.transition = '';
+        }, 500);
+      });
+    }
+  });
+
+  /* ==========================================================================
+     4. ABOUT CARDS SPOTLIGHT
+     ========================================================================== */
+  const aboutCards = document.querySelectorAll('.about-card');
+  aboutCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--amx', `${(e.clientX - rect.left).toFixed(1)}px`);
+      card.style.setProperty('--amy', `${(e.clientY - rect.top).toFixed(1)}px`);
+    });
+  });
+
+  /* ==========================================================================
+     5. SPIDER-TECH & STARK CINEMATIC MOTION BACKGROUND ENGINE
+     ========================================================================== */
+  const canvas = document.getElementById('particles');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let isCanvasTabVisible = true;
+    let currentScrollY = window.scrollY;
+
+    // Smoothed Parallax
+    let targetParallaxX = 0;
+    let targetParallaxY = 0;
+    let curParallaxX = 0;
+    let curParallaxY = 0;
+
+    // LAYER A: COSMIC ATMOSPHERE (3-Tier Deep Space Stars)
+    const stars = [];
+    const STAR_COUNT = isReducedMotion ? 24 : (isFinePointer ? 52 : 36);
+
+    // LAYER C: STARK SCHEMATIC CONDUIT PATHS & TRAVELING ARC PULSES
+    const conduits = [];
+    const conduitJunctions = [];
+    const pulses = [];
+    let lastPulseTime = performance.now();
+
+    // LAYER D: SPIDER-MAN CORNER WEB GEOMETRIES (Left & Right Flanks)
+    const webVerticesLeft = [];
+    const webVerticesRight = [];
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      initConduits();
+      initWebGeometries();
+
+      for (let i = 0; i < stars.length; i++) {
+        if (stars[i].x > width) stars[i].x = Math.random() * width;
+        if (stars[i].y > height) stars[i].y = Math.random() * height;
       }
     }
 
-    for (let i = trailParticles.length - 1; i >= 0; i--) {
-      const p = trailParticles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.size *= 0.94;
-      p.life -= p.decay;
+    // 1. Initialize 3-tier stars
+    function initStars() {
+      stars.length = 0;
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const tierRoll = Math.random();
+        let tier = 1; // background micro-dust
+        let radius = Math.random() * 0.4 + 0.6;
+        let baseAlpha = Math.random() * 0.2 + 0.30;
+        let color = '#D7DCE2';
 
-      if (p.life <= 0 || p.size < 0.2) {
-        trailParticles.splice(i, 1);
-        continue;
+        if (tierRoll > 0.85) {
+          tier = 3; // foreground celestial beacon (restrained count)
+          radius = Math.random() * 0.5 + 1.8;
+          baseAlpha = Math.random() * 0.15 + 0.80;
+          const cRoll = Math.random();
+          color = cRoll < 0.45 ? '#8ADCF5' : (cRoll < 0.75 ? '#B8323C' : '#FFFFFF');
+        } else if (tierRoll > 0.55) {
+          tier = 2; // midground crisp star
+          radius = Math.random() * 0.4 + 1.1;
+          baseAlpha = Math.random() * 0.2 + 0.55;
+          color = Math.random() < 0.25 ? '#8ADCF5' : '#D7DCE2';
+        }
+
+        stars.push({
+          tier,
+          x: Math.random() * (width || window.innerWidth),
+          y: Math.random() * (height || window.innerHeight),
+          vx: (Math.random() - 0.5) * (tier === 3 ? 0.04 : 0.06),
+          vy: (Math.random() - 0.5) * (tier === 3 ? 0.04 : 0.06),
+          radius,
+          baseAlpha,
+          color,
+          phase: Math.random() * Math.PI * 2,
+          phaseSpeed: Math.random() * 0.015 + 0.006
+        });
       }
+    }
+    initStars();
 
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color + (p.life * 0.75) + ')';
-      ctx.globalAlpha = p.life;
-      ctx.fill();
+    // 2. Initialize Stark schematic conduit paths
+    function initConduits() {
+      conduits.length = 0;
+      conduitJunctions.length = 0;
+      const margin = Math.max(36, Math.min(width * 0.045, 64));
+
+      // Left & right outer schematic rails
+      conduits.push({ x1: margin, y1: 0, x2: margin, y2: height, length: height });
+      conduits.push({ x1: width - margin, y1: 0, x2: width - margin, y2: height, length: height });
+
+      // Top circuit bus rail
+      conduits.push({ x1: margin, y1: 85, x2: width - margin, y2: 85, length: width - margin * 2 });
+
+      // Top-left 45-degree Stark diagnostic trace
+      conduits.push({ x1: margin, y1: 220, x2: margin + 70, y2: 290, length: 99 });
+      conduits.push({ x1: margin + 70, y1: 290, x2: margin + 180, y2: 290, length: 110 });
+
+      // Top-right 45-degree Stark diagnostic trace
+      conduits.push({ x1: width - margin, y1: 220, x2: width - margin - 70, y2: 290, length: 99 });
+      conduits.push({ x1: width - margin - 70, y1: 290, x2: width - margin - 180, y2: 290, length: 110 });
+
+      // Lower angled traces
+      conduits.push({ x1: margin, y1: height * 0.62, x2: margin + 80, y2: height * 0.62 + 80, length: 113 });
+      conduits.push({ x1: width - margin, y1: height * 0.68, x2: width - margin - 80, y2: height * 0.68 - 80, length: 113 });
+
+      // Junction points
+      conduitJunctions.push({ x: margin, y: 85 });
+      conduitJunctions.push({ x: width - margin, y: 85 });
+      conduitJunctions.push({ x: margin, y: 220 });
+      conduitJunctions.push({ x: margin + 70, y: 290 });
+      conduitJunctions.push({ x: width - margin, y: 220 });
+      conduitJunctions.push({ x: width - margin - 70, y: 290 });
     }
 
-    const currentTime = Date.now();
-    if (!shootingStar && currentTime > nextShootingStarTime) {
-      spawnShootingStar();
-      nextShootingStarTime = currentTime + Math.random() * 8000 + 7000;
+    function createPulse() {
+      if (conduits.length === 0) return;
+      const conduitIndex = Math.floor(Math.random() * conduits.length);
+      const c = conduits[conduitIndex];
+      pulses.push({
+        conduitIndex,
+        progress: 0,
+        speed: (Math.random() * 0.16 + 0.14),
+        length: Math.min(75, c.length * 0.55)
+      });
     }
 
-    if (shootingStar) {
-      shootingStar.progress += 1 / shootingStar.duration;
-      shootingStar.x += shootingStar.vx;
-      shootingStar.y += shootingStar.vy;
+    // 3. Initialize Spider-Man Corner Web Geometries
+    function buildCornerWeb(originX, originY, startAngleDeg, endAngleDeg, rings, targetArray) {
+      targetArray.length = 0;
+      const spokeAngles = [
+        startAngleDeg,
+        startAngleDeg + (endAngleDeg - startAngleDeg) * 0.2,
+        startAngleDeg + (endAngleDeg - startAngleDeg) * 0.4,
+        startAngleDeg + (endAngleDeg - startAngleDeg) * 0.6,
+        startAngleDeg + (endAngleDeg - startAngleDeg) * 0.8,
+        endAngleDeg
+      ].map(deg => deg * Math.PI / 180);
 
-      if (shootingStar.progress >= 1.0) {
-        shootingStar = null;
+      for (let s = 0; s < spokeAngles.length; s++) {
+        const ang = spokeAngles[s];
+        const cos = Math.cos(ang);
+        const sin = Math.sin(ang);
+
+        for (let r = 0; r < rings.length; r++) {
+          const rad = rings[r];
+          const bx = originX + cos * rad;
+          const by = originY + sin * rad;
+          targetArray.push({
+            originX,
+            originY,
+            baseX: bx,
+            baseY: by,
+            x: bx,
+            y: by,
+            vx: 0,
+            vy: 0,
+            ringIndex: r,
+            spokeIndex: s,
+            rad
+          });
+        }
+      }
+    }
+
+    function initWebGeometries() {
+      const rings = [95, 175, 265, 365, 475];
+      // Top-Left corner web (origin at -10, -10)
+      buildCornerWeb(-10, -10, 10, 80, rings, webVerticesLeft);
+      // Top-Right corner web (origin at width + 10, -10)
+      buildCornerWeb(width + 10, -10, 100, 170, rings, webVerticesRight);
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+
+    window.addEventListener('scroll', () => {
+      currentScrollY = window.scrollY;
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      isCanvasTabVisible = !document.hidden;
+      if (isCanvasTabVisible) requestAnimationFrame(drawMotionBackground);
+    });
+
+    let lastFrameTime = performance.now();
+
+    function drawMotionBackground(now) {
+      if (!isCanvasTabVisible) return;
+
+      const dt = Math.min((now - lastFrameTime) / 1000, 0.05);
+      lastFrameTime = now;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const heroHeight = height || window.innerHeight;
+      const heroFactor = Math.max(0, Math.min(1, 1 - (currentScrollY / (heroHeight * 1.15))));
+      const scrollNorm = Math.min(1, currentScrollY / (document.body.scrollHeight - height || 1));
+
+      // Parallax calculation
+      if (pointer.active && isFinePointer && !isReducedMotion) {
+        targetParallaxX = (pointer.x / width - 0.5) * 16;
+        targetParallaxY = (pointer.y / height - 0.5) * 16;
       } else {
-        const starAlpha = Math.sin(shootingStar.progress * Math.PI);
-        const dist = Math.hypot(shootingStar.vx, shootingStar.vy);
-        const tailX = shootingStar.x - (shootingStar.vx / dist) * shootingStar.len;
-        const tailY = shootingStar.y - (shootingStar.vy / dist) * shootingStar.len;
+        targetParallaxX = 0;
+        targetParallaxY = 0;
+      }
+      curParallaxX += (targetParallaxX - curParallaxX) * 0.06;
+      curParallaxY += (targetParallaxY - curParallaxY) * 0.06;
 
-        const grad = ctx.createLinearGradient(tailX, tailY, shootingStar.x, shootingStar.y);
-        grad.addColorStop(0, 'rgba(56, 189, 248, 0)');
-        grad.addColorStop(0.5, `rgba(168, 85, 247, ${starAlpha * 0.45})`);
-        grad.addColorStop(1, `rgba(255, 255, 255, ${starAlpha * 0.95})`);
+      // ======================================================================
+      // 1. LAYER A: COSMIC ATMOSPHERE (Deep Space Stars with Visible Beacons)
+      // ======================================================================
+      const cosmicFade = 0.12 + heroFactor * 0.88;
 
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+
+        if (!isReducedMotion) {
+          s.x += s.vx;
+          s.y += s.vy;
+          if (s.x < 0) s.x = width;
+          else if (s.x > width) s.x = 0;
+          if (s.y < 0) s.y = height;
+          else if (s.y > height) s.y = 0;
+          s.phase += s.phaseSpeed;
+        }
+
+        const twinkle = s.baseAlpha + Math.sin(s.phase) * (s.tier === 1 ? 0.12 : 0.18);
+        const finalAlpha = Math.max(0.08, Math.min(1.0, twinkle)) * cosmicFade;
+
+        const pFactor = s.tier === 1 ? 0.15 : (s.tier === 2 ? 0.28 : 0.45);
+        const sx = s.x + curParallaxX * pFactor;
+        const sy = s.y + curParallaxY * pFactor;
+
+        // Draw luminous radial bloom on Tier 3 stars
+        if (s.tier === 3) {
+          ctx.beginPath();
+          ctx.arc(sx, sy, s.radius * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = s.color === '#8ADCF5' ? 'rgba(138, 220, 245, 0.22)' : (s.color === '#B8323C' ? 'rgba(184, 50, 60, 0.24)' : 'rgba(255, 255, 255, 0.20)');
+          ctx.globalAlpha = finalAlpha * 0.7;
+          ctx.fill();
+        }
+
+        // Draw star core
         ctx.beginPath();
-        ctx.moveTo(tailX, tailY);
-        ctx.lineTo(shootingStar.x, shootingStar.y);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.8;
-        ctx.globalAlpha = starAlpha;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(shootingStar.x, shootingStar.y, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
-        ctx.globalAlpha = starAlpha;
+        ctx.arc(sx, sy, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = finalAlpha;
         ctx.fill();
       }
+
+      // ======================================================================
+      // 2. LAYER C: STARK SCHEMATIC CONDUIT PATHS & TRAVELING ARC PULSES
+      // ======================================================================
+      const pX_conduits = curParallaxX * 0.2;
+      const pY_conduits = curParallaxY * 0.2;
+
+      // Draw base conduit schematic lines
+      ctx.lineWidth = 0.85;
+      ctx.strokeStyle = 'rgba(111, 145, 168, 0.16)';
+      ctx.globalAlpha = 0.16 + heroFactor * 0.45;
+      for (let i = 0; i < conduits.length; i++) {
+        const c = conduits[i];
+        ctx.beginPath();
+        ctx.moveTo(c.x1 + pX_conduits, c.y1 + pY_conduits);
+        ctx.lineTo(c.x2 + pX_conduits, c.y2 + pY_conduits);
+        ctx.stroke();
+      }
+
+      // Draw circuit junction points
+      for (let j = 0; j < conduitJunctions.length; j++) {
+        const pt = conduitJunctions[j];
+        ctx.beginPath();
+        ctx.arc(pt.x + pX_conduits, pt.y + pY_conduits, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(138, 220, 245, 0.45)';
+        ctx.fill();
+      }
+
+      // Spawn Stark energy pulses periodically
+      if (!isReducedMotion && now - lastPulseTime > 3800 && pulses.length < 3) {
+        createPulse();
+        lastPulseTime = now;
+      }
+
+      // Animate and render pulses
+      if (!isReducedMotion) {
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const p = pulses[i];
+          p.progress += p.speed * dt;
+
+          if (p.progress >= 1.0) {
+            pulses.splice(i, 1);
+            continue;
+          }
+
+          const c = conduits[p.conduitIndex];
+          const currX = c.x1 + (c.x2 - c.x1) * p.progress + pX_conduits;
+          const currY = c.y1 + (c.y2 - c.y1) * p.progress + pY_conduits;
+          const prevProgress = Math.max(0, p.progress - (p.length / c.length));
+          const tailX = c.x1 + (c.x2 - c.x1) * prevProgress + pX_conduits;
+          const tailY = c.y1 + (c.y2 - c.y1) * prevProgress + pY_conduits;
+
+          const grad = ctx.createLinearGradient(tailX, tailY, currX, currY);
+          grad.addColorStop(0, 'rgba(138, 220, 245, 0)');
+          grad.addColorStop(0.5, 'rgba(138, 220, 245, 0.55)');
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0.95)');
+
+          ctx.lineWidth = 1.6;
+          ctx.strokeStyle = grad;
+          ctx.globalAlpha = 0.90;
+          ctx.beginPath();
+          ctx.moveTo(tailX, tailY);
+          ctx.lineTo(currX, currY);
+          ctx.stroke();
+
+          // Luminous pulse leading core
+          ctx.beginPath();
+          ctx.arc(currX, currY, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.globalAlpha = 1.0;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(currX, currY, 4.2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(138, 220, 245, 0.35)';
+          ctx.fill();
+        }
+      }
+
+      // ======================================================================
+      // 3. LAYER D: SPIDER-MAN CORNER WEB GEOMETRIES (Pointer Spring Flex)
+      // ======================================================================
+      if (heroFactor > 0.05) {
+        const pX_web = curParallaxX * 0.4;
+        const pY_web = curParallaxY * 0.4;
+        const webAlphaBase = 0.85 * heroFactor;
+
+        function renderWebNetwork(vertices, originX, originY) {
+          const spokeCount = 6;
+          const ringCount = 5;
+
+          // Update vertex physics (Pointer flex + natural organic micro-sway)
+          for (let i = 0; i < vertices.length; i++) {
+            const v = vertices[i];
+            const sway = Math.sin(now * 0.0016 + v.spokeIndex * 0.9) * 2.2;
+
+            if (pointer.active && isFinePointer && !isReducedMotion) {
+              const dx = pointer.x - (v.baseX + pX_web);
+              const dy = pointer.y - (v.baseY + pY_web);
+              const dist = Math.hypot(dx, dy);
+              const INFLUENCE = 170;
+
+              if (dist < INFLUENCE && dist > 1) {
+                const pull = (1 - dist / INFLUENCE) * 20;
+                const targetX = v.baseX + (dx / dist) * pull + sway;
+                const targetY = v.baseY + (dy / dist) * pull + sway;
+                v.vx += (targetX - v.x) * 0.16;
+                v.vy += (targetY - v.y) * 0.16;
+              } else {
+                v.vx += (v.baseX + sway - v.x) * 0.12;
+                v.vy += (v.baseY + sway - v.y) * 0.12;
+              }
+            } else {
+              v.vx += (v.baseX + sway - v.x) * 0.12;
+              v.vy += (v.baseY + sway - v.y) * 0.12;
+            }
+
+            v.vx *= 0.74;
+            v.vy *= 0.74;
+            v.x += v.vx;
+            v.y += v.vy;
+          }
+
+          // Draw radial web spokes from origin corner
+          ctx.lineWidth = 0.85;
+          ctx.strokeStyle = `rgba(215, 220, 226, ${0.28 * webAlphaBase})`;
+          ctx.globalAlpha = 1.0;
+          for (let s = 0; s < spokeCount; s++) {
+            ctx.beginPath();
+            ctx.moveTo(originX + pX_web, originY + pY_web);
+            for (let r = 0; r < ringCount; r++) {
+              const v = vertices[s * ringCount + r];
+              ctx.lineTo(v.x + pX_web, v.y + pY_web);
+            }
+            ctx.stroke();
+          }
+
+          // Draw concentric polygonal web cross-strands
+          ctx.lineWidth = 0.8;
+          for (let r = 0; r < ringCount; r++) {
+            ctx.beginPath();
+            const startV = vertices[r];
+            ctx.moveTo(startV.x + pX_web, startV.y + pY_web);
+
+            for (let s = 1; s < spokeCount; s++) {
+              const v = vertices[s * ringCount + r];
+              ctx.lineTo(v.x + pX_web, v.y + pY_web);
+            }
+
+            // Alternating Spider-Man Crimson and Stark Ice-Blue web strands
+            if (r % 2 === 1) {
+              ctx.strokeStyle = `rgba(184, 50, 60, ${0.36 * webAlphaBase})`;
+            } else {
+              ctx.strokeStyle = `rgba(138, 220, 245, ${0.30 * webAlphaBase})`;
+            }
+            ctx.stroke();
+          }
+
+          // Draw subtle nodal dots at strand intersections
+          for (let i = 0; i < vertices.length; i++) {
+            const v = vertices[i];
+            ctx.beginPath();
+            ctx.arc(v.x + pX_web, v.y + pY_web, 1.3, 0, Math.PI * 2);
+            ctx.fillStyle = v.ringIndex % 2 === 1 ? 'rgba(184, 50, 60, 0.55)' : 'rgba(138, 220, 245, 0.55)';
+            ctx.globalAlpha = webAlphaBase;
+            ctx.fill();
+          }
+        }
+
+        if (webVerticesLeft.length > 0) renderWebNetwork(webVerticesLeft, -10, -10);
+        if (webVerticesRight.length > 0) renderWebNetwork(webVerticesRight, width + 10, -10);
+      }
+
+      // ======================================================================
+      // 4. LAYER E: CONTACT SECTION COMM-LINK RADAR FREQUENCY PULSE
+      // ======================================================================
+      if (scrollNorm > 0.82 && !isReducedMotion) {
+        const commTime = (now % 6500) / 6500;
+        const commRadius = 40 + commTime * 240;
+        const commAlpha = Math.sin(commTime * Math.PI) * 0.22;
+
+        ctx.beginPath();
+        ctx.arc(width / 2, height - 70, commRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(138, 220, 245, ${commAlpha})`;
+        ctx.lineWidth = 1.2;
+        ctx.globalAlpha = 1.0;
+        ctx.stroke();
+      }
+
+      ctx.globalAlpha = 1.0;
+      requestAnimationFrame(drawMotionBackground);
     }
 
-    ctx.globalAlpha = 1.0;
-    requestAnimationFrame(render);
+    if (!isReducedMotion) {
+      requestAnimationFrame(drawMotionBackground);
+    } else {
+      drawMotionBackground(performance.now());
+    }
   }
 
-  requestAnimationFrame(render);
-})();
+  /* ==========================================================================
+     6. HERO ROLE TYPING ANIMATION
+     ========================================================================== */
+  const words = ['Problem Solver', 'Software Developer', 'AI Enthusiast'];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typedEl = document.getElementById('typed-text');
 
-/* Scroll progress */
-const prog = document.getElementById('progress');
-if (prog) {
+  function typeStep() {
+    if (!typedEl) return;
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+      typedEl.textContent = currentWord.slice(0, ++charIndex);
+      if (charIndex === currentWord.length) {
+        isDeleting = true;
+        setTimeout(typeStep, 1900);
+        return;
+      }
+    } else {
+      typedEl.textContent = currentWord.slice(0, --charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+    }
+    setTimeout(typeStep, isDeleting ? 40 : 80);
+  }
+  typeStep();
+
+  /* ==========================================================================
+     7. SCROLL PROGRESS & NAVBAR SCROLLED STATE
+     ========================================================================== */
+  const progressEl = document.getElementById('progress');
+  const navEl = document.querySelector('nav');
+
   window.addEventListener('scroll', () => {
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-    prog.style.width = pct + '%';
-  }, { passive: true });
-}
+    const scrollY = window.scrollY;
 
-/* Typing text */
-const words = ['Problem Solver', 'Software Developer', 'AI Builder', 'Full-Stack Dev'];
-let wi = 0, ci = 0, del = false;
-const typed = document.getElementById('typed-text');
-function type() {
-  if (!typed) return;
-  const w = words[wi];
-  if (!del) {
-    typed.textContent = w.slice(0, ++ci);
-    if (ci === w.length) { del = true; setTimeout(type, 1800); return; }
+    if (progressEl) {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const pct = maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0;
+      progressEl.style.width = pct + '%';
+    }
+
+    if (navEl) {
+      navEl.classList.toggle('nav-scrolled', scrollY > 35);
+    }
+  }, { passive: true });
+
+  /* ==========================================================================
+     8. SCROLL REVEAL INTERSECTION OBSERVER
+     ========================================================================== */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !isReducedMotion) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach((r) => revealObserver.observe(r));
   } else {
-    typed.textContent = w.slice(0, --ci);
-    if (ci === 0) { del = false; wi = (wi + 1) % words.length; }
+    reveals.forEach((r) => r.classList.add('visible'));
   }
-  setTimeout(type, del ? 50 : 85);
-}
-type();
 
-/* Reveal elements on scroll */
-const revels = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  revels.forEach(r => obs.observe(r));
-} else {
-  revels.forEach(r => r.classList.add('visible'));
-}
+  /* ==========================================================================
+     9. ACTIVE NAVIGATION LINK HIGHLIGHTING
+     ========================================================================== */
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
-/* Navbar background toggle */
-const nav = document.querySelector('nav');
-if (nav) {
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('nav-scrolled', window.scrollY > 30);
-  }, { passive: true });
-}
+  if ('IntersectionObserver' in window) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === `#${currentId}`);
+          });
+        }
+      });
+    }, { threshold: 0.35 });
 
-/* 3D card tilt effect for general cards */
-document.querySelectorAll('.achieve-card, .cert-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(900px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg) translateY(-5px)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+    sections.forEach((sec) => navObserver.observe(sec));
+  }
 
-/* Cursor-following subtle spotlight on About cards */
-document.querySelectorAll('.about-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--amx', `${(e.clientX - r.left)}px`);
-    card.style.setProperty('--amy', `${(e.clientY - r.top)}px`);
-  });
-});
-
-/* Back to top smooth scroll handler */
-const backToTopBtn = document.getElementById('backToTop');
-if (backToTopBtn) {
-  backToTopBtn.addEventListener('click', e => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-/* Dedicated smooth 3D tilt & mouse spotlight for project cards */
-const canTiltProjects = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('.projects-grid .project-card').forEach((card, idx) => {
-  card.style.setProperty('--d', `${(idx * 0.15).toFixed(2)}s`);
-
-  if (canTiltProjects) {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
-      card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
-      card.style.transform = `perspective(900px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg) translateY(-8px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
+  /* ==========================================================================
+     10. BACK TO TOP SMOOTH SCROLL
+     ========================================================================== */
+  const backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
-});
-
-/* Staggered skill pills */
-document.querySelectorAll('.skill-pill').forEach((pill, i) => {
-  pill.style.transitionDelay = `${(i % 5) * 35}ms`;
-});
-
-/* Hero subtle parallax */
-const hero = document.querySelector('#hero');
-if (hero) {
-  window.addEventListener('mousemove', e => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
-    hero.style.setProperty('--mx', `${x * 5}px`);
-    hero.style.setProperty('--my', `${y * 3.5}px`);
-  }, { passive: true });
-}
+})();
 </script>
 </body>
 </html>
