@@ -55,14 +55,18 @@
   if (canvas && ctx) {
     const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
     const rootStyle = getComputedStyle(document.documentElement);
-    const palette = Object.fromEntries(["paper", "gold", "tangerine", "royal-purple", "lagoon"].map(name => [name, rootStyle.getPropertyValue(`--${name}`).trim()]));
+    const palette = Object.fromEntries(["paper", "gold", "royal-purple", "lagoon"].map(name => [name, rootStyle.getPropertyValue(`--${name}`).trim()]));
     let w = 0, h = 0, dpr = 1, x = innerWidth * .5, y = innerHeight * .45, tx = x, ty = y, raf = 0, last = 0;
     const draw = now => {
       ctx.clearRect(0, 0, w, h);
-      const count = Math.max(14, Math.min(28, Math.round(h / 38)));
+      const compact = innerWidth <= 700;
+      const count = compact
+        ? Math.max(9, Math.min(16, Math.round(h / 58)))
+        : Math.max(14, Math.min(28, Math.round(h / 38)));
+      const pointStep = compact ? 32 : 20;
       for (let i = 0; i < count; i++) {
         const p = i / (count - 1), base = -h * .08 + Math.pow(p, 1.55) * h * 1.18, points = [];
-        for (let sx = -24; sx <= w + 24; sx += 20) {
+        for (let sx = -24; sx <= w + 24; sx += pointStep) {
           const sy = base + Math.sin(sx * .004 + now * .0003 + i * .34) * (4 + 18 * p) + Math.sin(sx * .009 - now * .00018 + i * .7) * (2 + 5 * p);
           const dx = sx - x, dy = sy - y, dist = Math.hypot(dx, dy) || 1;
           const influence = Math.exp(-(dx * dx + dy * dy) / (2 * 280 * 280));
@@ -79,8 +83,7 @@
         const end = points[points.length - 1];
         ctx.lineTo(end.x, end.y);
         let tone = palette.paper, opacity = .105;
-        if (i % 17 === 3) { tone = palette.tangerine; opacity = .16; }
-        else if (i % 11 === 4) { tone = palette["royal-purple"]; opacity = .16; }
+        if (i % 11 === 4) { tone = palette["royal-purple"]; opacity = .16; }
         else if (i % 9 === 0) { tone = palette.gold; opacity = .22; }
         else if (i % 7 === 2) { tone = palette.lagoon; opacity = .15; }
         ctx.strokeStyle = tone;
@@ -91,7 +94,7 @@
       ctx.globalAlpha = 1;
     };
     const resize = () => {
-      w = innerWidth; h = innerHeight; dpr = Math.min(devicePixelRatio || 1, 1.5);
+      w = innerWidth; h = innerHeight; dpr = Math.min(devicePixelRatio || 1, innerWidth <= 700 ? 1 : 1.5);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       draw(reduced ? 0 : performance.now());
@@ -100,7 +103,7 @@
       raf = 0;
       if (document.hidden) return;
       if (finePointer) { x += (tx - x) * .12; y += (ty - y) * .12; }
-      if (now - last >= 30) { draw(now); last = now; }
+      if (now - last >= (innerWidth <= 700 ? 42 : 30)) { draw(now); last = now; }
       raf = requestAnimationFrame(tick);
     };
     const start = () => { if (!reduced && !document.hidden && !raf) raf = requestAnimationFrame(tick); };
@@ -180,7 +183,7 @@
   const projectRailStatus = document.getElementById("projectRailStatus");
   const updateProjectMarker = index => {
     if (index < 0) return;
-    projectProgress.textContent = String(index + 1).padStart(2, "0");
+    projectProgress.textContent = String(index + 1);
     projectRailStatus.setAttribute("aria-label", `Project ${index + 1} of ${projectTabs.length}`);
   };
   updateProjectMarker(0);
@@ -244,7 +247,7 @@
     if (!scrollProjects) document.getElementById("projects").scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
   }));
   if (scrollProjects && projectWorkbench) {
-    let projectScrollFrame = 0, renderedProjectProgress = null;
+    let projectScrollFrame = 0, renderedProjectProgress = null, lastProjectFrame = 0;
     let selectedProjectIndex = -1;
     const scrollStates = ["is-scroll-still", "is-scroll-outgoing", "is-scroll-incoming"];
     const motionVars = ["--page-x", "--page-y", "--page-z", "--page-yaw", "--page-pitch", "--page-scale", "--page-opacity", "--page-shadow"];
@@ -280,12 +283,15 @@
       if (values) Object.entries(values).forEach(([name, value]) => panel.style.setProperty(name, value));
       else motionVars.forEach(name => panel.style.removeProperty(name));
     };
-    const syncProjectToScroll = () => {
+    const syncProjectToScroll = now => {
       projectScrollFrame = 0;
+      now ??= performance.now();
       const travel = projectWorkbench.offsetHeight - innerHeight;
       const targetProgress = travel > 0 ? Math.min(1, Math.max(0, -projectWorkbench.getBoundingClientRect().top / travel)) : 0;
+      const frameDelta = lastProjectFrame ? Math.min(50, now - lastProjectFrame) : 16.67;
+      lastProjectFrame = now;
       if (renderedProjectProgress === null) renderedProjectProgress = targetProgress;
-      else renderedProjectProgress += (targetProgress - renderedProjectProgress) * .3;
+      else renderedProjectProgress += (targetProgress - renderedProjectProgress) * (1 - Math.pow(.7, frameDelta / 16.67));
       if (Math.abs(targetProgress - renderedProjectProgress) < .001) renderedProjectProgress = targetProgress;
       const progress = renderedProjectProgress;
       const timelineLength = projectTabs.length * projectHold + (projectTabs.length - 1) * projectTurn;
@@ -363,7 +369,7 @@
   const toolOptions = [...document.querySelectorAll(".tool-option")];
   const selectedTools = new Set();
   const updateStackCount = () => {
-    stackCount.textContent = `${selectedTools.size} SELECTED`;
+    stackCount.textContent = `${selectedTools.size} selected`;
     clearStack.disabled = selectedTools.size === 0;
   };
   const addTool = value => {
