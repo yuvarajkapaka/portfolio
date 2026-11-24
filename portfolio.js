@@ -116,18 +116,18 @@
   /* ---------- Index: every tool, with the feature pages that used it ---------- */
   const idx = $("#skillIndex");
   if (idx) {
-    // Page numbers: 03 DukaanShoot, 04 Campus Connect, 05 Telugu Dub Studio, 06 FINOVA, 09 Colophon.
-    const P = { "03": "#f1", "04": "#f2", "05": "#f3", "06": "#f4", "09": "#colophon" };
+    // Page numbers: 3 DukaanShoot, 4 Campus Connect, 5 Telugu Dub Studio, 6 FINOVA, 9 Colophon.
+    const P = { "3": "#f1", "4": "#f2", "5": "#f3", "6": "#f4", "9": "#colophon" };
     const terms = {
-      "C": [], "CSS": ["03", "04", "05", "06"], "Demucs": ["05"], "Docker": ["05"], "Express.js": ["06"],
-      "FastAPI": ["05"], "FFmpeg": ["05"], "Framer Motion": ["03", "04", "05"], "Git": ["03", "04", "05", "06"],
-      "GitHub": ["03", "04", "05", "06"], "HTML": ["03", "04", "05", "06"], "Hugging Face Transformers": ["05"],
-      "IndicF5": ["05"], "Java": [], "JavaScript": ["05", "06"], "Large language models": ["05", "09"], "MongoDB": [],
-      "Next.js": ["03", "04"], "next-intl": ["03"], "Node.js": ["06"], "Playwright": ["05"], "PostgreSQL": ["03"],
-      "pyannote": ["05"], "Python": ["05"], "PyTorch": ["05"], "React": ["03", "04", "05", "06"],
-      "Recharts": ["06"], "SQL": ["03", "04", "09"], "SQLite": ["04"], "Supabase": ["03"],
-      "Tailwind CSS": ["03", "04", "05", "06"], "TypeScript": ["03", "04"], "Vite": ["05", "06"], "Wav2Lip": ["05"],
-      "Whisper": ["05"], "Zustand": ["03"]
+      "C": [], "CSS": ["3", "4", "5", "6"], "Demucs": ["5"], "Docker": ["5"], "Express.js": ["6"],
+      "FastAPI": ["5"], "FFmpeg": ["5"], "Framer Motion": ["3", "4", "5"], "Git": ["3", "4", "5", "6"],
+      "GitHub": ["3", "4", "5", "6"], "HTML": ["3", "4", "5", "6"], "Hugging Face Transformers": ["5"],
+      "IndicF5": ["5"], "Java": [], "JavaScript": ["5", "6"], "Large language models": ["5", "9"], "MongoDB": [],
+      "Next.js": ["3", "4"], "next-intl": ["3"], "Node.js": ["6"], "Playwright": ["5"], "PostgreSQL": ["3"],
+      "pyannote": ["5"], "Python": ["5"], "PyTorch": ["5"], "React": ["3", "4", "5", "6"],
+      "Recharts": ["6"], "SQL": ["3", "4", "9"], "SQLite": ["4"], "Supabase": ["3"],
+      "Tailwind CSS": ["3", "4", "5", "6"], "TypeScript": ["3", "4"], "Vite": ["5", "6"], "Wav2Lip": ["5"],
+      "Whisper": ["5"], "Zustand": ["3"]
     };
     const groups = {};
     Object.keys(terms).sort((a, b) => a.localeCompare(b, "en", { sensitivity: "base" })).forEach(t => {

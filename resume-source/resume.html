@@ -65,9 +65,9 @@
   <h2>TECHNICAL SKILLS</h2>
   <div class="skills">
     <p><b>Languages:</b> Python, JavaScript, TypeScript, Java, C</p>
-    <p><b>Web:</b> React.js, Next.js, Node.js, Express.js, HTML5, CSS3, Tailwind CSS, Vite</p>
-    <p><b>AI/ML &amp; Media:</b> PyTorch, Hugging Face Transformers, Whisper, Demucs, FFmpeg</p>
-    <p><b>Databases &amp; Tools:</b> PostgreSQL (Supabase), SQLite, MongoDB, Git, REST APIs</p>
+    <p><b>Web:</b> React.js, Next.js, Node.js, Express.js, FastAPI, HTML5, CSS3, Tailwind CSS, Vite, REST APIs</p>
+    <p><b>AI/ML &amp; Media:</b> PyTorch, Hugging Face Transformers, Whisper, pyannote, Demucs, IndicF5, FFmpeg</p>
+    <p><b>Databases &amp; Tools:</b> PostgreSQL (Supabase), SQLite, MongoDB, Git, Docker, Playwright</p>
   </div>
 
   <h2>PROJECTS</h2>
@@ -78,7 +78,7 @@
       <li>Built a mobile-first PWA (English, Telugu, Hindi) where shopkeepers photograph a garment, get four AI model photos and list it in their online shop; buyers order with Cash on Delivery and track a live order timeline.</li>
       <li>Designed a swappable AI provider interface (mock renderer or FASHN API) with automatic fallback to demo photos, and stateless job tokens so status polling works on any serverless instance.</li>
       <li>Wrote Postgres functions with Row Level Security that deduct credits and reduce stock in one transaction and refund failed jobs exactly once; payments are HMAC-verified on the server before credits are added.</li>
-      <li><b>Technologies:</b> Next.js 15, React 19, TypeScript, Tailwind CSS, Supabase (Postgres, RLS, Realtime), Zustand, next-intl, Razorpay.</li>
+      <li><b>Technologies:</b> Next.js 15, React 19, TypeScript, Tailwind CSS, Supabase (Postgres, RLS), Zustand, Razorpay.</li>
     </ul>
   </div>
 
@@ -93,11 +93,11 @@
   </div>
 
   <div class="proj">
-    <div class="proj-head"><b>Telugu Auto-Dubbing Pipeline</b><span class="sep">|</span><span class="kind">AI Video Localization</span></div>
+    <div class="proj-head"><b>Telugu Dub Studio - AI Video Dubbing</b><span class="sep">|</span><span class="kind">Full-Stack AI Web App</span><span class="sep">|</span><a href="https://github.com/yuvarajkapaka/telugu-ai-dubbing-studio">GitHub</a></div>
     <ul>
-      <li>Built an end-to-end AI dubbing pipeline (Whisper transcription, Telugu translation, text-to-speech with voice cloning via IndicF5/ElevenLabs, and Demucs background remix) that localizes videos into Telugu.</li>
-      <li>Designed a cached, resumable architecture so interrupted or failed runs restart from the last completed stage, and added a QA loop that re-transcribes generated audio and retries mismatched text-to-speech output.</li>
-      <li><b>Technologies:</b> Python, PyTorch (CUDA), Whisper, Demucs, FFmpeg, Hugging Face Transformers, REST APIs.</li>
+      <li>Built a studio that dubs a video into Telugu (or 10 other Indian languages): Demucs separates music from speech, Faster-Whisper transcribes, pyannote identifies speakers, an LLM translates each line to fit its time slot, and IndicF5 re-voices every speaker in their own cloned voice.</li>
+      <li>Lines that overrun their slot are shortened and re-voiced; users can edit the script before voicing and re-voice one line of a finished video. Runs on one 6 GB GPU behind a FastAPI job queue; 112 backend tests and Playwright in CI.</li>
+      <li><b>Technologies:</b> Python, FastAPI, PyTorch, Faster-Whisper, pyannote, Demucs, IndicF5, React, Docker.</li>
     </ul>
   </div>
 
