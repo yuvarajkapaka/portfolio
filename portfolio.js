@@ -41,7 +41,7 @@
   let tick = 0;
   addEventListener("scroll", () => { if (!tick) tick = requestAnimationFrame(() => { tick = 0; onScroll(); }); }, { passive: true });
   addEventListener("resize", onScroll, { passive: true });
-  onScroll();
+  requestAnimationFrame(onScroll);
 
   /* ---------- Mobile menu ---------- */
   const menuBtn = $("#menuBtn"), menu = $("#mobileMenu");
@@ -77,7 +77,7 @@
     g.querySelector(".shot-tabs")?.addEventListener("click", e => {
       const b = e.target.closest("button"); if (!b) return;
       $$(".shot-tabs button", g).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-      imgs.forEach(img => { img.hidden = img.dataset.shot !== b.dataset.shot; if (!img.hidden) img.loading = "eager"; });
+      imgs.forEach(img => { img.hidden = img.dataset.shot !== b.dataset.shot; if (!img.hidden && img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } });
       notes.forEach(ol => { ol.hidden = ol.dataset.shot !== b.dataset.shot; });
     });
   });
@@ -113,9 +113,12 @@
     });
   }
 
-  /* ---------- Index: every tool, with the feature pages that used it ---------- */
+  /* ---------- Index: every tool, with the feature pages that used it ----------
+     index.html ships this pre-rendered (tools/build-index.mjs), so nothing shifts
+     on load; this only fills it if the markup is missing. Edit `terms` here,
+     then run `node tools/build-index.mjs`. */
   const idx = $("#skillIndex");
-  if (idx) {
+  if (idx && !idx.firstElementChild) {
     // Page numbers: 3 DukaanShoot, 4 Campus Connect, 5 Telugu Dub Studio, 6 FINOVA, 9 Colophon.
     const P = { "3": "#f1", "4": "#f2", "5": "#f3", "6": "#f4", "9": "#colophon" };
     const terms = {
