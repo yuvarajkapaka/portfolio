@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#EE4B2B">
   <title>Yuvaraj Kapaka — Software Developer</title>
-  <meta name="description" content="Yuvaraj Kapaka, a final-year computer science student in Hyderabad. Four shipped products: DukaanShoot, Campus Connect, a Telugu auto-dubbing pipeline and FINOVA.">
+  <meta name="description" content="Yuvaraj Kapaka, a final-year computer science student in Hyderabad. Four shipped products: DukaanShoot, Campus Connect, Telugu Dub Studio and FINOVA.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yuvaraj Kapaka — The Issue No. 04">
-  <meta property="og:description" content="Final-year CSE student in Hyderabad. Four shipped products: DukaanShoot, Campus Connect, Telugu Auto-Dubbing and FINOVA.">
+  <meta property="og:description" content="Final-year CSE student in Hyderabad. Four shipped products: DukaanShoot, Campus Connect, Telugu Dub Studio and FINOVA.">
   <meta property="og:url" content="https://portfolio-two-drab-0s34tj7ryl.vercel.app/">
   <meta property="og:image" content="https://portfolio-two-drab-0s34tj7ryl.vercel.app/assets/og.png">
   <meta property="og:image:width" content="1200">
@@ -104,7 +104,7 @@
       <ol class="toc">
         <li><a href="#f1"><span class="toc-n">03</span><span class="toc-t">DukaanShoot</span><span class="toc-d">AI model photos and a marketplace for small Indian shops</span><span class="toc-tag">Cover story</span></a></li>
         <li><a href="#f2"><span class="toc-n">04</span><span class="toc-t">Campus Connect</span><span class="toc-d">The college notice board, attendance, results and fees, online</span><span class="toc-tag">Feature</span></a></li>
-        <li><a href="#f3"><span class="toc-n">05</span><span class="toc-t">Telugu Auto-Dubbing</span><span class="toc-d">An AI pipeline that re-voices video in Telugu</span><span class="toc-tag">Feature</span></a></li>
+        <li><a href="#f3"><span class="toc-n">05</span><span class="toc-t">Telugu Dub Studio</span><span class="toc-d">An AI studio that re-voices video in Telugu</span><span class="toc-tag">Feature</span></a></li>
         <li><a href="#f4"><span class="toc-n">06</span><span class="toc-t">FINOVA</span><span class="toc-d">An investment-literacy simulator you play</span><span class="toc-tag">Feature</span></a></li>
         <li><a href="#interview"><span class="toc-n">07</span><span class="toc-t">The interview</span><span class="toc-d">On interfaces, systems and shipping</span><span class="toc-tag">Q&amp;A</span></a></li>
         <li><a href="#index"><span class="toc-n">08</span><span class="toc-t">Index</span><span class="toc-d">Every tool, and where it was used</span><span class="toc-tag">Reference</span></a></li>
@@ -238,45 +238,71 @@
       <article class="feature v-split f-alt" id="f3" data-page="05" aria-labelledby="f3t">
         <header class="f-head">
           <p class="f-kicker"><span>Feature</span><span>Speech · Localization</span><span class="folio">p.05</span></p>
-          <h3 class="f-title reveal-title" id="f3t">Telugu <span class="nw">Auto-Dubbing</span></h3>
+          <h3 class="f-title reveal-title" id="f3t">Telugu <span class="nw">Dub Studio</span></h3>
           <div class="f-deck">
-            <p class="f-standfirst">English dialogue goes in. Natural Telugu comes out, in a new voice, on the same timing.</p>
+            <p class="f-standfirst">Upload a video in English and get it back in Telugu: every speaker re-voiced in their own voice, the background music kept, each line timed to its gap.</p>
             <dl class="f-stats" aria-label="By the numbers">
-              <div><dt>Pipeline stages, each cached</dt><dd>5</dd></div>
-              <div><dt>Voice engines: IndicF5, ElevenLabs</dt><dd>2</dd></div>
+              <div><dt>Indian languages it can dub into</dt><dd>11</dd></div>
+              <div><dt>Backend tests, plus end-to-end</dt><dd>112</dd></div>
+              <div><dt>Isolated Python environments for the models</dt><dd>4</dd></div>
             </dl>
           </div>
         </header>
+        <figure class="f-fig shot-gallery">
+          <div class="shot-stage">
+            <img src="assets/projects/dub-review.jpg" alt="Telugu Dub Studio script review: each Telugu line with its time slot, speaker and the English original, and a voice per speaker" width="1440" height="900" loading="lazy" data-shot="review">
+            <img src="assets/projects/dub-result.jpg" alt="Telugu Dub Studio finished video: a timeline coloured by speaker, the transcript with per-line re-voice, and saved voices" width="1440" height="900" loading="lazy" data-shot="result" hidden>
+            <img src="assets/projects/dub-upload.jpg" alt="Telugu Dub Studio upload screen: drop a video, pick the language, background music level, lip-sync and script review" width="1440" height="900" loading="lazy" data-shot="upload" hidden>
+            <ol class="callouts" data-shot="review" aria-label="Annotations">
+              <li style="--x:36.5%;--y:35.3%" data-side="r"><span>Each line sized to its time slot</span></li>
+              <li style="--x:40.3%;--y:78.3%" data-side="r"><span>Edited lines are spoken as written</span></li>
+              <li style="--x:71.5%;--y:26.8%" data-side="r"><span>One voice per speaker</span></li>
+            </ol>
+            <ol class="callouts" data-shot="result" aria-label="Annotations" hidden>
+              <li style="--x:27.8%;--y:13%" data-side="b"><span>Timeline, by speaker</span></li>
+              <li style="--x:59.2%;--y:44%" data-side="l"><span>Re-voice just one line</span></li>
+              <li style="--x:84.9%;--y:37%" data-side="b"><span>Save a voice for later</span></li>
+            </ol>
+            <ol class="callouts" data-shot="upload" aria-label="Annotations" hidden>
+              <li style="--x:82%;--y:51.3%" data-side="l"><span>Telugu, or 10 more languages</span></li>
+              <li style="--x:50.5%;--y:61%" data-side="l"><span>Keeps the background music</span></li>
+            </ol>
+          </div>
+          <figcaption><span>Fig. 3</span><span class="shot-tabs" role="group" aria-label="Telugu Dub Studio screens"><button type="button" data-shot="review" aria-pressed="true">Script review</button><button type="button" data-shot="result" aria-pressed="false">Finished video</button><button type="button" data-shot="upload" aria-pressed="false">Upload</button></span></figcaption>
+        </figure>
+        <div class="f-body">
+          <div class="f-text">
+            <p class="dropcap">Most video is made in English, and many people in Andhra Pradesh and Telangana would rather hear Telugu. The studio separates the voices from the music, transcribes the speech, works out who is speaking, translates each line to fit the time it has, and re-voices every speaker by cloning their own voice before mixing it back over the soundtrack.</p>
+            <p>The job can pause after translation, so a person checks the Telugu script, fixes lines and picks voices before anything is spoken. After that, a single line can be edited and re-voiced without redoing the whole video.</p>
+            <blockquote class="pull">“Every line has to fit its gap. If the Telugu runs long, it is shortened and re-voiced.”</blockquote>
+            <ol class="notes">
+              <li><b>Translation sized to the clock.</b> An <span class="sc">LLM</span> translates each line for its time slot; if the voiced line still overruns, it is shortened and voiced again, then gently sped up to fit.</li>
+              <li><b>Built for one 6&#8201;GB GPU.</b> Jobs run one at a time on a queue, each model lives in its own Python environment and stays warm between jobs, and progress streams live to the browser.</li>
+              <li><b>Tested like a product.</b> 112 backend tests, Vitest unit tests and a Playwright run of the whole flow in CI, with Docker Compose for deployment.</li>
+            </ol>
+          </div>
+          <aside class="f-meta">
+            <dl>
+              <div><dt>Type</dt><dd>Full-stack AI web app</dd></div>
+              <div><dt>Built with</dt><dd>React 19, Vite, Tailwind CSS 4, Motion · FastAPI, Python, PyTorch (CUDA), Faster-Whisper, pyannote, Demucs, IndicF5, Wav2Lip, FFmpeg, Docker</dd></div>
+              <div><dt>Try it</dt><dd>Runs on your own NVIDIA GPU. The screens here use the project’s test data.</dd></div>
+            </dl>
+            <p class="f-links"><a class="link" href="https://github.com/yuvarajkapaka/telugu-ai-dubbing-studio" target="_blank" rel="noopener noreferrer">Source ↗</a></p>
+          </aside>
+        </div>
         <figure class="f-fig f-diagram" aria-label="Diagram: an English line becomes a Telugu line on the same timeline">
           <div class="dub" id="dubDemo">
             <div class="dub-row" data-part="en"><span class="dub-lang">EN</span><span class="dub-bars"></span><span class="dub-line">“Let’s meet at the station tomorrow.”</span></div>
             <div class="dub-row dub-te" data-part="te"><span class="dub-lang" lang="te">తె</span><span class="dub-bars"></span><span class="dub-line" lang="te">“రేపు స్టేషన్‌లో కలుద్దాం.”</span></div>
             <ol class="dub-steps">
-              <li data-step="en">Transcribe</li><li data-step="en">Separate the voice</li><li data-step="te">Translate</li><li data-step="te">Synthesize</li><li data-step="te">Sync</li>
+              <li data-step="en">Separate the music</li><li data-step="en">Transcribe</li><li data-step="en">Find the speakers</li><li data-step="te">Translate to fit</li><li data-step="te">Clone each voice</li><li data-step="te">Mix</li>
             </ol>
           </div>
-          <figcaption><span>Fig. 3</span><span>The same line, before and after. Diagram; screenshots coming soon.</span></figcaption>
+          <figcaption><span>Fig. 4</span><span>How one line travels: the same words, before and after, on the same timing.</span></figcaption>
         </figure>
-        <div class="f-body">
-          <div class="f-text">
-            <p class="dropcap">Most video is made in English, and many people in Andhra Pradesh and Telangana would rather hear Telugu. This pipeline localizes a video end to end: Whisper transcribes the speech, the dialogue is translated into Telugu, a text-to-speech model re-voices it with voice cloning, and Demucs remixes it back over the original background sound.</p>
-            <blockquote class="pull">“Failed runs restart from the last completed stage, not from scratch.”</blockquote>
-            <ol class="notes">
-              <li><b>Cached and resumable.</b> Each stage’s output is kept, so an interrupted run picks up where it stopped.</li>
-              <li><b>A <span class="sc">QA</span> loop on its own voice.</b> Generated audio is re-transcribed and checked against the intended text; mismatches are retried, which cuts silent or wrong output.</li>
-            </ol>
-          </div>
-          <aside class="f-meta">
-            <dl>
-              <div><dt>Type</dt><dd>AI media pipeline</dd></div>
-              <div><dt>Built with</dt><dd>Python, PyTorch (CUDA), Whisper, Demucs, FFmpeg, Hugging Face Transformers, IndicF5 / ElevenLabs</dd></div>
-            </dl>
-            <p class="f-links"><a class="link" href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
-          </aside>
-        </div>
       </article>
 
-      <!-- f4 · Cobalt page, split down the middle: screenshot stays, text scrolls -->
+      <!-- f4 · Black page, split down the middle: screenshot stays, text scrolls -->
       <article class="feature v-sticky" id="f4" data-page="06" aria-labelledby="f4t">
         <header class="f-head">
           <p class="f-kicker"><span>Feature</span><span>Fintech · Interactive learning</span><span class="folio">p.06</span></p>
@@ -291,7 +317,7 @@
               <li style="--x:30%;--y:35.8%" data-side="l"><span>The current mission</span></li>
             </ol>
           </div>
-          <figcaption><span>Fig. 4</span><span>The Financial World home screen, mid-mission.</span></figcaption>
+          <figcaption><span>Fig. 5</span><span>The Financial World home screen, mid-mission.</span></figcaption>
         </figure>
         <dl class="f-stats" aria-label="By the numbers">
           <div><dt>Districts to explore</dt><dd>5</dd></div>
