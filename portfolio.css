@@ -1,7 +1,7 @@
 /* ==================================================================
    YUVARAJ KAPAKA — Issue 04
    Art direction: the portfolio as a printed magazine.
-   Newsprint paper, ink, and two spot colours (signal red, cobalt).
+   Newsprint paper, ink, and one spot colour: signal red.
    Type: Archivo (variable width) for display + labels,
          Newsreader (optical sizes) for reading text.
    ================================================================== */
@@ -12,7 +12,6 @@
   --ink-2: #3A3835;
   --ink-3: #66625B;          /* >=5:1 on paper */
   --red: #EE4B2B;            /* signal red; ink on it ~4.9:1 */
-  --cobalt: #2339D0;         /* second print colour; paper on it ~7:1 */
   --spot: var(--red);
   --spot-ink: var(--ink);    /* text colour that sits on --spot */
 
@@ -35,7 +34,7 @@ h1, h2, h3, p, ol, ul, dl, dd, figure, blockquote { margin: 0; }
 ol, ul { padding: 0; list-style: none; }
 button { font: inherit; color: inherit; }
 ::selection { background: var(--red); color: var(--ink); }
-:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: absolute; left: var(--gutter); top: -80px; z-index: 100; padding: 10px 14px; background: var(--ink); color: var(--paper); font: 700 14px var(--display); }
 .skip:focus { top: 10px; }
@@ -240,7 +239,7 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
 /* f2 · Black page; the screenshot runs edge to edge. */
 .v-ink {
   --ink: #F2EFE8; --ink-2: #D2CDC2; --ink-3: #A9A397; --paper: #121212; --paper-2: #2A2824;
-  --spot: #8C9CFF; --spot-ink: #121212;
+  --spot: var(--red); --spot-ink: #121212;
   background: #121212; color: var(--ink); border-top-color: #121212;
 }
 .v-ink .f-fig { margin-inline: calc(var(--gutter) * -1); border: 0; }
@@ -257,23 +256,21 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
 .v-split .f-deck { grid-template-columns: minmax(0, 1fr); margin-top: 0; }
 .v-split .f-deck .f-stats { margin-top: 6px; }
 
-/* f4 · Cobalt page, split down the middle: the screenshot stays, the text scrolls. */
-.v-cobalt {
-  --ink: #F2EFE8; --ink-2: #DDE1FA; --ink-3: #C3CAF5; --paper: #2339D0; --paper-2: #1B2DB0;
-  --spot: #F2EFE8; --spot-ink: #2339D0;
-  background: #2339D0; color: var(--ink); border-top-color: #121212;
+/* f4 · Black page, split down the middle: the screenshot stays, the text scrolls. */
+.v-sticky {
+  --ink: #F2EFE8; --ink-2: #D2CDC2; --ink-3: #A9A397; --paper: #121212; --paper-2: #2A2824;
+  --spot: var(--red); --spot-ink: #121212;
+  background: #121212; color: var(--ink); border-top-color: #121212;
   display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 0 clamp(36px, 5vw, 80px); align-items: start;
 }
-.v-cobalt > * { grid-column: 2; }
-.v-cobalt > .f-fig { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: calc(var(--runner-h) + 28px); margin: 0 0 clamp(110px, 10vw, 150px); border-color: #121212; background: #121212; box-shadow: 14px 14px 0 #121212; }
-.v-cobalt > .f-fig figcaption { border-top-color: #121212; }
-.v-cobalt .f-title { font-size: clamp(64px, 10vw, 170px); }
-.v-cobalt .f-stats { margin: clamp(28px, 3vw, 44px) 0; }
-.v-cobalt .f-body { grid-template-columns: minmax(0, 1fr); }
-.v-cobalt .f-text { column-count: 1; }
-.v-cobalt .f-meta { position: static; }
-.v-cobalt .callouts li { --spot: #F2EFE8; --spot-ink: #121212; }
-.v-cobalt :focus-visible { outline-color: #F2EFE8; }
+.v-sticky > * { grid-column: 2; }
+.v-sticky > .f-fig { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: calc(var(--runner-h) + 28px); margin: 0 0 clamp(110px, 10vw, 150px); border-color: #F2EFE8; background: #121212; box-shadow: 14px 14px 0 var(--red); }
+.v-sticky > .f-fig figcaption { border-top-color: #F2EFE8; }
+.v-sticky .f-title { font-size: clamp(64px, 10vw, 170px); }
+.v-sticky .f-stats { margin: clamp(28px, 3vw, 44px) 0; }
+.v-sticky .f-body { grid-template-columns: minmax(0, 1fr); }
+.v-sticky .f-text { column-count: 1; }
+.v-sticky .f-meta { position: static; }
 
 /* Page furniture: a running foot on every inner page, folio on the outside edge. */
 .page::after, .feature::after {
@@ -305,10 +302,10 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
 /* Interview */
 .iv-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .iv-photo { position: sticky; top: calc(var(--runner-h) + 24px); }
-.iv-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; background: var(--cobalt); border: 2px solid var(--ink); }
+.iv-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; background: var(--red); border: 2px solid var(--ink); }
 .iv-photo figcaption { margin-top: 10px; font-size: 11px; color: var(--ink-3); text-transform: none; letter-spacing: .02em; font-weight: 500; }
 .q { margin-top: 34px; font-size: 13px; color: var(--ink); }
-.q::before { content: "Q. "; color: var(--cobalt); }
+.q::before { content: "Q. "; color: var(--red); }
 .q:first-child { margin-top: 0; }
 .a { margin-top: 10px; font: 400 clamp(22px, 2vw, 28px)/1.4 var(--text); }
 .iv-areas { margin-top: 40px; padding-top: 14px; border-top: 3px solid var(--ink); font: 500 18px/1.5 var(--display); font-stretch: 90%; }
@@ -317,7 +314,7 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
 /* Index */
 .idx { column-count: 3; column-gap: 48px; column-rule: 1px solid var(--ink); }
 .idx-group { break-inside: avoid; margin-bottom: 22px; }
-.idx-letter { font: 900 54px/.9 var(--display); font-stretch: 62%; color: var(--cobalt); margin-bottom: 6px; }
+.idx-letter { font: 900 54px/.9 var(--display); font-stretch: 62%; color: var(--red); margin-bottom: 6px; }
 .idx-row { display: flex; align-items: baseline; gap: 6px; padding: 3px 0; font-size: 19px; }
 .idx-row .term { white-space: nowrap; }
 .idx-row .dots { flex: 1; border-bottom: 2px dotted var(--ink-3); translate: 0 -5px; min-width: 16px; }
@@ -429,7 +426,7 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
    ================================================================== */
 @media (max-width: 1100px) and (min-width: 901px) {
   /* The split FINOVA screenshot is too narrow here for labels. */
-  .v-cobalt .callouts { display: none; }
+  .v-sticky .callouts { display: none; }
 }
 @media (max-width: 1100px) {
   .runner-nav { gap: 12px; }
@@ -444,8 +441,8 @@ body.menu-open .runner { background: var(--red); border-bottom-color: var(--ink)
   .f-meta { position: static; }
   .f-deck, .v-split .f-head { grid-template-columns: minmax(0, 1fr); }
   .v-split .f-deck { margin-top: 22px; }
-  .v-cobalt { display: block; }
-  .v-cobalt > .f-fig { position: static; margin: clamp(32px, 4vw, 56px) 0; box-shadow: 8px 8px 0 #121212; }
+  .v-sticky { display: block; }
+  .v-sticky > .f-fig { position: static; margin: clamp(32px, 4vw, 56px) 0; box-shadow: 8px 8px 0 var(--red); }
   .v-opener .f-fig { box-shadow: 8px 8px 0 var(--ink); }
   .page-head { grid-template-columns: minmax(0, 1fr); }
   .toc a { grid-template-columns: 70px minmax(0, 1fr); }
