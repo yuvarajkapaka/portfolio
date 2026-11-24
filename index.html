@@ -3,332 +3,381 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08090B">
-  <title>Yuvaraj Kapaka | Developer and Systems Builder</title>
-  <meta name="description" content="Personal portfolio of Yuvaraj Kapaka. Computer Science &amp; Engineering student, creative developer, and software engineer building scalable applications and intuitive digital experiences.">
+  <meta name="theme-color" content="#0A1530">
+  <title>Yuvaraj Kapaka — Software Developer</title>
+  <meta name="description" content="Yuvaraj Kapaka is a computer science student in Hyderabad building a money-skills game, a Telugu video-dubbing pipeline, and a campus ERP.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Telugu:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="portfolio.css">
+  <script>document.documentElement.classList.add("js");</script>
   <script src="portfolio.js" defer></script>
 </head>
 <body>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <div class="depth-field" id="depthField" aria-hidden="true"><canvas id="depthCanvas"></canvas></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
-    <nav class="nav-wrap" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Yuvaraj Kapaka, home">
-        <span class="brand-mark">YK<span>.</span></span>
-        <span class="brand-name">Yuvaraj Kapaka</span>
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Yuvaraj Kapaka, back to top">
+        <svg class="brand-comet" viewBox="0 0 48 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="cometTail" x1="46" y1="2" x2="13" y2="22" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#7FD6F2" stop-opacity="0"/>
+              <stop offset=".7" stop-color="#7FD6F2" stop-opacity=".75"/>
+              <stop offset="1" stop-color="#EAF6FF"/>
+            </linearGradient>
+            <radialGradient id="cometGlow"><stop offset="0" stop-color="#7FD6F2" stop-opacity=".9"/><stop offset="1" stop-color="#7FD6F2" stop-opacity="0"/></radialGradient>
+          </defs>
+          <path class="comet-tail-wide" d="M46 2 C 33 6, 22 13, 13 22" stroke="url(#cometTail)" stroke-width="6" stroke-linecap="round" fill="none" opacity=".25"/>
+          <path class="comet-tail" d="M46 2 C 33 6, 22 13, 13 22" stroke="url(#cometTail)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <g class="comet-head"><circle cx="13" cy="22" r="9" fill="url(#cometGlow)"/><circle cx="13" cy="22" r="3.2" fill="#FFFFFF"/></g>
+          <path class="comet-spark" d="M5 9 l1 2.6 2.6 1 -2.6 1 -1 2.6 -1 -2.6 -2.6 -1 2.6 -1z" fill="#EAF6FF"/>
+        </svg>
+        <span class="brand-name" aria-hidden="true"><span class="brand-typed">Yuvaraj Kapaka</span><span class="brand-caret"></span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a><span class="nav-indicator" aria-hidden="true"></span></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#journey">Journey</a></li>
-        <li><a class="nav-contact" href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav aria-label="Main">
+        <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a class="nav-cta" href="#contact">Contact</a></li>
+          <li class="nav-bar" aria-hidden="true"></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu"><span>Menu</span><i aria-hidden="true"></i></button>
+    </div>
   </header>
 
-  <main>
-    <section class="hero section-shell" id="home">
-      <div class="hero-grid">
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav aria-label="Mobile">
+      <ol>
+        <li><a href="#work"><small>01</small>Work</a></li>
+        <li><a href="#about"><small>02</small>About</a></li>
+        <li><a href="#skills"><small>03</small>Skills</a></li>
+        <li><a href="#education"><small>04</small>Education</a></li>
+        <li><a href="#contact"><small>05</small>Contact</a></li>
+      </ol>
+      <p class="mobile-menu-foot"><a class="btn btn-solid" href="assets/Yuvaraj-Kapaka-Resume.pdf" download>Download CV <span aria-hidden="true">↓</span></a><a class="link" href="mailto:yuvarajkapaka@gmail.com">yuvarajkapaka@gmail.com</a></p>
+    </nav>
+  </div>
+
+  <div class="view-cursor" aria-hidden="true"><span>Open live ↗</span></div>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="heroName">
+      <div class="hero-sky" aria-hidden="true"><canvas id="sky"></canvas></div>
+      <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span> Available for opportunities</p>
-          <h1 class="hero-name">
-            <span class="sr-only">Yuvaraj Kapaka</span>
-            <span class="hero-name-visual" aria-hidden="true"><span id="typedName"></span><span class="typing-caret"></span></span>
-          </h1>
-          <div class="hero-role">
-            <span class="role-prefix">I’m a</span>
-            <span class="sr-only">Problem Solver, Software Developer, AI Enthusiast</span>
-            <span class="role-output" aria-hidden="true"><span id="typedRole"></span><span class="typing-caret"></span></span>
-          </div>
-          <div class="hero-facts" role="group" aria-label="Profile details">
-            <div class="hero-fact"><p>Currently learning</p><h2>AI and full-stack development</h2></div>
-            <div class="hero-fact"><p>What I build</p><h2>Practical tools for finance, speech, and campus life</h2></div>
-            <div class="hero-fact"><p>Studying</p><h2>Computer Science at KPRIT; graduating in 2027</h2></div>
-          </div>
+          <p class="kicker">Software developer · Hyderabad, India</p>
+          <h1 id="heroName"><span class="hello">Hi, I’m</span>Yuvaraj Kapaka</h1>
+          <p class="hero-lead">I’m a final-year computer science student at KPRIT, graduating in 2027 and open to opportunities. I build software for real problems, from a game that teaches money to a pipeline that dubs video into Telugu.</p>
           <div class="hero-actions">
-            <a class="button button-gold" href="#projects">Explore my work</a>
-            <a class="button button-quiet" href="#contact">Let’s connect</a>
-          </div>
-          <div class="hero-socials" aria-label="Social links">
-            <a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/yuvarajkapaka" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:yuvarajkapaka@gmail.com">Email</a>
-            <span class="social-location">Hyderabad, India</span>
+            <a class="btn btn-solid magnetic" href="#work">See my work <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-line" href="assets/Yuvaraj-Kapaka-Resume.pdf" download>Download CV</a>
+            <button class="btn btn-line copy-email" type="button" data-email="yuvarajkapaka@gmail.com">
+              <span class="copy-label" data-state="idle">Copy email</span>
+              <span class="copy-label" data-state="done" aria-hidden="true">Copied</span>
+            </button>
+            <span class="sr-only" id="copyStatus" role="status" aria-live="polite"></span>
           </div>
         </div>
-
-        <div class="hero-art">
-          <div class="portrait-figure">
-            <div class="portrait-plate-top" aria-hidden="true"><span>Yuvaraj Kapaka</span></div>
-            <div class="portrait-stage" id="portraitStage">
-              <div class="portrait-plate-background" aria-hidden="true"></div>
-              <img class="portrait-image" src="assets/yuvaraj-portrait.png" alt="Yuvaraj Kapaka smiling, wearing glasses and a black shirt" fetchpriority="high">
-            </div>
-            <div class="portrait-plate-bottom" aria-hidden="true"><span>Computer Science / KPRIT</span><span>Hyderabad, India</span></div>
-          </div>
-          <aside class="hero-projects" aria-label="Featured projects">
-            <p class="hero-projects-title">A few things I’ve built</p>
-            <a class="hero-project hero-project-finova" href="#projects" data-hero-project="finova">
-              <span class="hero-project-kicker">Fintech</span>
-              <strong>FINOVA</strong>
-              <small>Learn to budget, save, and invest</small>
-            </a>
-            <a class="hero-project hero-project-dubbing" href="#projects" data-hero-project="dubbing">
-              <span class="hero-project-kicker">Speech and language</span>
-              <strong>Telugu Auto-Dubbing</strong>
-              <small>Turn dialogue into natural Telugu</small>
-            </a>
-            <a class="hero-project hero-project-campus" href="#projects" data-hero-project="campus">
-              <span class="hero-project-kicker">Campus systems</span>
-              <strong>Campus Connect</strong>
-              <small>Attendance, communication, and support</small>
-            </a>
-          </aside>
-        </div>
-      </div>
-      <a class="scroll-cue" href="#about"><span class="scroll-line"></span><span>Scroll to explore</span></a>
-    </section>
-
-    <section class="section section-shell" id="about">
-      <div class="section-heading reveal">
-        <p class="eyebrow">A little about me</p>
-        <h2>Building practical systems <em>with purpose.</em></h2>
-      </div>
-      <div class="about-grid">
-        <article class="about-main reveal">
-          <p class="large-copy">I am a Computer Science &amp; Engineering student at <strong>Kommuri Pratap Reddy Institute of Technology (KPRIT)</strong>, Hyderabad, with an expected graduation in <strong>2027</strong>. My approach centers on constructing dependable, performant software systems that solve real problems.</p>
-          <p>From architecting interactive financial simulation engines to implementing end-to-end neural speech processing pipelines, I enjoy bridging frontend craft with robust backend engineering. I focus on clean architecture, accessible interfaces, and pragmatic technical execution.</p>
-          <blockquote>“Great software is neither accidental nor needlessly complex; it is the result of intentional architecture, user empathy, and disciplined engineering.”</blockquote>
-        </article>
-        <div class="about-aside reveal-group">
-          <article class="info-card reveal">
-            <div class="card-kicker">Academic foundation</div>
-            <h3>B.Tech in Computer Science &amp; Engineering</h3>
-            <p>Kommuri Pratap Reddy Institute of Technology</p>
-            <span class="card-meta">Ghatkesar, Hyderabad — Class of 2027</span>
-          </article>
-          <article class="info-card reveal">
-            <div class="card-kicker">Core areas of focus</div>
-            <p>Passionate about building scalable systems across:</p>
-            <div class="tag-cloud">
-              <span>Software Development</span><span>Full-Stack Web Apps</span><span>Artificial Intelligence</span><span>AI Media Processing</span><span>Cybersecurity</span><span>Interactive Systems</span>
-            </div>
-          </article>
+        <div class="sky-map" id="skyMap">
+          <p class="sky-hint"><span class="hint-fine">Hover a constellation · click the sky to make a wish</span><span class="hint-touch">Tap a constellation · tap the sky to make a wish</span></p>
         </div>
       </div>
     </section>
 
-    <section class="section skills-section" id="skills">
-      <div class="section-shell">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Capabilities</p>
-          <h2>Tools I work with.</h2>
-          <p class="section-note">A practical toolkit for turning a good idea into a dependable product.</p>
+    <section class="section wrap" id="work" aria-labelledby="workTitle">
+      <span class="sec-mark" aria-hidden="true">Work</span>
+      <a class="sticker" href="#contact" aria-label="Final year, open to opportunities. Go to contact">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="stickerRing" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+          <circle cx="100" cy="100" r="96" class="st-bg"/>
+          <circle cx="100" cy="100" r="96" class="st-edge"/>
+          <text class="st-text"><textPath href="#stickerRing" startOffset="0" textLength="446" lengthAdjust="spacingAndGlyphs">FINAL YEAR ✳ OPEN TO OPPORTUNITIES ✳ CLASS OF 2027 ✳</textPath></text>
+          <path class="st-star" d="M100 70 L106 92 L128 92 L110 105 L117 127 L100 114 L83 127 L90 105 L72 92 L94 92 Z"/>
+        </svg>
+      </a>
+      <header class="section-head">
+        <p class="sec-num"><b>01</b> — Work</p>
+        <h2 id="workTitle"><span class="mask"><span>Selected work</span></span></h2>
+        <p class="section-count">04 projects</p>
+      </header>
+
+      <article class="project" aria-labelledby="p1">
+        <p class="project-num">01</p>
+        <div class="project-main">
+          <p class="project-kind">Fintech · Interactive learning</p>
+          <h3 id="p1"><span class="mask"><span>FINOVA</span></span></h3>
+          <p class="project-sub">An investment-literacy simulator</p>
+          <p>A game for learning to budget, save, and invest. You make money decisions in a simulation instead of reading about them, then take on challenges that test what stuck.</p>
         </div>
-        <div class="tool-workbench reveal" id="toolWorkbench">
-          <div class="tool-index" role="tablist" aria-label="Choose a tool category">
-            <button class="tool-tab" id="tool-tab-languages" type="button" role="tab" aria-selected="true" aria-controls="tool-panel-languages" tabindex="0">Programming languages</button>
-            <button class="tool-tab" id="tool-tab-frontend" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-frontend" tabindex="-1">Frontend development</button>
-            <button class="tool-tab" id="tool-tab-backend" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-backend" tabindex="-1">Backend development</button>
-            <button class="tool-tab" id="tool-tab-databases" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-databases" tabindex="-1">Databases</button>
-            <button class="tool-tab" id="tool-tab-development" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-development" tabindex="-1">Development tools</button>
-            <button class="tool-tab" id="tool-tab-ai" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-ai" tabindex="-1">AI &amp; speech technologies</button>
-            <button class="tool-tab" id="tool-tab-people" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-people" tabindex="-1">People &amp; process</button>
+        <aside class="project-side">
+          <p class="side-label">Built with</p>
+          <p class="stack">React, Vite, JavaScript, Tailwind CSS, Node.js, Express.js</p>
+          <p class="project-links">
+            <a class="link" href="https://finovaa-five.vercel.app/" target="_blank" rel="noopener noreferrer">Try it live <span aria-hidden="true">↗</span></a>
+            <a class="link" href="https://github.com/yuvarajkapaka/FINOVAA" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+          </p>
+        </aside>
+        <figure class="project-shot" data-href="https://finovaa-five.vercel.app/">
+          <div class="shot-bar"><span>finovaa-five.vercel.app</span></div>
+          <img src="assets/projects/finova.jpg" alt="FINOVA's Financial World home screen: available money, money skills score, the current mission (Save for emergencies) and the next challenge" width="1440" height="900" loading="lazy">
+        </figure>
+        <div class="flow">
+          <p class="side-label">How a player moves through it</p>
+          <ol>
+            <li><b>Money Center</b><span>Earn and budget</span></li>
+            <li><b>Savings Center</b><span>Set money aside</span></li>
+            <li><b>Learning Center</b><span>Pick up the basics</span></li>
+            <li><b>Investment Center</b><span>Put money to work</span></li>
+            <li><b>Challenge Center</b><span>Test the decisions</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="project" aria-labelledby="p2">
+        <p class="project-num">02</p>
+        <div class="project-main">
+          <p class="project-kind">Speech · Localization</p>
+          <h3 id="p2"><span class="mask"><span>Telugu Auto-Dubbing Studio</span></span></h3>
+          <p class="project-sub">English dialogue in, natural Telugu out</p>
+          <p>A video localization pipeline. It transcribes the original speech, works out who is speaking, translates with context instead of line by line, and generates a Telugu voice track synced back to the video.</p>
+        </div>
+        <aside class="project-side">
+          <p class="side-label">Built with</p>
+          <p class="stack">Python, FastAPI, Streamlit, Faster-Whisper, Demucs, Neural TTS</p>
+          <p class="project-links">
+            <a class="link" href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          </p>
+        </aside>
+        <figure class="project-shot shot-diagram" aria-label="Diagram: English dialogue goes in, Telugu dialogue comes out, timed to the same video">
+          <div class="shot-bar"><span>Telugu Auto-Dubbing · diagram</span></div>
+          <div class="dub" aria-hidden="true" id="dubDemo">
+            <div class="dub-track" data-part="en">
+              <span class="dub-lang">EN</span>
+              <svg class="dub-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M1 18.8v2.3 M3 18.6v2.8 M5 18.4v3.2 M7 17.8v4.5 M9 17.0v6.1 M11 17.1v5.9 M13 16.4v7.2 M15 12.2v15.7 M17 13.2v13.6 M19 12.1v15.8 M21 5.6v28.8 M23 8.5v22.9 M25 5.3v29.4 M27 8.5v23.0 M29 8.2v23.7 M31 12.6v14.8 M33 11.3v17.5 M35 12.0v15.9 M37 14.9v10.2 M39 15.7v8.6 M41 16.9v6.2 M43 17.2v5.6 M45 14.8v10.4 M47 14.1v11.8 M49 14.0v11.9 M51 14.4v11.3 M53 8.5v23.0 M55 9.8v20.4 M57 7.1v25.8 M59 5.2v29.6 M61 6.3v27.4 M63 4.9v30.2 M65 9.5v20.9 M67 7.6v24.8 M69 11.1v17.9 M71 9.7v20.6 M73 11.6v16.8 M75 15.7v8.5 M77 16.4v7.2 M79 16.9v6.1 M81 16.5v7.0 M83 17.6v4.8 M85 16.5v7.0 M87 16.1v7.8 M89 14.2v11.5 M91 13.3v13.5 M93 12.0v16.0 M95 9.2v21.6 M97 8.0v23.9 M99 4.9v30.3 M101 6.6v26.7 M103 5.4v29.1 M105 7.4v25.3 M107 8.4v23.2 M109 12.0v16.1 M111 15.4v9.2 M113 14.7v10.6 M115 15.9v8.2 M117 16.9v6.1 M119 16.7v6.5 M121 15.7v8.5 M123 16.1v7.7 M125 13.4v13.2 M127 13.2v13.6 M129 13.5v13.0 M131 13.8v12.3 M133 8.2v23.5 M135 6.2v27.6 M137 11.9v16.3 M139 6.0v28.1 M141 8.7v22.5 M143 10.8v18.4 M145 9.9v20.2 M147 6.8v26.3 M149 7.0v26.0 M151 13.3v13.5 M153 10.8v18.4 M155 14.6v10.7 M157 12.6v14.7 M159 15.0v9.9 M161 14.4v11.2 M163 15.2v9.6 M165 16.8v6.3 M167 16.5v7.1 M169 16.8v6.5 M171 16.6v6.9 M173 14.1v11.9 M175 15.2v9.6 M177 13.5v13.0 M179 11.3v17.4 M181 8.9v22.3 M183 11.3v17.4 M185 11.8v16.4 M187 5.1v29.9 M189 9.7v20.7 M191 5.3v29.3 M193 6.9v26.2 M195 11.5v17.1 M197 12.2v15.7 M199 13.1v13.8 M201 13.9v12.2 M203 15.2v9.5 M205 16.3v7.4 M207 17.0v6.0 M209 15.9v8.3 M211 16.0v8.0 M213 15.5v9.0 M215 13.8v12.3 M217 14.7v10.5 M219 13.7v12.5 M221 9.5v21.0 M223 10.9v18.1 M225 9.9v20.2 M227 12.9v14.3 M229 9.5v21.0 M231 7.8v24.4 M233 11.9v16.2 M235 7.1v25.9 M237 7.1v25.9 M239 11.8v16.4 M241 7.9v24.2 M243 9.7v20.6 M245 9.1v21.8 M247 11.9v16.2 M249 10.9v18.2 M251 11.8v16.4 M253 15.6v8.9 M255 16.0v8.0 M257 14.9v10.3 M259 15.0v10.0 M261 17.1v5.9 M263 17.2v5.6 M265 17.5v5.1 M267 18.1v3.9 M269 18.3v3.4 M271 18.5v3.0 M273 18.6v2.8 M275 18.7v2.6 M277 18.8v2.3 M279 18.9v2.2 M281 18.9v2.2 M283 19.0v2.1 M285 19.0v2.1 M287 19.0v2.1 M289 19.0v2.0 M291 19.0v2.0 M293 19.0v2.0 M295 19.0v2.0 M297 19.0v2.0 M299 19.0v2.0" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+              <span class="dub-line">“Let’s meet at the station tomorrow.”</span>
+            </div>
+            <div class="dub-arrow" data-part="arrow">↓</div>
+            <div class="dub-track dub-out" data-part="te">
+              <span class="dub-lang" lang="te">తె</span>
+              <svg class="dub-wave" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path d="M1 18.8v2.4 M3 18.7v2.6 M5 18.6v2.8 M7 17.9v4.2 M9 18.2v3.6 M11 17.1v5.7 M13 15.6v8.7 M15 16.5v6.9 M17 14.2v11.6 M19 12.7v14.6 M21 14.3v11.4 M23 11.5v17.1 M25 8.2v23.5 M27 9.1v21.8 M29 6.4v27.1 M31 10.7v18.5 M33 10.3v19.5 M35 11.7v16.7 M37 9.6v20.8 M39 8.2v23.7 M41 11.5v17.0 M43 12.0v15.9 M45 14.8v10.4 M47 14.8v10.3 M49 17.1v5.7 M51 17.4v5.2 M53 17.2v5.7 M55 16.5v6.9 M57 16.5v7.0 M59 16.7v6.6 M61 15.6v8.7 M63 15.2v9.7 M65 14.2v11.6 M67 10.9v18.2 M69 13.1v13.7 M71 8.3v23.4 M73 7.3v25.4 M75 12.3v15.3 M77 9.5v21.0 M79 8.3v23.4 M81 11.8v16.3 M83 8.6v22.7 M85 5.0v29.9 M87 11.5v16.9 M89 8.5v23.1 M91 12.4v15.3 M93 10.2v19.7 M95 9.3v21.3 M97 13.8v12.4 M99 15.3v9.3 M101 15.6v8.8 M103 14.8v10.3 M105 16.8v6.3 M107 17.1v5.7 M109 16.9v6.2 M111 16.9v6.3 M113 17.8v4.3 M115 17.6v4.9 M117 16.6v6.9 M119 16.9v6.3 M121 14.7v10.6 M123 15.0v9.9 M125 12.1v15.9 M127 8.8v22.5 M129 13.0v14.0 M131 8.8v22.5 M133 7.6v24.8 M135 10.8v18.3 M137 9.9v20.2 M139 4.6v30.7 M141 5.6v28.8 M143 12.6v14.8 M145 10.2v19.6 M147 10.5v19.1 M149 14.8v10.4 M151 14.6v10.7 M153 17.0v6.1 M155 15.9v8.1 M157 14.4v11.1 M159 13.9v12.1 M161 12.4v15.2 M163 14.6v10.8 M165 12.7v14.5 M167 9.1v21.8 M169 9.9v20.2 M171 10.1v19.8 M173 9.9v20.3 M175 5.0v30.0 M177 7.7v24.6 M179 11.9v16.2 M181 5.6v28.8 M183 9.4v21.1 M185 8.8v22.4 M187 10.8v18.4 M189 9.6v20.9 M191 10.9v18.1 M193 13.0v14.0 M195 10.4v19.1 M197 14.0v12.0 M199 11.4v17.1 M201 15.4v9.2 M203 13.3v13.4 M205 14.0v11.9 M207 15.6v8.8 M209 15.8v8.5 M211 17.1v5.8 M213 16.8v6.4 M215 17.6v4.8 M217 17.5v5.0 M219 15.7v8.6 M221 16.0v7.9 M223 15.3v9.3 M225 12.7v14.6 M227 13.6v12.9 M229 11.1v17.8 M231 12.9v14.3 M233 7.7v24.6 M235 10.9v18.2 M237 12.0v16.1 M239 4.4v31.2 M241 10.6v18.8 M243 4.6v30.8 M245 4.8v30.3 M247 8.4v23.2 M249 13.2v13.6 M251 13.5v13.0 M253 13.4v13.1 M255 13.5v13.0 M257 13.6v12.8 M259 13.6v12.8 M261 16.1v7.7 M263 17.2v5.6 M265 17.1v5.9 M267 18.0v4.0 M269 18.3v3.4 M271 18.3v3.4 M273 18.5v3.1 M275 18.8v2.4 M277 18.8v2.4 M279 18.9v2.3 M281 18.9v2.2 M283 19.0v2.1 M285 19.0v2.1 M287 19.0v2.0 M289 19.0v2.0 M291 19.0v2.0 M293 19.0v2.0 M295 19.0v2.0 M297 19.0v2.0 M299 19.0v2.0" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+              <span class="dub-line" lang="te">“రేపు స్టేషన్‌లో కలుద్దాం.”</span>
+            </div>
+            <div class="dub-time" data-part="time"><span>00:12.4</span><i></i><span>same timing, new voice</span></div>
           </div>
-          <div class="tool-console">
-            <div class="tool-panels">
-              <section class="tool-panel is-active" id="tool-panel-languages" role="tabpanel" aria-labelledby="tool-tab-languages" aria-hidden="false">
-                <div class="tool-panel-heading"><h3>Programming languages</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="C" aria-pressed="false"><span>C</span><b>+</b></button><button class="tool-option" type="button" data-tool="Java" aria-pressed="false"><span>Java</span><b>+</b></button><button class="tool-option" type="button" data-tool="Python" aria-pressed="false"><span>Python</span><b>+</b></button><button class="tool-option" type="button" data-tool="JavaScript" aria-pressed="false"><span>JavaScript</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-frontend" role="tabpanel" aria-labelledby="tool-tab-frontend" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>Frontend development</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="HTML" aria-pressed="false"><span>HTML</span><b>+</b></button><button class="tool-option" type="button" data-tool="CSS" aria-pressed="false"><span>CSS</span><b>+</b></button><button class="tool-option" type="button" data-tool="React" aria-pressed="false"><span>React</span><b>+</b></button><button class="tool-option" type="button" data-tool="Next.js" aria-pressed="false"><span>Next.js</span><b>+</b></button><button class="tool-option" type="button" data-tool="Tailwind CSS" aria-pressed="false"><span>Tailwind CSS</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-backend" role="tabpanel" aria-labelledby="tool-tab-backend" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>Backend development</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="Node.js" aria-pressed="false"><span>Node.js</span><b>+</b></button><button class="tool-option" type="button" data-tool="Express.js" aria-pressed="false"><span>Express.js</span><b>+</b></button><button class="tool-option" type="button" data-tool="FastAPI" aria-pressed="false"><span>FastAPI</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-databases" role="tabpanel" aria-labelledby="tool-tab-databases" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>Databases</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="SQL" aria-pressed="false"><span>SQL</span><b>+</b></button><button class="tool-option" type="button" data-tool="MongoDB" aria-pressed="false"><span>MongoDB</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-development" role="tabpanel" aria-labelledby="tool-tab-development" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>Development tools</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="Git" aria-pressed="false"><span>Git</span><b>+</b></button><button class="tool-option" type="button" data-tool="GitHub" aria-pressed="false"><span>GitHub</span><b>+</b></button><button class="tool-option" type="button" data-tool="Vite" aria-pressed="false"><span>Vite</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-ai" role="tabpanel" aria-labelledby="tool-tab-ai" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>AI &amp; speech technologies</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="Faster-Whisper" aria-pressed="false"><span>Faster-Whisper</span><b>+</b></button><button class="tool-option" type="button" data-tool="Speech Recognition" aria-pressed="false"><span>Speech Recognition</span><b>+</b></button><button class="tool-option" type="button" data-tool="Neural TTS" aria-pressed="false"><span>Neural TTS</span><b>+</b></button><button class="tool-option" type="button" data-tool="Large Language Models" aria-pressed="false"><span>Large Language Models</span><b>+</b></button></div>
-              </section>
-              <section class="tool-panel" id="tool-panel-people" role="tabpanel" aria-labelledby="tool-tab-people" aria-hidden="true" hidden>
-                <div class="tool-panel-heading"><h3>People &amp; process</h3></div>
-                <div class="tool-options"><button class="tool-option" type="button" data-tool="Leadership" aria-pressed="false"><span>Leadership</span><b>+</b></button><button class="tool-option" type="button" data-tool="Event Management" aria-pressed="false"><span>Event Management</span><b>+</b></button><button class="tool-option" type="button" data-tool="Public Speaking" aria-pressed="false"><span>Public Speaking</span><b>+</b></button><button class="tool-option" type="button" data-tool="Analytical Thinking" aria-pressed="false"><span>Analytical Thinking</span><b>+</b></button><button class="tool-option" type="button" data-tool="Time Management" aria-pressed="false"><span>Time Management</span><b>+</b></button></div>
-              </section>
-            </div>
-            <div class="tool-stack">
-              <div class="tool-stack-head"><span>My working stack</span><span id="toolStackCount">0 selected</span></div>
-              <div class="tool-stack-tray" id="toolStackTray" aria-live="polite"><p>Choose tools to pin them here. Remove any one at any time.</p></div>
-              <button class="tool-stack-clear" id="clearToolStack" type="button" disabled>Clear stack</button>
-            </div>
+        </figure>
+        <div class="flow">
+          <p class="side-label">The pipeline</p>
+          <ol>
+            <li data-step="en"><b>Transcribe</b><span>Faster-Whisper</span></li>
+            <li data-step="en"><b>Identify speakers</b><span>Who said what</span></li>
+            <li data-step="arrow"><b>Translate</b><span>Context-aware</span></li>
+            <li data-step="te"><b>Synthesize</b><span>Neural TTS</span></li>
+            <li data-step="time"><b>Sync</b><span>Audio to video</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="project" aria-labelledby="p3">
+        <p class="project-num">03</p>
+        <div class="project-main">
+          <p class="project-kind">Education · Campus platform</p>
+          <h3 id="p3"><span class="mask"><span>Campus Connect</span></span></h3>
+          <p class="project-sub">The campus notice board, online</p>
+          <p>Everything pinned up around a college, in one place: a notice board, events with RSVPs, a team finder for hackathons and clubs, lost &amp; found, and direct chats. Each student also sees their own attendance, results and fees, with separate views for faculty and the academic office.</p>
+          <ul class="highlights">
+            <li><b>Access is enforced on the server,</b> not hidden in the UI: every action checks the caller’s role, so faculty only grade their own subjects and students only ever see their own records.</li>
+            <li><b>Marks have a paper trail:</b> every change is logged with the old value, new value, who and when, and publishing a semester locks the sheet.</li>
+            <li><b>The demo keeps itself current:</b> a small demo clock shifts seeded data forward each day, so “2h ago” stays 2h ago and Monday’s lecture stays on a Monday.</li>
+          </ul>
+        </div>
+        <aside class="project-side">
+          <p class="side-label">Built with</p>
+          <p class="stack">Next.js 16, React 19, TypeScript, Tailwind CSS 4, SQLite (node:sqlite), Framer Motion</p>
+          <p class="project-links">
+            <a class="link" href="https://campus-connect-9mv5.onrender.com" target="_blank" rel="noopener noreferrer">Try it live <span aria-hidden="true">↗</span></a>
+            <a class="link" href="https://github.com/yuvarajkapaka/campus-connect" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+          </p>
+          <p class="project-note">One-click demo logins for student, faculty and office. Free hosting, so the first visit can take up to a minute to wake up.</p>
+        </aside>
+        <figure class="project-shot shot-gallery" data-href="https://campus-connect-9mv5.onrender.com">
+          <div class="shot-bar"><span>campus-connect-9mv5.onrender.com</span></div>
+          <div class="shot-stage">
+            <img src="assets/projects/campus-board.jpg" alt="Campus Connect The Board: pinned notices from clubs and classmates, with today's events and team requests alongside" width="1440" height="900" loading="lazy" data-shot="board">
+            <img src="assets/projects/campus-events.jpg" alt="Campus Connect Events: this week's campus events with RSVPs" width="1440" height="900" loading="lazy" data-shot="events" hidden>
+            <img src="assets/projects/campus-team.jpg" alt="Campus Connect Team Finder: requests for hackathon, project and music teammates" width="1440" height="900" loading="lazy" data-shot="team" hidden>
+            <img src="assets/projects/campus-chats.jpg" alt="Campus Connect Chats: direct messages between students" width="1440" height="900" loading="lazy" data-shot="chats" hidden>
+            <img src="assets/projects/campus-attendance.jpg" alt="Campus Connect Attendance: per-subject attendance with how many classes you can still miss" width="1440" height="900" loading="lazy" data-shot="attendance" hidden>
+          </div>
+          <div class="shot-tabs" role="group" aria-label="Campus Connect screens"><button type="button" data-shot="board" aria-pressed="true">Board</button><button type="button" data-shot="events" aria-pressed="false">Events</button><button type="button" data-shot="team" aria-pressed="false">Team Finder</button><button type="button" data-shot="chats" aria-pressed="false">Chats</button><button type="button" data-shot="attendance" aria-pressed="false">Attendance</button></div>
+        </figure>
+        <div class="flow flow-modules">
+          <p class="side-label">Core modules</p>
+          <ol>
+            <li><b>Board &amp; events</b><span>Notices, RSVPs</span></li>
+            <li><b>Team finder</b><span>Hackathons, clubs</span></li>
+            <li><b>Chats</b><span>Direct messages</span></li>
+            <li><b>Academics</b><span>Attendance, results, fees</span></li>
+          </ol>
+        </div>
+      </article>
+      <article class="project" aria-labelledby="p4">
+        <p class="project-num">04</p>
+        <div class="project-main">
+          <p class="project-kind">Commerce · AI imagery</p>
+          <h3 id="p4"><span class="mask"><span>DukaanShoot</span></span></h3>
+          <p class="project-sub">AI model photos and an online shop for small Indian stores</p>
+          <p>A mobile-first app for local shopkeepers, in English, Telugu and Hindi. A seller photographs a saree or kurta, gets four AI model photos, and lists it in their own online shop with one tap. Buyers browse local shops without logging in, order with Cash on Delivery or Pay at Shop, and follow a live status timeline.</p>
+          <ul class="highlights">
+            <li><b>The AI provider is swappable:</b> the app talks to one interface, so a mock renderer and the FASHN AI API are interchangeable, and any AI failure falls back to demo photos instead of crashing.</li>
+            <li><b>Money and stock are safe on the server:</b> Postgres functions deduct credits and reduce stock in one transaction, refund failed jobs exactly once, and payments are HMAC-verified before anything is credited.</li>
+            <li><b>Built for the phone in the shopkeeper’s hand:</b> designed mobile-first from 360px and installable as a PWA; the marketplace scores 100 in Lighthouse for accessibility, best practices and SEO.</li>
+          </ul>
+        </div>
+        <aside class="project-side">
+          <p class="side-label">Built with</p>
+          <p class="stack">Next.js 15, React 19, TypeScript, Tailwind CSS 4, Supabase (Postgres, RLS, Realtime), Zustand, next-intl, Framer Motion</p>
+          <p class="project-links">
+            <a class="link" href="https://dukaanshoot.vercel.app" target="_blank" rel="noopener noreferrer">Try it live <span aria-hidden="true">↗</span></a>
+            <a class="link" href="https://github.com/yuvarajkapaka/DUKAANSHOOT" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+          </p>
+          <p class="project-note">Tap “Demo as Seller” or “Demo as Buyer” on the sign-in screen. No account needed.</p>
+        </aside>
+        <figure class="project-shot shot-gallery" data-href="https://dukaanshoot.vercel.app">
+          <div class="shot-bar"><span>dukaanshoot.vercel.app</span></div>
+          <div class="shot-stage">
+            <img src="assets/projects/dukaan-welcome.jpg" alt="DukaanShoot Welcome screen: pick English, Telugu or Hindi" width="1440" height="900" loading="lazy" data-shot="welcome">
+            <img src="assets/projects/dukaan-market.jpg" alt="DukaanShoot Buyer marketplace: local shops, categories and new arrivals" width="1440" height="900" loading="lazy" data-shot="market" hidden>
+            <img src="assets/projects/dukaan-product.jpg" alt="DukaanShoot Product page with AI model photos, price, Add to Cart and Order on WhatsApp" width="1440" height="900" loading="lazy" data-shot="product" hidden>
+            <img src="assets/projects/dukaan-seller.jpg" alt="DukaanShoot Seller dashboard: new orders, today's orders, views and WhatsApp clicks" width="1440" height="900" loading="lazy" data-shot="seller" hidden>
+            <img src="assets/projects/dukaan-studio.jpg" alt="DukaanShoot Three-panel AI photo studio: upload the item, choose model, pose and background, get 4 photos" width="1440" height="900" loading="lazy" data-shot="studio" hidden>
+          </div>
+          <div class="shot-tabs" role="group" aria-label="DukaanShoot screens"><button type="button" data-shot="welcome" aria-pressed="true">Welcome</button><button type="button" data-shot="market" aria-pressed="false">Marketplace</button><button type="button" data-shot="product" aria-pressed="false">Product</button><button type="button" data-shot="seller" aria-pressed="false">Seller dashboard</button><button type="button" data-shot="studio" aria-pressed="false">AI photo studio</button></div>
+        </figure>
+        <div class="flow">
+          <p class="side-label">A seller’s journey</p>
+          <ol>
+            <li><b>Photograph</b><span>One flat photo of the item</span></li>
+            <li><b>Choose the look</b><span>Model, pose, background</span></li>
+            <li><b>4 model photos</b><span>AI generated</span></li>
+            <li><b>List it</b><span>Goes live in their shop</span></li>
+            <li><b>Ship orders</b><span>New → Packed → Delivered</span></li>
+          </ol>
+        </div>
+      </article>
+    </section>
+
+    <div class="tapes" aria-hidden="true">
+      <div class="tape tape-a"><div class="tape-track"><div class="tape-group"><span>FINOVA</span><i>✳</i><span>Telugu Auto-Dubbing</span><i>✳</i><span>Campus Connect</span><i>✳</i><span>DukaanShoot</span><i>✳</i></div></div></div>
+      <div class="tape tape-b"><div class="tape-track"><div class="tape-group"><span>Open to opportunities</span><i>✳</i><span>Final year</span><i>✳</i><span>Hyderabad</span><i>✳</i><span>Class of 2027</span><i>✳</i></div></div></div>
+    </div>
+
+    <section class="section wrap split" id="about" aria-labelledby="aboutTitle">
+      <span class="sec-mark" aria-hidden="true">About</span>
+      <header class="section-head">
+        <p class="sec-num"><b>02</b> — About</p>
+        <h2 id="aboutTitle"><span class="mask"><span>About</span></span></h2>
+        <figure class="about-photo">
+          <div class="frame"><img src="assets/yuvaraj-portrait.png" alt="Yuvaraj Kapaka, smiling, in glasses and a black shirt" width="1086" height="1448" loading="lazy"></div>
+          <figcaption><span>Hyderabad, India</span><span>Open to opportunities</span></figcaption>
+        </figure>
+      </header>
+      <div class="prose">
+        <p class="prose-lead" data-words>I’m most at home where the interface meets the system underneath it, building the part people touch and the part that keeps it working.</p>
+        <p>I’m a Computer Science &amp; Engineering student at Kommuri Pratap Reddy Institute of Technology in Ghatkesar, Hyderabad. Most of what I know I picked up by building. FINOVA taught me how to model state that keeps changing. The dubbing studio taught me how fragile a chain of AI models gets when every step depends on the one before it.</p>
+        <p>Right now I’m going deeper into AI and full-stack development. I care about clean structure, interfaces anyone can use, and shipping something that works over planning something perfect.</p>
+        <p class="side-label">Areas I work in</p>
+        <ul class="inline-list">
+          <li>Full-stack web apps</li><li>AI &amp; speech processing</li><li>Interactive systems</li><li>Cybersecurity</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section wrap split" id="skills" aria-labelledby="skillsTitle">
+      <span class="sec-mark" aria-hidden="true">Skills</span>
+      <header class="section-head">
+        <p class="sec-num"><b>03</b> — Skills</p>
+        <h2 id="skillsTitle"><span class="mask"><span>Skills</span></span></h2>
+      </header>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>C, Java, Python, JavaScript, TypeScript</dd></div>
+        <div><dt>Frontend</dt><dd>HTML, CSS, React, Next.js, Tailwind CSS</dd></div>
+        <div><dt>Backend</dt><dd>Node.js, Express.js, FastAPI</dd></div>
+        <div><dt>Databases</dt><dd>SQL, PostgreSQL, Supabase, SQLite, MongoDB</dd></div>
+        <div><dt>AI &amp; speech</dt><dd>Faster-Whisper, speech recognition, neural TTS, large language models</dd></div>
+        <div><dt>Tools</dt><dd>Git, GitHub, Vite</dd></div>
+        <div><dt>With people</dt><dd>Leadership, event management, public speaking, time management</dd></div>
+      </dl>
+    </section>
+
+    <section class="section wrap split" id="education" aria-labelledby="eduTitle">
+      <span class="sec-mark" aria-hidden="true">Education</span>
+      <header class="section-head">
+        <p class="sec-num"><b>04</b> — Education</p>
+        <h2 id="eduTitle"><span class="mask"><span>Education</span></span></h2>
+      </header>
+      <div>
+        <ol class="timeline">
+          <li>
+            <span class="t-years">2023 – 2027</span>
+            <div><h3>B.Tech, Computer Science &amp; Engineering</h3><p>KPRIT, Ghatkesar, Hyderabad · expected 2027</p></div>
+            <span class="t-grade">CGPA 7.81</span>
+          </li>
+          <li>
+            <span class="t-years">2021 – 2023</span>
+            <div><h3>Intermediate (Board of Intermediate Education)</h3><p>Sri Chaitanya Junior Kalasala, ECIL, Hyderabad</p></div>
+            <span class="t-grade">GPA 9.61</span>
+          </li>
+          <li>
+            <span class="t-years">2017 – 2021</span>
+            <div><h3>Secondary School Certificate</h3><p>Kakatiya High School, Kapra, Hyderabad</p></div>
+            <span class="t-grade"></span>
+          </li>
+        </ol>
+
+        <div class="extras">
+          <div>
+            <p class="side-label">Milestones</p>
+            <ul class="plain-list">
+              <li><b>Seminar on Large Language Models</b><span>Aarohan 2K24, KPRIT</span></li>
+              <li><b>Gen AI Hackathon participant</b><span>KPRIT</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="side-label">Certificates</p>
+            <ul class="plain-list">
+              <li><b>C Language</b><span>Udemy · UC-aa802cc8</span></li>
+              <li><b>Python for Beginners In-Depth</b><span>Udemy, Horizon Tech · UC-4d0c9f7b</span></li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-shell projects-section" id="projects">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Selected work</p>
-          <h2>Things I’ve built.</h2>
-        <p class="section-note">A few projects where engineering meets a real-world problem.</p>
-      </div>
-      <div class="project-workbench reveal" id="projectWorkbench">
-        <div class="project-rail">
-          <div class="project-rail-status" id="projectRailStatus" role="status" aria-live="polite" aria-atomic="true" aria-label="Project 1 of 3">
-            <span class="project-scroll-hint"><span class="project-hint-desktop">Scroll to browse</span><span class="project-hint-mobile">Choose a project</span></span>
-            <span class="project-position"><span class="sr-only">Project </span><b id="projectProgress">1</b><span>of 3</span></span>
-          </div>
-          <nav class="project-index" role="tablist" aria-label="Choose a project">
-            <button class="project-tab" data-project-tab="finova" id="project-tab-finova" type="button" role="tab" aria-selected="true" aria-controls="project-finova" tabindex="0"><span><b>FINOVA</b><small>Fintech simulator</small></span></button>
-            <button class="project-tab" data-project-tab="dubbing" id="project-tab-dubbing" type="button" role="tab" aria-selected="false" aria-controls="project-dubbing" tabindex="-1"><span><b>Telugu Auto-Dubbing</b><small>AI &amp; media</small></span></button>
-            <button class="project-tab" data-project-tab="campus" id="project-tab-campus" type="button" role="tab" aria-selected="false" aria-controls="project-campus" tabindex="-1"><span><b>Campus Connect</b><small>Education systems</small></span></button>
-          </nav>
-        </div>
-        <div class="project-stage" id="projectStage" aria-live="polite">
-        <article class="project-card project-detail project-featured project-finova is-active" id="project-finova" role="tabpanel" aria-labelledby="project-tab-finova" aria-hidden="false" tabindex="0">
-          <div class="project-copy">
-            <div class="project-meta"><span>Featured work</span><span>Personal finance</span></div>
-            <p class="project-type">Fintech and interactive learning</p>
-            <h3>FINOVA: Investment Literacy Simulator</h3>
-            <p class="project-description">An interactive financial education game that helps users learn budgeting, saving, investing, and smarter financial decision-making through virtual simulations and challenges.</p>
-            <div class="project-tags"><span>React</span><span>Vite</span><span>JavaScript</span><span>Tailwind CSS</span><span>Node.js</span><span>Express.js</span><span>Simulation</span></div>
-            <p class="project-flow">Money Center <i>→</i> Savings Center <i>→</i> Learning Center <i>→</i> Investment Center <i>→</i> Challenge Center</p>
-            <div class="project-links">
-              <a class="text-link" href="https://finovaa-five.vercel.app/" target="_blank" rel="noopener noreferrer">Explore simulation</a>
-              <a class="text-link text-link-muted" href="https://github.com/yuvarajkapaka/FINOVAA" target="_blank" rel="noopener noreferrer">View source</a>
-            </div>
-          </div>
-          <div class="project-visual finova-visual" aria-hidden="true">
-            <div class="mock-window">
-              <div class="mock-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>FINOVA / DASHBOARD</span><span class="mock-avatar">YK</span></div>
-              <div class="mock-content">
-                <div class="mock-welcome"><span>GOOD AFTERNOON</span><strong>Your money,<br>your next move.</strong></div>
-                <div class="mock-balance"><span>SIMULATION</span><b>Make a plan</b><small>Budget, save, invest</small></div>
-                <div class="mock-chart"><span class="chart-line"></span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="mock-foot"><span>Money Center</span><span>Savings</span><span>Invest</span><span class="mock-active">Learn</span></div>
-              </div>
-            </div>
-            <span class="visual-note">Learn by doing</span>
-          </div>
-        </article>
-
-        <article class="project-card project-detail project-secondary project-voice" id="project-dubbing" role="tabpanel" aria-labelledby="project-tab-dubbing" aria-hidden="true" tabindex="-1" hidden inert>
-          <div class="project-copy">
-            <div class="project-meta"><span>Speech and language</span><span>Telugu dubbing</span></div>
-            <p class="project-type">Speech processing and localization</p>
-            <h3>Telugu Auto-Dubbing Studio</h3>
-            <p class="project-description">A video localization pipeline designed to convert video dialogue into natural Telugu through Faster-Whisper speech recognition, context-aware translation, speaker identification, and Neural TTS audio-video synchronization.</p>
-            <div class="project-tags"><span>Python</span><span>FastAPI</span><span>Streamlit</span><span>Faster-Whisper</span><span>Neural TTS</span><span>Demucs</span><span>AI Translation</span></div>
-            <p class="project-flow pipeline-flow"><span>ASR</span><i>→</i><span>Translate</span><i>→</i><span>Neural TTS</span><i>→</i><span>Sync</span></p>
-            <div class="project-links"><a class="text-link" href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">View pipeline</a></div>
-          </div>
-          <div class="project-visual audio-visual" aria-hidden="true">
-            <div class="audio-console">
-              <div class="audio-console-head"><span>NEURAL DUB PIPELINE</span><span class="audio-status"><i></i> READY</span></div>
-              <div class="audio-languages">
-                <div class="audio-language"><span>INPUT / EN</span><b>EN</b><small>Original dialogue</small></div>
-                <span class="audio-direction">→</span>
-                <div class="audio-language audio-language-output"><span>OUTPUT / TE</span><b>తె</b><small>Natural Telugu</small></div>
-              </div>
-              <div class="waveform"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="audio-steps"><span>TRANSCRIBE</span><i>→</i><span>TRANSLATE</span><i>→</i><span>SYNC</span></div>
-            </div>
-            <span class="audio-caption">Voice / language / sync</span>
-          </div>
-        </article>
-
-        <article class="project-card project-detail project-secondary project-campus" id="project-campus" role="tabpanel" aria-labelledby="project-tab-campus" aria-hidden="true" tabindex="-1" hidden inert>
-          <div class="project-copy">
-            <div class="project-meta"><span>Education</span><span>Campus systems</span></div>
-            <p class="project-type">Education and real-time systems</p>
-            <h3>Campus Connect: Educational ERP System</h3>
-            <p class="project-description">A modern educational ERP platform with real-time communication, attendance management, and academic support for enhanced learning.</p>
-            <div class="project-tags"><span>React</span><span>Next.js</span><span>Node.js</span><span>MongoDB</span><span>Socket.io</span><span>JWT</span></div>
-            <div class="project-links"><a class="text-link" href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">View architecture</a></div>
-          </div>
-          <div class="project-visual campus-visual" aria-hidden="true">
-            <div class="campus-panel">
-              <div class="campus-panel-head"><span>Campus Connect</span><span class="campus-live"><i></i> LIVE</span></div>
-              <div class="campus-day">CORE MODULES</div>
-              <div class="campus-event"><span><b>Attendance</b><small>Management</small></span><i></i></div>
-              <div class="campus-event campus-event-lilac"><span><b>Communication</b><small>Real-time</small></span><i></i></div>
-              <div class="campus-event campus-event-gold"><span><b>Academic support</b><small>Enhanced learning</small></span><i></i></div>
-            </div>
-            <span class="visual-note">Learning, connected</span>
-          </div>
-        </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section journey-section" id="journey">
-      <div class="section-shell">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Education and milestones</p>
-          <h2>A work in progress.</h2>
-          <p class="section-note">Learning, building, and finding better ways to solve problems.</p>
-        </div>
-        <div class="journey-grid">
-          <div class="timeline reveal-group">
-            <article class="timeline-item reveal"><span class="timeline-year">2023 — 2027 <i>(Expected)</i></span><div class="timeline-marker"></div><div class="timeline-content"><h3>B.Tech, Computer Science &amp; Engineering <span class="grade-badge">CGPA 7.81</span></h3><p>Kommuri Pratap Reddy Institute of Technology (KPRIT), Ghatkesar, Hyderabad</p></div></article>
-            <article class="timeline-item reveal"><span class="timeline-year">2021 — 2023</span><div class="timeline-marker"></div><div class="timeline-content"><h3>Board of Intermediate <span class="grade-badge">GPA 9.61</span></h3><p>Sri Chaitanya Junior Kalasala, ECIL, Hyderabad</p></div></article>
-            <article class="timeline-item reveal"><span class="timeline-year">2017 — 2021</span><div class="timeline-marker"></div><div class="timeline-content"><h3>Secondary School Examination</h3><p>Kakatiya High School, Kapra, Hyderabad</p></div></article>
-          </div>
-          <div class="milestones reveal-group">
-            <p class="eyebrow reveal">Proud moments</p>
-            <article class="milestone-card reveal"><span class="milestone-icon" aria-hidden="true"></span><div><span class="milestone-label">Aarohan 2K24, KPRIT</span><h3>Delivered a seminar on Large Language Models</h3></div></article>
-            <article class="milestone-card reveal"><span class="milestone-icon milestone-icon-blue" aria-hidden="true"></span><div><span class="milestone-label">Gen AI Hackathon, KPRIT</span><h3>Built AI solutions under pressure</h3><p>Participated in the Gen AI Hackathon at KPRIT.</p></div></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-shell certifications-section" id="certifications">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Credentials</p>
-        <h2>Courses and certifications</h2>
-      </div>
-      <div class="cert-grid reveal-group">
-        <article class="cert-card reveal"><span class="cert-mark">Udemy<span>.</span></span><div><h3>C Language Course</h3><p>Udemy, certificate UC-aa802cc8</p></div></article>
-        <article class="cert-card reveal"><span class="cert-mark">Udemy<span>.</span></span><div><h3>Python for Beginners In-Depth</h3><p>Udemy, Horizon Tech, certificate UC-4d0c9f7b</p></div></article>
-      </div>
-    </section>
-
-    <section class="contact-section section-shell" id="contact">
-      <div class="contact-card reveal">
-        <div class="contact-topline"><span>Open to opportunities</span><span>Hyderabad, India</span></div>
-        <div class="contact-main">
-          <div><p class="eyebrow">Have a good idea?</p><h2>Let’s build<br><em>something useful.</em></h2></div>
-          <a class="contact-email" href="mailto:yuvarajkapaka@gmail.com">yuvarajkapaka@gmail.com</a>
-        </div>
-        <div class="contact-bottom"><p>Computer Science and Engineering student passionate about building practical software solutions, exploring AI applications, and creating intuitive user experiences.</p><div class="contact-socials"><a href="https://linkedin.com/in/yuvarajkapaka" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">GitHub</a><a href="mailto:yuvarajkapaka@gmail.com">Email</a></div></div>
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+      <div class="sun" aria-hidden="true"></div>
+      <span class="sec-mark" aria-hidden="true">Contact</span>
+      <div class="wrap">
+        <p class="kicker">Contact</p>
+        <h2 id="contactTitle"><span class="mask"><span>Have something worth</span></span><span class="mask"><span>building? Write to me.</span></span></h2>
+        <a class="contact-email magnetic" href="mailto:yuvarajkapaka@gmail.com">yuvarajkapaka@gmail.com</a>
+        <ul class="contact-links">
+          <li><a class="btn btn-ink" href="assets/Yuvaraj-Kapaka-Resume.pdf" download>Download CV <span aria-hidden="true">↓</span></a></li>
+          <li><a class="link" href="https://github.com/yuvarajkapaka" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>
+          <li><a class="link" href="https://linkedin.com/in/yuvarajkapaka" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
+          <li class="local-time">Hyderabad · <time id="localTime">IST</time></li>
+        </ul>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer section-shell">
-    <a class="footer-brand" href="#home">YK<span>.</span></a>
-    <p>© <span id="year">2026</span> Yuvaraj Kapaka. Built with precision and care.</p>
-    <a class="back-to-top" href="#home">Back to top ↑</a>
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> Yuvaraj Kapaka</p>
+    <p>Hand-written HTML, CSS and a little JavaScript.</p>
+    <a class="link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
 </body>
 </html>
